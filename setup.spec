@@ -4,12 +4,12 @@ Summary(fr):	Fichiers de configuration simples
 Summary(pl):	Podstawowe pliki systemu Linux
 Summary(tr):	Basit kurulum dosyalarý
 Name:		setup
-Version:	2.0.3
-Release:	0.1
+Version:	2.0.5
+Release:	0.2
 Copyright:	public domain
 Group:		Base
 Group(pl):	Podstawowe
-Source:		%{name}-%{version}.tar.bz2
+Source:		%{name}-%{version}.tar.gz
 Buildroot:	/tmp/%{name}-%{version}-root
 Buildarch:	noarch
 
