@@ -81,7 +81,7 @@ rm -rf $RPM_BUILD_ROOT
 #	fi
 #done
 
-%post	-p joinpasswd
+%post	-p %{_sbindir}/joinpasswd
 
 %files
 %defattr(644,root,root,755)
