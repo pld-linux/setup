@@ -2,6 +2,7 @@ Summary:     Simple setup files
 Summary(de): Einfache Setup-Dateien 
 Summary(fr): Fichiers de configuration simples
 Summary(tr): Basit kurulum dosyalarý
+Summary(pl): Podstawowe pliki systemowe
 Name:        setup
 Version:     1.10.0
 Release:     3
@@ -26,6 +27,10 @@ importants, comme passwd, group, les fichiers profile, etc.
 %description -l tr
 Bu paket, passwd, group, profile gibi çok önemli ayar ve kurulum dosyalarýný
 içerir.
+
+%description -l pl
+Pakiet ten zawiera bardzo istotne pliki konfiguracyjne w³±czaj±c
+w to pliki passwd, group, profile itd.
 
 %prep
 %setup -q
@@ -58,6 +63,9 @@ rm -rf $RPM_BUILD_ROOT
 %verify(not md5 size mtime) /var/log/lastlog
 
 %changelog
+* Mon Jan 11 1999 Arkadiusz Mi¶kiewicz <misiek@misiek.eu.org>
+- added pl translations
+
 * Sun Oct  4 1998 Tomasz K³oczko <kloczek@rudy.mif.pg.gda.pl>
   [1.10.0-3]
 - added radius and radacct in /etc/services.
