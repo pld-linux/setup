@@ -51,7 +51,7 @@ Bu paket, passwd, group, profile gibi çok önemli ayar ve kurulum
 dosyalarýný içerir.
 
 %prep
-%setup -q
+%setup -q -n %{name}
 
 %install
 rm -rf $RPM_BUILD_ROOT
