@@ -8,7 +8,7 @@ Summary(pt_BR):	Vários arquivos básicos de configuração
 Summary(tr):	Basit kurulum dosyalarý
 Name:		setup
 Version:	2.4.1
-Release:	3
+Release:	4
 License:	Public Domain
 Group:		Base
 Source0:	%{name}-%{version}.tar.bz2
