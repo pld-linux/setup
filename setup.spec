@@ -4,14 +4,13 @@ Summary(fr):	Fichiers de configuration simples
 Summary(pl):	Podstawowe pliki systemu Linux
 Summary(tr):	Basit kurulum dosyalarý
 Name:		setup
-Version:	2.3.2
+Version:	2.4.0
 Release:	1
 License:	public domain
 Group:		Base
 Group(de):	Gründsätzlich
 Group(pl):	Podstawowe
 Source0:	%{name}-%{version}.tar.bz2
-Source1:	services
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Buildarch:	noarch
 AutoReqProv:	no
@@ -45,8 +44,6 @@ rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT
 
 cp -a * $RPM_BUILD_ROOT
-rm -f $RPM_BUILD_ROOT%{_sysconfdir}/services
-install %{SOURCE1} $RPM_BUILD_ROOT%{_sysconfdir}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
