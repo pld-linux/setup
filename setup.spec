@@ -1,7 +1,7 @@
 #
 # TODO:
 # - make some README.PLD with system features description
-# - some services are missing (postfix related?)
+# - some services are missing (postfix related?) - see (and update) SOURCES/setup-services.patch
 #
 # Conditional build:
 %bcond_with	ssp	# enable stack-smashing protector (vide dietlibc.spec)
