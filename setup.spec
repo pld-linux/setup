@@ -12,8 +12,6 @@ Release:	0.1
 License:	Public Domain
 Group:		Base
 Source0:	%{name}-%{version}.tar.bz2
-Source1:	group
-Source2:	services
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Buildarch:	noarch
 AutoReqProv:	no
@@ -60,9 +58,6 @@ rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT
 
 cp -fa * $RPM_BUILD_ROOT
-
-install %{SOURCE1} $RPM_BUILD_ROOT%{_sysconfdir}/group
-install %{SOURCE2} $RPM_BUILD_ROOT%{_sysconfdir}/services
 
 %clean
 rm -rf $RPM_BUILD_ROOT
