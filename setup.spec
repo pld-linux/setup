@@ -4,7 +4,7 @@ Summary(fr): Fichiers de configuration simples
 Summary(tr): Basit kurulum dosyalarý
 Name:        setup
 Version:     1.10.0
-Release:     2
+Release:     3
 Copyright:   public domain
 Source:      %{name}-%{version}.tar.bz2
 Group:       Base
@@ -58,6 +58,10 @@ rm -rf $RPM_BUILD_ROOT
 %verify(not md5 size mtime) /var/log/lastlog
 
 %changelog
+* Sun Oct  4 1998 Tomasz K³oczko <kloczek@rudy.mif.pg.gda.pl>
+  [1.10.0-3]
+- added radius and radacct in /etc/services.
+
 * Wed Sep 30 1998 Tomasz K³oczko <kloczek@rudy.mif.pg.gda.pl>
   [1.10.0-2]
 - added zmailer group in /etc/group.
