@@ -20,10 +20,6 @@ AutoReqProv:	no
 This package contains a number of very important configuration and
 setup files, including the passwd, group, profile files, etc.
 
-%description -l pl
-Pakiet ten zawiera wiele bardzo wa¿nych plików konfiguracyjnych dla
-twojego systemu.
-
 %description -l de
 Dieses Paket enthält wichtige Konfigurations- und Setup-Dateien, u.a.
 passwd-, group-, profile-Dateien usw.
@@ -31,6 +27,10 @@ passwd-, group-, profile-Dateien usw.
 %description -l fr
 Ce paquetage contient un nombre de fichiers de configuration très
 importants, comme passwd, group, les fichiers profile, etc.
+
+%description -l pl
+Pakiet ten zawiera wiele bardzo wa¿nych plików konfiguracyjnych dla
+twojego systemu.
 
 %description -l tr
 Bu paket, passwd, group, profile gibi çok önemli ayar ve kurulum
@@ -74,7 +74,7 @@ dosyalarýný içerir.
 %config(noreplace,missingok) %verify(not md5 size mtime) %{_sysconfdir}/motd
 %config(noreplace) %verify(not md5 size mtime) %{_sysconfdir}/profile
 %config(noreplace) %verify(not md5 size mtime) %{_sysconfdir}/protocols
-%config(noreplace) %verify(not md5 size mtime) %{_sysconfdir}/filesystems
+%config(noreplace,missingok) %verify(not md5 size mtime) %{_sysconfdir}/filesystems
 %ghost %{_sysconfdir}/shells
 
 %attr(600,root,root) %config(noreplace) %verify(not md5 size mtime) %{_sysconfdir}/secure*
