@@ -33,7 +33,7 @@ importants, comme passwd, group, les fichiers profile, etc.
 
 %description -l pl
 Pakiet ten zawiera wiele bardzo wa¿nych plików konfiguracyjnych dla
-twojego systemu.
+Twojego systemu.
 
 %description -l tr
 Bu paket, passwd, group, profile gibi çok önemli ayar ve kurulum
