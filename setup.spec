@@ -1,20 +1,25 @@
-Summary:     Simple setup files
-Summary(de): Einfache Setup-Dateien 
-Summary(fr): Fichiers de configuration simples
-Summary(tr): Basit kurulum dosyalarý
-Summary(pl): Podstawowe pliki systemowe
-Name:        setup
-Version:     1.10.0
-Release:     3
-Copyright:   public domain
-Source:      %{name}-%{version}.tar.bz2
-Group:       Base
-Buildroot:   /tmp/buildroot-%{name}-%{version}
-BuildArchitectures: noarch
+Summary:	Simple setup files
+Summary(de):	Einfache Setup-Dateien 
+Summary(fr):	Fichiers de configuration simples
+Summary(pl):	Podstawowe pliki systemu Linux
+Summary(tr):	Basit kurulum dosyalarý
+Name:		setup
+Version:	1.9.6
+Release:	1d
+Copyright:	public domain
+Group:		Base
+Group(pl):	Bazowe
+Source:		%{name}-%{version}.tar.bz2
+Buildroot:	/tmp/%{name}-%{version}-root
+Buildarch:	noarch
 
 %description
 This package contains a number of very important configuration
 and setup files, including the passwd, group, profile files, etc.
+
+%description -l pl
+Pakiet ten zawiera wiele bardzo wa¿nych plików konfiguracyjnych dla
+twojego systemu.
 
 %description -l de
 Dieses Paket enthält wichtige Konfigurations- und Setup-Dateien,
@@ -28,77 +33,74 @@ importants, comme passwd, group, les fichiers profile, etc.
 Bu paket, passwd, group, profile gibi çok önemli ayar ve kurulum dosyalarýný
 içerir.
 
-%description -l pl
-Pakiet ten zawiera bardzo istotne pliki konfiguracyjne w³±czaj±c
-w to pliki passwd, group, profile itd.
-
 %prep
-%setup -q
+%setup -q -n %{name}
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT/{etc/profile.d,var/log}
 
-cp -R * $RPM_BUILD_ROOT
+install -d $RPM_BUILD_ROOT/var/log
+install -d $RPM_BUILD_ROOT/lib/security
 
+cp -a * $RPM_BUILD_ROOT
 touch $RPM_BUILD_ROOT/var/log/lastlog
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %files
-%defattr(644, root, root, 755)
-%verify(not md5 size mtime) %config(noreplace) /etc/passwd
-%verify(not md5 size mtime) %config(noreplace) /etc/group
-%config /etc/services
-%config /etc/host.conf
-%config /etc/motd
-%config /etc/printcap
-%config /etc/profile
-%config /etc/protocols
-%attr(600, root, root) %config(missingok) /etc/securetty
-%attr(600, root, root) %verify(not md5 size mtime) %config(noreplace) /etc/shadow
-%config /etc/csh.cshrc
+%defattr(644,root,root,755)
+
+%config(noreplace) %verify(not md5 size mtime) /etc/passwd
+%config(noreplace) %verify(not md5 size mtime) /etc/group
+%config(noreplace) %verify(not md5 size mtime) /etc/services
+%config(noreplace) %verify(not md5 size mtime) /etc/host.conf
+%config(noreplace) %verify(not md5 size mtime) /etc/motd
+%config(noreplace) %verify(not md5 size mtime) /etc/printcap
+%config(noreplace) %verify(not md5 size mtime) /etc/profile
+%config(noreplace) %verify(not md5 size mtime) /etc/protocols
+
+%attr(600,root,root) %config(noreplace) %verify(not md5 size mtime) /etc/secure*
+
 %dir /etc/profile.d
-%verify(not md5 size mtime) /var/log/lastlog
+%attr(750,root,root) %dir /etc/security
+%dir /lib/security
+
+%ghost /var/log/lastlog
 
 %changelog
-* Mon Jan 11 1999 Arkadiusz Mi¶kiewicz <misiek@misiek.eu.org>
-- added pl translations
+* Thu Feb 18 1999 Wojtek ¦lusarczyk <wojtek@shadow.eu.org>
+  [1.9.6-1d]
+- /etc/shell -- back again ;)
+- %dir /etc/security,
+- %ghost /var/log/lastlog,
+- %dir /lib/security.
 
-* Sun Oct  4 1998 Tomasz K³oczko <kloczek@rudy.mif.pg.gda.pl>
-  [1.10.0-3]
-- added radius and radacct in /etc/services.
+* Fri Jan 22 1999 Wojtek ¦lusarczyk <wojtek@shadow.eu.org>
+  [1.9.5-1d]
+- added new services,
+- added Group(pl).
 
-* Wed Sep 30 1998 Tomasz K³oczko <kloczek@rudy.mif.pg.gda.pl>
-  [1.10.0-2]
-- added zmailer group in /etc/group.
+* Wed Jan 06 1999 Arkadiusz Mi¶kiewicz <misiek@misiek.eu.org>
+  [1.9.4-1d]
+- added new services: fsp, ssh, ipx, https, cvspserver, mrt
+- fixed petidomo uid & gid -- conflicts with qmail.
 
-* Thu Sep  8 1998 Tomasz K³oczko <kloczek@rudy.mif.pg.gda.pl>
-  [1.10.0-1]
-- /etc/hosts.{allow,deny} moved tcp_wrappers,
-- /etc/exports moved to nfs-server,
-- added qmail and http users and groups,
-- added "mailq  174/tcp" in /etc/services for Zmailer,
-- added /etc/shadow.
+* Wed Dec 23 1998 Arkadiusz Mi¶kiewicz <misiek@misiek.eu.org>
+  [1.9.3-1d]
+- added http and nofiles group
+- added mailq, radius and radacct to services
 
-* Mon Apr 27 1998 Prospector System <bugs@redhat.com>
-- translations modified for de, fr, tr
+* Sat Nov 07 1998 Wojtek ¦lusarczyk <wojtek@shadow.eu.org>
+  [1.9.2-2d]
+- removed hosts.{allow,deny},
+- minor changes.
 
-* Fri Dec 05 1997 Erik Troan <ewt@redhat.com>
-- /etc/profile uses $i, which needs to be unset
-
-* Mon Nov 03 1997 Donnie Barnes <djb@redhat.com>
-- made /etc/passwd and /etc/group %config(noreplace)
-
-* Mon Oct 20 1997 Erik Troan <ewt@redhat.com>
-- removed /etc/inetd.conf, /etc/rpc
-- flagged /etc/securetty as missingok
-- fixed buildroot stuff in spec file
-
-* Thu Jul 31 1997 Erik Troan <ewt@redhat.com>
-- made a noarch package
-
-* Wed Apr 16 1997 Erik Troan <ewt@redhat.com>
-- Don't verify md5sum, size, or timestamp of /var/log/lastlog, /etc/passwd,
-  or /etc/group.
+* Mon Jun 29 1998 Wojtek ¦lusarczyk <wojtek@shadow.eu.org>
+  [1.9.2-1d]
+- build against PLD,
+- translation modified for pl,
+- added some new IPv6 protocols,
+- added /bin/false as a shell,
+- added new group icmp (gid=55),
+- start at RH spec file ..
