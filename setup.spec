@@ -19,6 +19,7 @@ Source0:	http://piorun.ds.pg.gda.pl/~blues/SOURCES/%{name}-%{version}.tar.bz2
 # Source0-md5:	620d450c5bbc6097fafd3bbfc798ece7
 Patch0:		%{name}-FHS23.patch
 BuildRequires:	dietlibc-static
+Conflicts:	FHS < 2.3
 AutoReqProv:	no
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
