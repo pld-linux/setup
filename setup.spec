@@ -7,8 +7,8 @@ Summary(pl):	Podstawowe pliki systemu Linux
 Summary(pt_BR):	Vários arquivos básicos de configuração
 Summary(tr):	Basit kurulum dosyalarý
 Name:		setup
-Version:	2.4.1
-Release:	4.1
+Version:	2.4.2
+Release:	0.1
 License:	Public Domain
 Group:		Base
 Source0:	%{name}-%{version}.tar.bz2
