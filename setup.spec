@@ -17,7 +17,7 @@ Summary(pt_BR):	Vários arquivos básicos de configuração
 Summary(tr):	Basit kurulum dosyalarý
 Name:		setup
 Version:	2.4.6
-Release:	8
+Release:	8.1
 License:	Public Domain, partially BSD-like
 Group:		Base
 Source0:	%{name}-%{version}.tar.bz2
@@ -27,6 +27,7 @@ Source1:	http://www.sethwklein.net/projects/iana-etc/downloads/iana-etc-%{iana_e
 Patch0:		%{name}-fstab.patch
 Patch1:		%{name}-special_users.patch
 BuildRequires:	dietlibc-static
+BuildRequires:	gawk
 Conflicts:	FHS < 2.3
 AutoReqProv:	no
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -73,8 +74,7 @@ dosyalarýný içerir.
 %patch1 -p1
 
 %build
-%{__make} -C iana-etc-%{iana_etc_ver} \
-	AWK=awk
+%{__make} -C iana-etc-%{iana_etc_ver}
 
 %{__make} \
 	OPT_FLAGS="%{rpmcflags} %{?with_ssp:-fno-stack-protector}" \
