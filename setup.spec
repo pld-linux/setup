@@ -68,7 +68,7 @@ dosyalarýný içerir.
 
 %build
 %{__make} \
-	OPT_FLAGS="%{rpmcflags} %{?with_pp:-fno-stack-protector}" \
+	OPT_FLAGS="%{rpmcflags} %{?with_ssp:-fno-stack-protector}" \
 	CC="diet %{__cc}"
 
 %install
