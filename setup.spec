@@ -12,7 +12,7 @@ Summary(tr):	Basit kurulum dosyalarý
 Patch0:		setup-services-callbook2sieve.patch
 Name:		setup
 Version:	2.4.4
-Release:	1.2
+Release:	1.3
 License:	Public Domain, partially BSD-like
 Group:		Base
 Source0:	http://piorun.ds.pg.gda.pl/~blues/SOURCES/%{name}-%{version}.tar.bz2
