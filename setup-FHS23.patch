@@ -1,0 +1,9 @@
+diff -Nur setup-2.4.5/etc/fstab setup-2.4.5-FHS/etc/fstab
+--- setup-2.4.5/etc/fstab	2003-09-26 10:40:01.000000000 +0200
++++ setup-2.4.5-FHS/etc/fstab	2004-02-04 14:44:47.730719592 +0100
+@@ -6,4 +6,4 @@
+ #none			/dev/shm		shmfs	defaults	0 0
+ #none			/dev			devfs	defaults	0 0
+ 
+-/dev/fd0		/mnt/floppy		auto	user,noauto	0 0
++/dev/fd0		/media/floppy		auto	user,noauto	0 0
