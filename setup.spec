@@ -12,11 +12,12 @@ Summary(pt_BR):	Vários arquivos básicos de configuração
 Summary(tr):	Basit kurulum dosyalarý
 Name:		setup
 Version:	2.4.6
-Release:	1
+Release:	2
 License:	Public Domain, partially BSD-like
 Group:		Base
 Source0:	http://piorun.ds.pg.gda.pl/~blues/SOURCES/%{name}-%{version}.tar.bz2
 # Source0-md5:	33afa2766c28f1fb8331bd9209bf6b04
+Patch0:		setup-fstab.patch
 BuildRequires:	dietlibc-static
 Conflicts:	FHS < 2.3
 AutoReqProv:	no
@@ -60,6 +61,7 @@ dosyalarýný içerir.
 
 %prep
 %setup -q
+%patch0 -p1
 
 %build
 %{__make} \
@@ -70,6 +72,7 @@ dosyalarýný içerir.
 rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
+install -d $RPM_BUILD_ROOT/etc/shrc.d
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -85,6 +88,7 @@ rm -rf $RPM_BUILD_ROOT
 %dir /etc/profile.d
 %attr(644,root,root) %config(noreplace,missingok) %verify(not md5 size mtime) /etc/env.d/*
 %dir /etc/env.d
+%dir /etc/shrc.d
 %attr(644,root,root) %config(noreplace) %verify(not md5 size mtime) %{_sysconfdir}/fstab
 %attr(644,root,root) %config(noreplace) %verify(not md5 size mtime) %{_sysconfdir}/group
 %attr(644,root,root) %config(noreplace) %verify(not md5 size mtime) %{_sysconfdir}/host.conf
