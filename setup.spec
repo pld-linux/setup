@@ -65,6 +65,11 @@ rm -rf $RPM_BUILD_ROOT
 %ghost /var/log/lastlog
 
 %changelog
+* Wed May 19 1999 Wojtek ¦lusarczyk <wojtek@shadow.eu.org>
+- removed qmail, zmailer, goopher, news & other users from group & /etc/passwd 
+- removed icmp group & gid=80
+  (wywaliæ ten wpis przed fina³owym budowaniem!)
+
 * Thu Apr 22 1999 Artur Frysiak <wiget@pld.org.pl>
   [1.9.5-2]
 - removed /etc/security and /etc/profile.d (now in filesystem)
