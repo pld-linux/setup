@@ -4,8 +4,8 @@ Summary(fr):	Fichiers de configuration simples
 Summary(pl):	Podstawowe pliki systemu Linux
 Summary(tr):	Basit kurulum dosyalarý
 Name:		setup
-Version:	1.9.5
-Release:	2
+Version:	1.9.6
+Release:	1
 Copyright:	public domain
 Group:		Base
 Group(pl):	Podstawowe
@@ -39,11 +39,9 @@ içerir.
 %install
 rm -rf $RPM_BUILD_ROOT
 
-install -d $RPM_BUILD_ROOT/var/log
-install -d $RPM_BUILD_ROOT/lib/security
+install -d $RPM_BUILD_ROOT
 
 cp -a * $RPM_BUILD_ROOT
-touch $RPM_BUILD_ROOT/var/log/lastlog
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -62,13 +60,21 @@ rm -rf $RPM_BUILD_ROOT
 
 %attr(600,root,root) %config(noreplace) %verify(not md5 size mtime) /etc/secure*
 
-%ghost /var/log/lastlog
-
 %changelog
 * Wed May 19 1999 Wojtek ¦lusarczyk <wojtek@shadow.eu.org>
-- removed qmail, zmailer, goopher, news & other users from group & /etc/passwd 
+- removed qmail, zmailer, goopher & other users from group & /etc/passwd 
 - removed icmp group & gid=80
   (wywaliæ ten wpis przed fina³owym budowaniem!)
+- /lib/security >/dev/null
+- /var/log >/dev/null
+- standard Unix users like ftp/http/uucp/news/lp was save !
+
+  it must be present on PLD Linux <amen> (no comments, no discuss allowed ;)
+
+- home dir for adm was changed to /var/account,
+- /etc/profile.d >/dev/null,
+- group floppy again in /etc/group,
+- ttyS1 >> /etc/securetty.
 
 * Thu Apr 22 1999 Artur Frysiak <wiget@pld.org.pl>
   [1.9.5-2]
