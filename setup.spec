@@ -11,15 +11,12 @@ Summary(pl):	Podstawowe pliki systemu Linux
 Summary(pt_BR):	Vários arquivos básicos de configuração
 Summary(tr):	Basit kurulum dosyalarý
 Name:		setup
-Version:	2.4.5
-Release:	5
+Version:	2.4.6
+Release:	1
 License:	Public Domain, partially BSD-like
 Group:		Base
 Source0:	http://piorun.ds.pg.gda.pl/~blues/SOURCES/%{name}-%{version}.tar.bz2
-# Source0-md5:	620d450c5bbc6097fafd3bbfc798ece7
-Patch0:		%{name}-FHS23.patch
-Patch1:		%{name}-profile.patch
-Patch2:		%{name}-tmpfs.patch
+# Source0-md5:	33afa2766c28f1fb8331bd9209bf6b04
 BuildRequires:	dietlibc-static
 Conflicts:	FHS < 2.3
 AutoReqProv:	no
@@ -63,9 +60,6 @@ dosyalarýný içerir.
 
 %prep
 %setup -q
-%patch0 -p1
-%patch1 -p1
-%patch2 -p1
 
 %build
 %{__make} \
@@ -89,6 +83,8 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) /etc/profile.d/*.sh
 %attr(755,root,root) /etc/profile.d/*.csh
 %dir /etc/profile.d
+%attr(644,root,root) /etc/env.d/*
+%dir /etc/env.d
 %attr(644,root,root) %config(noreplace) %verify(not md5 size mtime) %{_sysconfdir}/fstab
 %attr(644,root,root) %config(noreplace) %verify(not md5 size mtime) %{_sysconfdir}/group
 %attr(644,root,root) %config(noreplace) %verify(not md5 size mtime) %{_sysconfdir}/host.conf
