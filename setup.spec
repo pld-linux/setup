@@ -83,7 +83,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) /etc/profile.d/*.sh
 %attr(755,root,root) /etc/profile.d/*.csh
 %dir /etc/profile.d
-%attr(644,root,root) /etc/env.d/*
+%attr(644,root,root) %config(noreplace,missingok) %verify(not md5 size mtime) /etc/env.d/*
 %dir /etc/env.d
 %attr(644,root,root) %config(noreplace) %verify(not md5 size mtime) %{_sysconfdir}/fstab
 %attr(644,root,root) %config(noreplace) %verify(not md5 size mtime) %{_sysconfdir}/group
