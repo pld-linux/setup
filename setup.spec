@@ -13,11 +13,12 @@ Patch0:		setup-services-callbook2sieve.patch
 Patch1:		setup-services-IRRd.patch
 Name:		setup
 Version:	2.4.4
-Release:	1.4
+Release:	1.5
 License:	Public Domain, partially BSD-like
 Group:		Base
 Source0:	http://piorun.ds.pg.gda.pl/~blues/SOURCES/%{name}-%{version}.tar.bz2
 # Source0-md5:	74484812aa2e01e5b2fa5c4e8276969a
+BuildRequires:	dietlibc-static
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 AutoReqProv:	no
 
@@ -65,7 +66,7 @@ dosyalarýný içerir.
 %build
 %{__make} \
 	OPT_FLAGS="%{rpmcflags}" \
-	CC=%{__cc}
+	CC="diet %{__cc}"
 
 %install
 rm -rf $RPM_BUILD_ROOT
