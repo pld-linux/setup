@@ -15,7 +15,7 @@ Summary(pt_BR):	Vários arquivos básicos de configuração
 Summary(tr):	Basit kurulum dosyalarý
 Name:		setup
 Version:	2.4.6
-Release:	4
+Release:	5
 License:	Public Domain, partially BSD-like
 Group:		Base
 #Source0:	http://piorun.ds.pg.gda.pl/~blues/SOURCES/%{name}-%{version}.tar.bz2
