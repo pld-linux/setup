@@ -8,14 +8,15 @@ Summary(pt_BR):	Vários arquivos básicos de configuração
 Summary(tr):	Basit kurulum dosyalarý
 Name:		setup
 Version:	2.4.1
-Release:	4
+Release:	5
 License:	Public Domain
 Group:		Base
 Source0:	%{name}-%{version}.tar.bz2
 Source1:	group
 Source2:	services
-BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
+Requires:	ra2ac
 Buildarch:	noarch
+BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 AutoReqProv:	no
 
 %description
