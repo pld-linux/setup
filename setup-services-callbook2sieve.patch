@@ -6,7 +6,8 @@ diff -urN setup-2.4.4/etc/services setup-patch/etc/services
  tcp-id-port	1999/tcp		# cisco identification port
  tcp-id-port	1999/udp		# cisco identification port
 -callbook	2000/tcp
-+sieve		2000/tcp
++#sieve alias is used by cyrus-imapd timsieved daemon
++callbook	2000/tcp	sieve
  callbook	2000/udp
  dc		2001/tcp
  wizard		2001/udp		# curry
