@@ -1,7 +1,6 @@
 #
 # TODO:
 # - make some README.PLD with system features description
-# - some services are missing (postfix related?) - see (and update) SOURCES/setup-services.patch
 #
 # Conditional build:
 %bcond_with	ssp	# enable stack-smashing protector (vide dietlibc.spec)
@@ -17,14 +16,16 @@ Summary(pl):	Podstawowe pliki systemu Linux
 Summary(pt_BR):	Vários arquivos básicos de configuração
 Summary(tr):	Basit kurulum dosyalarý
 Name:		setup
-Version:	2.4.8
-Release:	1.1
+Version:	2.4.9
+Release:	1
 License:	Public Domain, partially BSD-like
 Group:		Base
 Source0:	http://mieszkancy.ds.pg.gda.pl/~blues/SOURCES/%{name}-%{version}.tar.bz2
-# Source0-md5:	97b906b6558920b77947a994c2bf859f
+# Source0-md5:	aa99796a603e10343edbf0720edfd6ac
 Source1:	http://www.sethwklein.net/projects/iana-etc/downloads/iana-etc-%{iana_etc_ver}.tar.bz2
 # Source1-md5:	9f769f7b2d0e519cf62dacb2b3b051d4
+# This is source of non-iana changes in services file
+#Patch0:		%{name}-services.patch
 BuildRequires:	dietlibc-static
 BuildRequires:	gawk
 Conflicts:	FHS < 2.3
@@ -89,7 +90,8 @@ install -d $RPM_BUILD_ROOT%{_sysconfdir}/shrc.d
 	DESTDIR=$RPM_BUILD_ROOT
 
 install iana-etc-%{iana_etc_ver}/protocols $RPM_BUILD_ROOT/etc/protocols
-install iana-etc-%{iana_etc_ver}/services $RPM_BUILD_ROOT/etc/services
+# don't overwrite files from setup tar-ball, fix it in original tar!
+#install iana-etc-%{iana_etc_ver}/services $RPM_BUILD_ROOT/etc/services
 
 %clean
 rm -rf $RPM_BUILD_ROOT
