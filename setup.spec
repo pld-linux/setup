@@ -12,12 +12,14 @@ Summary(pt_BR):	Vários arquivos básicos de configuração
 Summary(tr):	Basit kurulum dosyalarý
 Name:		setup
 Version:	2.4.5
-Release:	4
+Release:	5
 License:	Public Domain, partially BSD-like
 Group:		Base
 Source0:	http://piorun.ds.pg.gda.pl/~blues/SOURCES/%{name}-%{version}.tar.bz2
 # Source0-md5:	620d450c5bbc6097fafd3bbfc798ece7
 Patch0:		%{name}-FHS23.patch
+Patch1:		%{name}-profile.patch
+Patch2:		%{name}-tmpfs.patch
 BuildRequires:	dietlibc-static
 Conflicts:	FHS < 2.3
 AutoReqProv:	no
@@ -62,6 +64,8 @@ dosyalarýný içerir.
 %prep
 %setup -q
 %patch0 -p1
+%patch1 -p1
+%patch2 -p1
 
 %build
 %{__make} \
