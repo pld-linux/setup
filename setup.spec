@@ -9,7 +9,7 @@ Summary(tr):	Basit kurulum dosyalarý
 Name:		setup
 Version:	2.4.1
 Release:	3
-License:	public domain
+License:	Public Domain
 Group:		Base
 Source0:	%{name}-%{version}.tar.bz2
 Source1:	group
