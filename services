@@ -297,8 +297,8 @@ rtelnet		107/udp			# Remote Telnet Service
 snagas		108/tcp			# SNA Gateway Access Server
 snagas		108/udp			# SNA Gateway Access Server
 #			   Kevin Murphy <murphy@sevens.lkg.dec.com>
-pop2		109/tcp	postoffice	# Post Office Protocol - Version 2
-pop2		109/udp	postoffice	# Post Office Protocol - Version 2
+pop2		109/tcp	postoffice pop	# Post Office Protocol - Version 2
+pop2		109/udp	postoffice pop	# Post Office Protocol - Version 2
 #			   Joyce K. Reynolds <jkrey@isi.edu>
 pop3		110/tcp	pop-3		# Post Office Protocol - Version 3
 pop3		110/udp	pop-3		# Post Office Protocol - Version 3
