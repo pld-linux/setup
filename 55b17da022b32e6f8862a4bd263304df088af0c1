@@ -1,0 +1,4 @@
+- release 2.3.1
+- in /etc/profile add /usr/X11R6/bin and $HOME/bin to PATH if
+  it's not there
+- added %triggerin script to add missing groups after upgrade
