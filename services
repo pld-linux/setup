@@ -868,7 +868,7 @@ as-servermap	449/udp			# AS Server Mapper
 tserver		450/tcp			# TServer
 tserver		450/udp			# TServer
 #			   Harvey S. Schultz <hss@mtgzfs3.mt.att.com>
-ssmtp		465/tcp			# (not in RFC1700) SMTP over SSL
+smtps		465/tcp	ssmtp		# (not in RFC1700) SMTP over SSL
 #		451-511	   Unassigned
 exec		512/tcp			# remote process execution;
 #			   authentication performed using
