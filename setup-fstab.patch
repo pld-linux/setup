@@ -37,3 +37,11 @@ diff -urN setup-2.4.6.orig/etc/group setup-2.4.6/etc/group
  console::31:
  dip::40:
  ftp::50:
+@@ -30,6 +31,7 @@
+ nobody::99:
+ stats::123:
+ logs::124:stats
++samba::138:
+ users::1000:
+ tpexec::65500:
+ nosock::65501:
