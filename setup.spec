@@ -5,8 +5,8 @@ Summary(pl):	Podstawowe pliki systemu Linux
 Summary(tr):	Basit kurulum dosyalarý
 Name:		setup
 Version:	2.3.0
-Release:	2
-Copyright:	public domain
+Release:	3
+License:	public domain
 Group:		Base
 Group(pl):	Podstawowe
 Source0:	%{name}-%{version}.tar.bz2
