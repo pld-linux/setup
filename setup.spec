@@ -9,7 +9,7 @@ Release:     3
 Copyright:   public domain
 Source:      %{name}-%{version}.tar.bz2
 Group:       Base
-Buildroot:   /tmp/%{name}-%{version}-root
+Buildroot:   /tmp/buildroot-%{name}-%{version}
 BuildArchitectures: noarch
 
 %description
