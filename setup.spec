@@ -8,8 +8,6 @@ Summary(ja):	¥µ¥ó¥×¥ë¥»¥Ã¥È¥¢¥Ã¥×¥Õ¥¡¥¤¥ë
 Summary(pl):	Podstawowe pliki systemu Linux
 Summary(pt_BR):	Vários arquivos básicos de configuração
 Summary(tr):	Basit kurulum dosyalarý
-Patch0:		setup-services-callbook2sieve.patch
-Patch1:		setup-services-IRRd.patch
 Name:		setup
 Version:	2.4.5
 Release:	1
@@ -59,8 +57,6 @@ dosyalarýný içerir.
 
 %prep
 %setup -q 
-%patch0 -p1
-%patch1 -p1
 
 %build
 %{__make} \
