@@ -1,6 +1,5 @@
 # TODO:
 # - make some README.PLD with system features description
-# - use joinpasswd in post
 Summary:	Simple setup files
 Summary(de):	Einfache Setup-Dateien
 Summary(es):	Varios archivos básicos de configuración
@@ -12,12 +11,12 @@ Summary(tr):	Basit kurulum dosyalarý
 Patch0:		setup-services-callbook2sieve.patch
 Patch1:		setup-services-IRRd.patch
 Name:		setup
-Version:	2.4.4
-Release:	1.5
+Version:	2.4.5
+Release:	1
 License:	Public Domain, partially BSD-like
 Group:		Base
 Source0:	http://piorun.ds.pg.gda.pl/~blues/SOURCES/%{name}-%{version}.tar.bz2
-# Source0-md5:	74484812aa2e01e5b2fa5c4e8276969a
+# Source0-md5:	620d450c5bbc6097fafd3bbfc798ece7
 BuildRequires:	dietlibc-static
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 AutoReqProv:	no
