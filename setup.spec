@@ -1,7 +1,10 @@
+#
 # TODO:
 # - make some README.PLD with system features description
-%bcond_with	pp	# disable stack protector (vide dietlibc.spec)
-
+#
+# Conditional build:
+%bcond_with	ssp	# disable stack-smashing protector (vide dietlibc.spec)
+#
 Summary:	Simple setup files
 Summary(de):	Einfache Setup-Dateien
 Summary(es):	Varios archivos básicos de configuración
