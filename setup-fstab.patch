@@ -41,7 +41,7 @@ diff -urN setup-2.4.6.orig/etc/group setup-2.4.6/etc/group
  nobody::99:
  stats::123:
  logs::124:stats
-+samba::138:
++fileshare::138:
  users::1000:
  tpexec::65500:
  nosock::65501:
