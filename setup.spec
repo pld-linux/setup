@@ -5,21 +5,21 @@ Summary(pl):	Podstawowe pliki systemu Linux
 Summary(tr):	Basit kurulum dosyalarý
 Name:		setup
 Version:	2.3.0
-Release:	3
+Release:	4
 License:	public domain
 Group:		Base
-Group(pl):	Podstawowe
+Group(pl):	Bazowe
 Source0:	%{name}-%{version}.tar.bz2
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Buildarch:	noarch
 
 %description
-This package contains a number of very important configuration and setup
-files, including the passwd, group, profile files, etc.
+This package contains a number of very important configuration and
+setup files, including the passwd, group, profile files, etc.
 
 %description -l pl
-Pakiet ten zawiera wiele bardzo wa¿nych plików konfiguracyjnych dla twojego
-systemu.
+Pakiet ten zawiera wiele bardzo wa¿nych plików konfiguracyjnych dla
+twojego systemu.
 
 %description -l de
 Dieses Paket enthält wichtige Konfigurations- und Setup-Dateien, u.a.
@@ -59,6 +59,7 @@ rm -rf $RPM_BUILD_ROOT
 %config(noreplace) %verify(not md5 size mtime) %{_sysconfdir}/motd
 %config(noreplace) %verify(not md5 size mtime) %{_sysconfdir}/profile
 %config(noreplace) %verify(not md5 size mtime) %{_sysconfdir}/protocols
+%config(noreplace) %verify(not md5 size mtime) %{_sysconfdir}/filesystems
 %ghost %{_sysconfdir}/shells
 
 %attr(600,root,root) %config(noreplace) %verify(not md5 size mtime) %{_sysconfdir}/secure*
