@@ -3,6 +3,9 @@ Summary(de):	Einfache Setup-Dateien
 Summary(fr):	Fichiers de configuration simples
 Summary(pl):	Podstawowe pliki systemu Linux
 Summary(tr):	Basit kurulum dosyalarý
+Summary(pt_BR):	Vários arquivos básicos de configuração
+Summary(es):	Varios archivos básicos de configuración
+Summary(ja):	¥µ¥ó¥×¥ë¥»¥Ã¥È¥¢¥Ã¥×¥Õ¥¡¥¤¥ë
 Name:		setup
 Version:	2.4.0
 Release:	2
@@ -35,6 +38,20 @@ twojego systemu.
 %description -l tr
 Bu paket, passwd, group, profile gibi çok önemli ayar ve kurulum
 dosyalarýný içerir.
+
+%description -l pt_BR
+Este pacote contém uma variedade de arquivos de configuração e
+setup muito importantes, incluindo o passwd, group, arquivos de
+"perfil", etc.
+
+%description -l es
+Este paquete contiene una variedad de archivos de configuración
+y setup muy importantes, incluyendo el passwd, group, archivos de
+"perfil", etc.
+
+%description -l ja
+¤³¤Îsetup¥Ñ¥Ã¥±¡¼¥¸¤Ë¤Ï¡¢passwd, group, profile ¤Ê¤É¤Î¡¢
+½ÅÍ×¤Ê¥·¥¹¥Æ¥àÀßÄê¥Õ¥¡¥¤¥ë¤¬´Þ¤Þ¤ì¤Æ¤Þ¤¹¡£
 
 %prep
 %setup -q
