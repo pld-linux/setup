@@ -91,7 +91,9 @@ rm -rf $RPM_BUILD_ROOT
 %config(noreplace,missingok) %verify(not md5 size mtime) %{_sysconfdir}/motd
 %config(noreplace) %verify(not md5 size mtime) %{_sysconfdir}/profile
 %config(noreplace) %verify(not md5 size mtime) %{_sysconfdir}/protocols
+%config(noreplace) %verify(not md5 size mtime) %{_sysconfdir}/fstab
 %config(noreplace,missingok) %verify(not md5 size mtime) %{_sysconfdir}/filesystems
+%config(noreplace,missingok) %verify(not md5 size mtime) %{_sysconfdir}/resolv.conf
 %ghost %{_sysconfdir}/shells
 
 %attr(600,root,root) %config(noreplace) %verify(not md5 size mtime) %{_sysconfdir}/secure*
