@@ -5,6 +5,8 @@
 # Conditional build:
 %bcond_with	ssp	# disable stack-smashing protector (vide dietlibc.spec)
 #
+%define	iana_etc_ver	1.03
+#
 Summary:	Simple setup files
 Summary(de):	Einfache Setup-Dateien
 Summary(es):	Varios archivos básicos de configuración
@@ -15,12 +17,13 @@ Summary(pt_BR):	Vários arquivos básicos de configuração
 Summary(tr):	Basit kurulum dosyalarý
 Name:		setup
 Version:	2.4.6
-Release:	7
+Release:	8
 License:	Public Domain, partially BSD-like
 Group:		Base
-#Source0:	http://piorun.ds.pg.gda.pl/~blues/SOURCES/%{name}-%{version}.tar.bz2
 Source0:	%{name}-%{version}.tar.bz2
 # Source0-md5:	33afa2766c28f1fb8331bd9209bf6b04
+Source1:	http://www.sethwklein.net/projects/iana-etc/downloads/iana-etc-%{iana_etc_ver}.tar.bz2
+# Source1-md5:	670da9e41179d618498f5d614b7f4636
 Patch0:		%{name}-fstab.patch
 Patch1:		%{name}-special_users.patch
 BuildRequires:	dietlibc-static
@@ -65,20 +68,28 @@ Bu paket, passwd, group, profile gibi çok önemli ayar ve kurulum
 dosyalarýný içerir.
 
 %prep
-%setup -q
+%setup -q -a1
 %patch0 -p1
 %patch1 -p1
 
 %build
+%{__make} -C iana-etc-%{iana_etc_ver} \
+	AWK=awk
+
 %{__make} \
 	OPT_FLAGS="%{rpmcflags} %{?with_ssp:-fno-stack-protector}" \
 	CC="diet %{__cc}"
 
 %install
 rm -rf $RPM_BUILD_ROOT
+
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
+
 install -d $RPM_BUILD_ROOT%{_sysconfdir}/shrc.d
+
+install iana-etc-%{iana_etc_ver}/protocols $RPM_BUILD_ROOT/etc/protocols
+install iana-etc-%{iana_etc_ver}/services $RPM_BUILD_ROOT/etc/services
 
 %clean
 rm -rf $RPM_BUILD_ROOT
