@@ -14,13 +14,13 @@ Summary(pl):	Podstawowe pliki systemu Linux
 Summary(pt_BR):	Vários arquivos básicos de configuração
 Summary(tr):	Basit kurulum dosyalarý
 Name:		setup
-Version:	2.4.7
-Release:	1
+Version:	2.4.6
+Release:	4
 License:	Public Domain, partially BSD-like
 Group:		Base
 #Source0:	http://piorun.ds.pg.gda.pl/~blues/SOURCES/%{name}-%{version}.tar.bz2
 Source0:	%{name}-%{version}.tar.bz2
-# Source0-md5:	ddc58a05835fd7626a261b28da7912d2
+# Source0-md5:	33afa2766c28f1fb8331bd9209bf6b04
 Patch0:		%{name}-fstab.patch
 Patch1:		%{name}-special_users.patch
 BuildRequires:	dietlibc-static
