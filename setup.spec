@@ -4,8 +4,8 @@ Summary(fr):	Fichiers de configuration simples
 Summary(pl):	Podstawowe pliki systemu Linux
 Summary(tr):	Basit kurulum dosyalarý
 Name:		setup
-Version:	1.9.6
-Release:	1d
+Version:	1.9.5
+Release:	2
 Copyright:	public domain
 Group:		Base
 Group(pl):	Bazowe
@@ -61,10 +61,6 @@ rm -rf $RPM_BUILD_ROOT
 %config(noreplace) %verify(not md5 size mtime) /etc/protocols
 
 %attr(600,root,root) %config(noreplace) %verify(not md5 size mtime) /etc/secure*
-
-%dir /etc/profile.d
-%attr(750,root,root) %dir /etc/security
-%dir /lib/security
 
 %ghost /var/log/lastlog
 
