@@ -1,3 +1,6 @@
+# TODO:
+# - make some README.PLD with system features description
+# - use joinpasswd in post
 Summary:	Simple setup files
 Summary(de):	Einfache Setup-Dateien
 Summary(es):	Varios archivos básicos de configuración
@@ -7,14 +10,13 @@ Summary(pl):	Podstawowe pliki systemu Linux
 Summary(pt_BR):	Vários arquivos básicos de configuração
 Summary(tr):	Basit kurulum dosyalarý
 Name:		setup
-Version:	2.4.3
+Version:	2.4.4
 Release:	1
-License:	Public Domain
+License:	Public Domain, partially BSD-like
 Group:		Base
-Source0:	%{name}-%{version}.tar.bz2
-# Source0-md5: a47f2c6d681b16c7b718d7396e3efbee
+Source0:	http://piorun.ds.pg.gda.pl/~blues/SOURCES/%{name}-%{version}.tar.bz2
+# Source0-md5:	74484812aa2e01e5b2fa5c4e8276969a
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
-Buildarch:	noarch
 AutoReqProv:	no
 
 %description
@@ -52,13 +54,17 @@ Bu paket, passwd, group, profile gibi çok önemli ayar ve kurulum
 dosyalarýný içerir.
 
 %prep
-%setup -q -n %{name}
+%setup -q 
+
+%build
+%{__make} \
+	OPT_FLAGS="%{rpmcflags}" \
+	CC=%{__cc}
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT
-
-cp -fa * $RPM_BUILD_ROOT
+%{__make} install \
+	DESTDIR=$RPM_BUILD_ROOT
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -75,21 +81,21 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-
-%dir /etc/profile.d
+%doc ChangeLog
+%attr(755,root,root) %{_sbindir}/joinpasswd
 %attr(755,root,root) /etc/profile.d/*.sh
 %attr(755,root,root) /etc/profile.d/*.csh
-%config(noreplace) %verify(not md5 size mtime) %{_sysconfdir}/passwd
-%config(noreplace) %verify(not md5 size mtime) %{_sysconfdir}/group
-%config(noreplace) %verify(not md5 size mtime) %{_sysconfdir}/services
-%config(noreplace) %verify(not md5 size mtime) %{_sysconfdir}/host.conf
-%config(noreplace) %verify(not md5 size mtime) %{_sysconfdir}/hosts
-%config(noreplace,missingok) %verify(not md5 size mtime) %{_sysconfdir}/motd
-%config(noreplace) %verify(not md5 size mtime) %{_sysconfdir}/profile
-%config(noreplace) %verify(not md5 size mtime) %{_sysconfdir}/protocols
-%config(noreplace) %verify(not md5 size mtime) %{_sysconfdir}/fstab
-%config(noreplace,missingok) %verify(not md5 size mtime) %{_sysconfdir}/filesystems
-%config(noreplace,missingok) %verify(not md5 size mtime) %{_sysconfdir}/resolv.conf
-%ghost %{_sysconfdir}/shells
-
+%dir /etc/profile.d
+%attr(644,root,root) %config(noreplace) %verify(not md5 size mtime) %{_sysconfdir}/fstab
+%attr(644,root,root) %config(noreplace) %verify(not md5 size mtime) %{_sysconfdir}/group
+%attr(644,root,root) %config(noreplace) %verify(not md5 size mtime) %{_sysconfdir}/host.conf
+%attr(644,root,root) %config(noreplace) %verify(not md5 size mtime) %{_sysconfdir}/hosts
+%attr(644,root,root) %config(noreplace) %verify(not md5 size mtime) %{_sysconfdir}/passwd
+%attr(644,root,root) %config(noreplace) %verify(not md5 size mtime) %{_sysconfdir}/profile
+%attr(644,root,root) %config(noreplace) %verify(not md5 size mtime) %{_sysconfdir}/protocols
 %attr(600,root,root) %config(noreplace) %verify(not md5 size mtime) %{_sysconfdir}/secure*
+%attr(644,root,root) %config(noreplace) %verify(not md5 size mtime) %{_sysconfdir}/services
+%attr(644,root,root) %config(noreplace,missingok) %verify(not md5 size mtime) %{_sysconfdir}/filesystems
+%attr(644,root,root) %config(noreplace,missingok) %verify(not md5 size mtime) %{_sysconfdir}/motd
+%attr(644,root,root) %config(noreplace,missingok) %verify(not md5 size mtime) %{_sysconfdir}/resolv.conf
+%ghost %{_sysconfdir}/shells
