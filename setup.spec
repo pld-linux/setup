@@ -40,15 +40,15 @@ dosyalarýný içerir.
 %setup -q
 
 %install
-%{__rm} -rf $RPM_BUILD_ROOT
+rm -rf $RPM_BUILD_ROOT
 
-%{__install} -d $RPM_BUILD_ROOT
+install -d $RPM_BUILD_ROOT
 
-%{__cp} -fa * $RPM_BUILD_ROOT
-%{__cp} -f %{SOURCE1} $RPM_BUILD_ROOT/etc
+cp -fa * $RPM_BUILD_ROOT
+cp -f %{SOURCE1} $RPM_BUILD_ROOT/etc
 
 %clean
-%{__rm} -rf $RPM_BUILD_ROOT
+rm -rf $RPM_BUILD_ROOT
 
 #%triggerin -- %{name} < %{version}-%{release}
 #[ "$1" = "1" ] && exit 0
