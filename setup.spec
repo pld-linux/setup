@@ -80,9 +80,9 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 
-%dir %{_sysconfdir}/profile.d
-%attr(755,root,root) %{_sysconfdir}/profile.d/*.sh
-%attr(755,root,root) %{_sysconfdir}/profile.d/*.csh
+%dir /etc/profile.d
+%attr(755,root,root) /etc/profile.d/*.sh
+%attr(755,root,root) /etc/profile.d/*.csh
 %config(noreplace) %verify(not md5 size mtime) %{_sysconfdir}/passwd
 %config(noreplace) %verify(not md5 size mtime) %{_sysconfdir}/group
 %config(noreplace) %verify(not md5 size mtime) %{_sysconfdir}/services
