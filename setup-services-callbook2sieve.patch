@@ -1,13 +1,12 @@
 diff -urN setup-2.4.4/etc/services setup-patch/etc/services
 --- setup-2.4.4/etc/services	2003-09-16 01:54:44.000000000 +0200
-+++ setup-patch/etc/services	2003-09-18 14:28:25.000000000 +0200
++++ setup-patch/etc/services	2003-09-18 15:50:24.000000000 +0200
 @@ -4551,7 +4551,7 @@
  x25-svc-port	1998/udp		# cisco X.25 service (XOT)
  tcp-id-port	1999/tcp		# cisco identification port
  tcp-id-port	1999/udp		# cisco identification port
 -callbook	2000/tcp
-+#sieve alias is used by cyrus-imapd timsieved daemon
-+callbook	2000/tcp	sieve
++callbook	2000/tcp	sieve	# sieve is used by cyrus-imapd timsieved daemon
  callbook	2000/udp
  dc		2001/tcp
  wizard		2001/udp		# curry
