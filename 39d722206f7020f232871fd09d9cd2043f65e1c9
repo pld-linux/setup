@@ -1,0 +1,2 @@
+- added missingok flag for %{_sysconfdir}/motd file,
+- added using %{__*} macros.
