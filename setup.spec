@@ -9,6 +9,7 @@ Summary(ja):	¥µ¥ó¥×¥ë¥»¥Ã¥È¥¢¥Ã¥×¥Õ¥¡¥¤¥ë
 Summary(pl):	Podstawowe pliki systemu Linux
 Summary(pt_BR):	Vários arquivos básicos de configuração
 Summary(tr):	Basit kurulum dosyalarý
+Patch0:		setup-services-callbook2sieve.patch
 Name:		setup
 Version:	2.4.4
 Release:	1.2
@@ -57,6 +58,7 @@ dosyalarýný içerir.
 
 %prep
 %setup -q 
+%patch0 -p1
 
 %build
 %{__make} \
