@@ -11,6 +11,7 @@ Group:		Base
 Group(pl):	Podstawowe
 Source:		%{name}-%{version}.tar.bz2
 Patch0:		%{name}.patch
+Patch1:		%{name}-rootshell.patch
 Buildroot:	/tmp/%{name}-%{version}-root
 Buildarch:	noarch
 
@@ -35,8 +36,9 @@ Bu paket, passwd, group, profile gibi çok önemli ayar ve kurulum dosyalarýný
 içerir.
 
 %prep
-%setup -q -n %{name}
-%patch -p1
+%setup  -q -n %{name}
+%patch0 -p1
+%patch1 -p1
 
 %install
 rm -rf $RPM_BUILD_ROOT
