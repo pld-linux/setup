@@ -4,15 +4,12 @@ Summary(fr):	Fichiers de configuration simples
 Summary(pl):	Podstawowe pliki systemu Linux
 Summary(tr):	Basit kurulum dosyalarý
 Name:		setup
-Version:	1.9.6
-Release:	2
+Version:	2.0.3
+Release:	0.1
 Copyright:	public domain
 Group:		Base
 Group(pl):	Podstawowe
 Source:		%{name}-%{version}.tar.bz2
-Patch0:		%{name}.patch
-Patch1:		%{name}-rootshell.patch
-Patch2:		%{name}-icmp6.patch
 Buildroot:	/tmp/%{name}-%{version}-root
 Buildarch:	noarch
 
@@ -38,9 +35,6 @@ içerir.
 
 %prep
 %setup  -q -n %{name}
-%patch0 -p1
-%patch1 -p1
-%patch2 -p1
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -55,6 +49,9 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 
+%dir /etc/profile.d
+%attr(755,root,root) /etc/profile.d/*.sh
+%attr(755,root,root) /etc/profile.d/*.csh
 %config(noreplace) %verify(not md5 size mtime) /etc/passwd
 %config(noreplace) %verify(not md5 size mtime) /etc/group
 %config(noreplace) %verify(not md5 size mtime) /etc/services
@@ -63,5 +60,6 @@ rm -rf $RPM_BUILD_ROOT
 %config(noreplace) %verify(not md5 size mtime) /etc/printcap
 %config(noreplace) %verify(not md5 size mtime) /etc/profile
 %config(noreplace) %verify(not md5 size mtime) /etc/protocols
+%ghost /etc/shells
 
 %attr(600,root,root) %config(noreplace) %verify(not md5 size mtime) /etc/secure*
