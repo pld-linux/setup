@@ -65,6 +65,11 @@ rm -rf $RPM_BUILD_ROOT
 %ghost /var/log/lastlog
 
 %changelog
+* Thu Apr 22 1999 Artur Frysiak <wiget@pld.org.pl>
+  [1.9.5-2]
+- removed /etc/security and /etc/profile.d (now in filesystem)
+- compiled on rpm 3
+
 * Thu Feb 18 1999 Wojtek ¦lusarczyk <wojtek@shadow.eu.org>
   [1.9.6-1d]
 - /etc/shell -- back again ;)
