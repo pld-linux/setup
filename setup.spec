@@ -40,15 +40,15 @@ dosyalarýný içerir.
 %setup -q
 
 %install
-rm -rf $RPM_BUILD_ROOT
+%{__rm} -rf $RPM_BUILD_ROOT
 
-install -d $RPM_BUILD_ROOT
+%{__install} -d $RPM_BUILD_ROOT
 
-cp -fa * $RPM_BUILD_ROOT
-cp -f %{SOURCE1} $RPM_BUILD_ROOT/etc
+%{__cp} -fa * $RPM_BUILD_ROOT
+%{__cp} -f %{SOURCE1} $RPM_BUILD_ROOT/etc
 
 %clean
-rm -rf $RPM_BUILD_ROOT
+%{__rm} -rf $RPM_BUILD_ROOT
 
 #%triggerin -- %{name} < %{version}-%{release}
 #[ "$1" = "1" ] && exit 0
@@ -71,7 +71,7 @@ rm -rf $RPM_BUILD_ROOT
 %config(noreplace) %verify(not md5 size mtime) %{_sysconfdir}/services
 %config(noreplace) %verify(not md5 size mtime) %{_sysconfdir}/host.conf
 %config(noreplace) %verify(not md5 size mtime) %{_sysconfdir}/hosts
-%config(noreplace) %verify(not md5 size mtime) %{_sysconfdir}/motd
+%config(noreplace,missingok) %verify(not md5 size mtime) %{_sysconfdir}/motd
 %config(noreplace) %verify(not md5 size mtime) %{_sysconfdir}/profile
 %config(noreplace) %verify(not md5 size mtime) %{_sysconfdir}/protocols
 %config(noreplace) %verify(not md5 size mtime) %{_sysconfdir}/filesystems
