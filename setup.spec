@@ -4,7 +4,7 @@ Summary(fr):	Fichiers de configuration simples
 Summary(pl):	Podstawowe pliki systemu Linux
 Summary(tr):	Basit kurulum dosyalarý
 Name:		setup
-Version:	2.2.5
+Version:	2.2.6
 Release:	1
 Copyright:	public domain
 Group:		Base
