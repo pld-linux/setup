@@ -11,7 +11,7 @@ Summary(pt_BR):	Vários arquivos básicos de configuração
 Summary(tr):	Basit kurulum dosyalarý
 Name:		setup
 Version:	2.4.4
-Release:	1.1
+Release:	1.2
 License:	Public Domain, partially BSD-like
 Group:		Base
 Source0:	http://piorun.ds.pg.gda.pl/~blues/SOURCES/%{name}-%{version}.tar.bz2
@@ -71,17 +71,8 @@ rm -rf $RPM_BUILD_ROOT
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-#%triggerin -- %{name} < %{version}-%{release}
-#[ "$1" = "1" ] && exit 0
-#[ ! -e /etc/group.rpmnew ] && exit 0
-#cat /etc/group.rpmnew | while read GROUPLINE ; do
-#	GR="`echo $GROUPLINE | cut -f 1 -d ':'`"
-#	if ! grep -q "^$GR" /etc/group ; then
-#		echo "$GROUPLINE" >> /etc/group
-#	fi
-#done
-
-%post	-p %{_sbindir}/joinpasswd
+%triggerpostun -- %{name} < %{version}-%{release}
+%{_sbindir}/joinpasswd
 
 %files
 %defattr(644,root,root,755)
