@@ -11,10 +11,6 @@ Version:	2.4.1
 Release:	2
 License:	public domain
 Group:		Base
-Group(de):	Gründsätzlich
-Group(es):	Base
-Group(pl):	Podstawowe
-Group(pt_BR):	Base
 Source0:	%{name}-%{version}.tar.bz2
 Source1:	group
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
