@@ -5,7 +5,7 @@
 # Conditional build:
 %bcond_with	ssp	# enable stack-smashing protector (vide dietlibc.spec)
 #
-%define	iana_etc_ver	1.03
+%define	iana_etc_ver	1.04
 #
 Summary:	Simple setup files
 Summary(de):	Einfache Setup-Dateien
@@ -23,7 +23,7 @@ Group:		Base
 Source0:	http://mieszkancy.ds.pg.gda.pl/~blues/SOURCES/%{name}-%{version}.tar.bz2
 # Source0-md5:	97b906b6558920b77947a994c2bf859f
 Source1:	http://www.sethwklein.net/projects/iana-etc/downloads/iana-etc-%{iana_etc_ver}.tar.bz2
-# Source1-md5:	670da9e41179d618498f5d614b7f4636
+# Source1-md5:	9f769f7b2d0e519cf62dacb2b3b051d4
 BuildRequires:	dietlibc-static
 BuildRequires:	gawk
 Conflicts:	FHS < 2.3
