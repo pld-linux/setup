@@ -46,7 +46,7 @@ install -d $RPM_BUILD_ROOT
 
 cp -a * $RPM_BUILD_ROOT
 rm -f $RPM_BUILD_ROOT%{_sysconfdir}/services
-install %{Source1} $RPM_BUILD_ROOT%{_sysconfdir}
+install %{SOURCE1} $RPM_BUILD_ROOT%{_sysconfdir}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
