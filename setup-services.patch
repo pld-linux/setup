@@ -1,0 +1,823 @@
+Index: services
+===================================================================
+RCS file: /cvsroot/setup/etc/services,v
+retrieving revision 1.36
+retrieving revision 1.46
+diff -u -r1.36 -r1.46
+--- services	2 Apr 2003 10:50:11 -0000	1.36
++++ services	19 Jul 2004 16:25:42 -0000	1.46
+@@ -1,5 +1,6 @@
+ #
+ # Based on http://www.iana.org/assignments/port-numbers
++# with additions (mostly from old /etc/services)
+ #
+ #		  0/tcp			# Reserved
+ #		  0/udp			# Reserved
+@@ -24,13 +25,13 @@
+ #			   Jon Postel <postel@isi.edu>
+ #		  8/tcp			# Unassigned
+ #		  8/udp			# Unassigned
+-discard		  9/tcp			# Discard
+-discard		  9/udp			# Discard
++discard		  9/tcp	sink null	# Discard
++discard		  9/udp	sink null	# Discard
+ #			   Jon Postel <postel@isi.edu>
+ #		 10/tcp			# Unassigned
+ #		 10/udp			# Unassigned
+-systat		 11/tcp			# Active Users
+-systat		 11/udp			# Active Users
++systat		 11/tcp	users		# Active Users
++systat		 11/udp	users		# Active Users
+ #			   Jon Postel <postel@isi.edu>
+ #		 12/tcp			# Unassigned
+ #		 12/udp			# Unassigned
+@@ -43,14 +44,14 @@
+ #		 15/udp			# Unassigned
+ #		 16/tcp			# Unassigned
+ #		 16/udp			# Unassigned
+-qotd		 17/tcp			# Quote of the Day
+-qotd		 17/udp			# Quote of the Day
++qotd		 17/tcp	quote		# Quote of the Day
++qotd		 17/udp	quote		# Quote of the Day
+ #			   Jon Postel <postel@isi.edu>
+ msp		 18/tcp			# Message Send Protocol
+ msp		 18/udp			# Message Send Protocol
+ #			   Rina Nethaniel <---none--->
+-chargen		 19/tcp			# Character Generator
+-chargen		 19/udp			# Character Generator
++chargen		 19/tcp	ttytst source	# Character Generator
++chargen		 19/udp	ttytst source	# Character Generator
+ ftp-data	 20/tcp			# File Transfer [Default Data]
+ ftp-data	 20/udp			# File Transfer [Default Data]
+ ftp		 21/tcp			# File Transfer [Control]
+@@ -65,8 +66,8 @@
+ #		 24/tcp			# any private mail system
+ #		 24/udp			# any private mail system
+ #			   Rick Adams <rick@UUNET.UU.NET>
+-smtp		 25/tcp			# Simple Mail Transfer
+-smtp		 25/udp			# Simple Mail Transfer
++smtp		 25/tcp	mail		# Simple Mail Transfer
++smtp		 25/udp	mail		# Simple Mail Transfer
+ #			   Jon Postel <postel@isi.edu>
+ #		 26/tcp			# Unassigned
+ #		 26/udp			# Unassigned
+@@ -95,25 +96,23 @@
+ #			   Jon Postel <postel@isi.edu>
+ #		 36/tcp			# Unassigned
+ #		 36/udp			# Unassigned
+-time		 37/tcp			# Time
+-time		 37/udp			# Time
++time		 37/tcp	timserver	# Time
++time		 37/udp	timserver	# Time
+ #			   Jon Postel <postel@isi.edu>
+ rap		 38/tcp			# Route Access Protocol
+ rap		 38/udp			# Route Access Protocol
+ #			   Robert Ullmann <ariel@world.std.com>
+-rlp		 39/tcp			# Resource Location Protocol
+-rlp		 39/udp			# Resource Location Protocol
++rlp		 39/tcp	resource	# Resource Location Protocol
++rlp		 39/udp	resource	# Resource Location Protocol
+ #			   Mike Accetta <MIKE.ACCETTA@CMU-CS-A.EDU>
+ #		 40/tcp			# Unassigned
+ #		 40/udp			# Unassigned
+ graphics	 41/tcp			# Graphics
+ graphics	 41/udp			# Graphics
+-name		 42/tcp			# Host Name Server
+-name		 42/udp			# Host Name Server
+-nameserver	 42/tcp			# Host Name Server
+-nameserver	 42/udp			# Host Name Server
+-nicname		 43/tcp			# Who Is
+-nicname		 43/udp			# Who Is
++name		 42/tcp	nameserver	# Host Name Server
++name		 42/udp	nameserver	# Host Name Server
++nicname		 43/tcp	whois		# Who Is
++nicname		 43/udp	whois		# Who Is
+ mpm-flags	 44/tcp			# MPM FLAGS Protocol
+ mpm-flags	 44/udp			# MPM FLAGS Protocol
+ mpm		 45/tcp			# Message Processing Module [recv]
+@@ -214,12 +213,8 @@
+ finger		 79/tcp			# Finger
+ finger		 79/udp			# Finger
+ #			   David Zimmerman <dpz@RUTGERS.EDU>
+-http		 80/tcp			# World Wide Web HTTP
+-http		 80/udp			# World Wide Web HTTP
+-www		 80/tcp			# World Wide Web HTTP
+-www		 80/udp			# World Wide Web HTTP
+-www-http	 80/tcp			# World Wide Web HTTP
+-www-http	 80/udp			# World Wide Web HTTP
++http		 80/tcp	www www-http	# World Wide Web HTTP
++http		 80/udp www www-http	# World Wide Web HTTP
+ #			   Tim Berners-Lee <timbl@W3.org>
+ hosts2-ns	 81/tcp			# HOSTS2 Name Server
+ hosts2-ns	 81/udp			# HOSTS2 Name Server
+@@ -239,11 +234,11 @@
+ mfcobol		 86/tcp			# Micro Focus Cobol
+ mfcobol		 86/udp			# Micro Focus Cobol
+ #			   Simon Edwards <--none--->
+-#		 87/tcp			# any private terminal link
+-#		 87/udp			# any private terminal link
++ttylink		 87/tcp			# any private terminal link
++ttylink		 87/udp			# any private terminal link
+ #			   Jon Postel <postel@isi.edu>
+-kerberos	 88/tcp			# Kerberos
+-kerberos	 88/udp			# Kerberos
++kerberos	 88/tcp	krb5 kerberos5	# Kerberos
++kerberos	 88/udp	krb5 kerberos5	# Kerberos
+ #			   B. Clifford Neuman <bcn@isi.edu>
+ su-mit-tg	 89/tcp			# SU/MIT Telnet Gateway
+ su-mit-tg	 89/udp			# SU/MIT Telnet Gateway
+@@ -281,23 +276,20 @@
+ metagram	 99/udp			# Metagram Relay
+ #			   Geoff Goodfellow <Geoff@FERNWOOD.MPK.CA.US>
+ newacct		100/tcp			# [unauthorized use]
+-hostname	101/tcp			# NIC Host Name Server
+-hostname	101/udp			# NIC Host Name Server
++hostname	101/tcp	hostnames	# NIC Host Name Server
++hostname	101/udp	hostnames	# NIC Host Name Server
+ #			   Jon Postel <postel@isi.edu>
+-iso-tsap	102/tcp			# ISO-TSAP Class 0
+-iso-tsap	102/udp			# ISO-TSAP Class 0
++iso-tsap	102/tcp	tsap		# ISO-TSAP Class 0
++iso-tsap	102/udp	tsap		# ISO-TSAP Class 0
+ #			   Marshall Rose <mrose@dbc.mtview.ca.us>
+ gppitnp		103/tcp			# Genesis Point-to-Point Trans Net
+ gppitnp		103/udp			# Genesis Point-to-Point Trans Net
+ acr-nema	104/tcp			# ACR-NEMA Digital Imag. & Comm. 300
+ acr-nema	104/udp			# ACR-NEMA Digital Imag. & Comm. 300
+ #			   Patrick McNamee <--none--->
+-cso		105/tcp			# CCSO name server protocol
+-cso		105/udp			# CCSO name server protocol
+-#			   Martin Hamilton <martin@mrrl.lut.as.uk>
+-csnet-ns	105/tcp			# Mailbox Name Nameserver
+-csnet-ns	105/udp			# Mailbox Name Nameserver
+-#			   Marvin Solomon <solomon@CS.WISC.EDU>
++cso		105/tcp	csnet-ns cso-ns	# CCSO name server protocol
++cso		105/udp	csnet-ns cso-ns	# CCSO name server protocol
++#			   Martin Hamilton <martin@mrrl.lut.as.uk>, Marvin Solomon <solomon@CS.WISC.EDU>
+ 3com-tsmux	106/tcp			# 3COM-TSMUX
+ 3com-tsmux	106/udp			# 3COM-TSMUX
+ #			   Jeremy Siegel <jzs@NSD.3Com.COM>
+@@ -308,21 +300,20 @@
+ snagas		108/tcp			# SNA Gateway Access Server
+ snagas		108/udp			# SNA Gateway Access Server
+ #			   Kevin Murphy <murphy@sevens.lkg.dec.com>
+-pop2		109/tcp			# Post Office Protocol - Version 2
+-pop2		109/udp			# Post Office Protocol - Version 2
++pop2		109/tcp	postoffice pop	# Post Office Protocol - Version 2
++pop2		109/udp	postoffice pop	# Post Office Protocol - Version 2
+ #			   Joyce K. Reynolds <jkrey@isi.edu>
+-pop3		110/tcp			# Post Office Protocol - Version 3
+-pop3		110/udp			# Post Office Protocol - Version 3
++pop3		110/tcp	pop-3		# Post Office Protocol - Version 3
++pop3		110/udp	pop-3		# Post Office Protocol - Version 3
+ #			   Marshall Rose <mrose@dbc.mtview.ca.us>
+-sunrpc		111/tcp			# SUN Remote Procedure Call
+-sunrpc		111/udp			# SUN Remote Procedure Call
++sunrpc		111/tcp	portmapper	# SUN Remote Procedure Call
++sunrpc		111/udp	portmapper	# SUN Remote Procedure Call
+ #			   Chuck McManis <cmcmanis@freegate.net>
+ mcidas		112/tcp			# McIDAS Data Transmission Protocol
+ mcidas		112/udp			# McIDAS Data Transmission Protocol
+ #			   Glenn Davis <support@unidata.ucar.edu>
+-ident		113/tcp			#
+-auth		113/tcp			# Authentication Service
+-auth		113/udp			# Authentication Service
++auth		113/tcp	tap ident	# Authentication Service
++auth		113/udp	tap		# Authentication Service
+ #			   Mike St. Johns <stjohns@arpa.mil>
+ audionews	114/tcp			# Audio News Multicast
+ audionews	114/udp			# Audio News Multicast
+@@ -338,8 +329,8 @@
+ sqlserv		118/tcp			# SQL Services
+ sqlserv		118/udp			# SQL Services
+ #			   Larry Barnes <barnes@broke.enet.dec.com>
+-nntp		119/tcp			# Network News Transfer Protocol
+-nntp		119/udp			# Network News Transfer Protocol
++nntp		119/tcp	untp		# Network News Transfer Protocol
++nntp		119/udp	untp		# Network News Transfer Protocol
+ #			   Phil Lapsley <phil@UCBARPA.BERKELEY.EDU>
+ cfdptkt		120/tcp			# CFDPTKT
+ cfdptkt		120/udp			# CFDPTKT
+@@ -409,8 +400,8 @@
+ bl-idm		142/tcp			# Britton-Lee IDM
+ bl-idm		142/udp			# Britton-Lee IDM
+ #			   Susie Snitzer <---none--->
+-imap		143/tcp			# Internet Message Access Protocol
+-imap		143/udp			# Internet Message Access Protocol
++imap		143/tcp	imap2		# Internet Message Access Protocol
++imap		143/udp	imap2		# Internet Message Access Protocol
+ #			   Mark Crispin <MRC@CAC.Washington.EDU>
+ uma		144/tcp			# Universal Management Architecture
+ uma		144/udp			# Universal Management Architecture
+@@ -462,8 +453,8 @@
+ #			   Marty Schoffstahl <schoff@NISC.NYSER.NET>
+ snmp		161/tcp			# SNMP
+ snmp		161/udp			# SNMP
+-snmptrap	162/tcp			# SNMPTRAP
+-snmptrap	162/udp			# SNMPTRAP
++snmptrap	162/tcp	snmp-trap	# SNMPTRAP
++snmptrap	162/udp	snmp-trap	# SNMPTRAP
+ #			   Marshall Rose <mrose@dbc.mtview.ca.us>
+ cmip-man	163/tcp			# CMIP/TCP Manager
+ cmip-man	163/udp			# CMIP/TCP Manager
+@@ -593,8 +584,8 @@
+ qmtp		209/tcp			# The Quick Mail Transfer Protocol
+ qmtp		209/udp			# The Quick Mail Transfer Protocol
+ #			   Dan Bernstein <djb@silverton.berkeley.edu>
+-z39.50		210/tcp			# ANSI Z39.50
+-z39.50		210/udp			# ANSI Z39.50
++z39.50		210/tcp	z3950 wais	# ANSI Z39.50
++z39.50		210/udp	z3950 wais	# ANSI Z39.50
+ #			   Mark H. Needleman <markn@sirsi.com>
+ 914c/g		211/tcp			# Texas Instruments 914C/G Terminal
+ 914c/g		211/udp			# Texas Instruments 914C/G Terminal
+@@ -1121,6 +1112,7 @@
+ kpasswd		464/tcp			# kpasswd
+ kpasswd		464/udp			# kpasswd
+ #			   Theodore Ts'o <tytso@MIT.EDU>
++smtps		465/tcp ssmtp		# (not in IANA!)
+ urd		465/tcp			# URL Rendesvous Directory for SSM
+ igmpv3lite	465/udp			# IGMP over UDP for SSM
+ #			   Toerless Eckert <eckert@cisco.com>
+@@ -1266,8 +1258,7 @@
+ exec		512/tcp			# remote process execution;
+ #			   authentication performed using
+ #			   passwords and UNIX login names
+-comsat		512/udp
+-biff		512/udp			# used by mail system to notify users
++biff		512/udp	comsat		# used by mail system to notify users
+ #			   of new mail received; currently
+ #			   receives messages only from
+ #			   processes on the same machine
+@@ -1276,16 +1267,16 @@
+ #			   based on priviledged port numbers
+ #			   and distributed data bases which
+ #			   identify "authentication domains"
+-who		513/udp			# maintains data bases showing who's
++who		513/udp	whod		# maintains data bases showing who's
+ #			   logged in to machines on a local
+ #			   net and the load average of the
+ #			   machine
+-shell		514/tcp			# cmd
++shell		514/tcp	cmd
+ #			   like exec, but automatic authentication
+ #			   is performed as for login server
+ syslog		514/udp
+-printer		515/tcp			# spooler
+-printer		515/udp			# spooler
++printer		515/tcp	spooler
++printer		515/udp	spooler
+ videotex	516/tcp			# videotex
+ videotex	516/udp			# videotex
+ #			   Daniel Mavrakis <system@venus.mctel.fr>
+@@ -1301,10 +1292,10 @@
+ #			   tcp connection is established)
+ ntalk		518/tcp
+ ntalk		518/udp
+-utime		519/tcp			# unixtime
+-utime		519/udp			# unixtime
++utime		519/tcp	unixtime
++utime		519/udp	unixtime
+ efs		520/tcp			# extended file name server
+-router		520/udp			# local routing process (on site);
++router		520/udp	route routed	# local routing process (on site);
+ #			   uses variant of Xerox NS routing
+ #			   information protocol - RIP
+ ripng		521/tcp			# ripng
+@@ -1332,12 +1323,12 @@
+ irc-serv	529/tcp			# IRC-SERV
+ irc-serv	529/udp			# IRC-SERV
+ #			   Brian Tackett <cym@acrux.net>
+-courier		530/tcp			# rpc
+-courier		530/udp			# rpc
+-conference	531/tcp			# chat
+-conference	531/udp			# chat
+-netnews		532/tcp			# readnews
+-netnews		532/udp			# readnews
++courier		530/tcp rpc
++courier		530/udp	rpc
++conference	531/tcp	chat
++conference	531/udp	chat
++netnews		532/tcp	readnews
++netnews		532/udp	readnews
+ netwall		533/tcp			# for emergency broadcasts
+ netwall		533/udp			# for emergency broadcasts
+ mm-admin	534/tcp			# MegaMedia Admin
+@@ -1357,8 +1348,8 @@
+ #			   Richard Frith-Macdonald <richard@brainstorm.co.uk>
+ apertus-ldp	539/tcp			# Apertus Technologies Load Determination
+ apertus-ldp	539/udp			# Apertus Technologies Load Determination
+-uucp		540/tcp			# uucpd
+-uucp		540/udp			# uucpd
++uucp		540/tcp	uucpd
++uucp		540/udp	uucpd
+ uucp-rlogin	541/tcp			# uucp-rlogin
+ uucp-rlogin	541/udp			# uucp-rlogin
+ #			   Stuart Lynne <sl@wimsey.com>
+@@ -1367,8 +1358,8 @@
+ #			   Randy Epstein <repstein@host.net>
+ klogin		543/tcp
+ klogin		543/udp
+-kshell		544/tcp			# krcmd
+-kshell		544/udp			# krcmd
++kshell		544/tcp	krcmd
++kshell		544/udp	krcmd
+ appleqtcsrvr	545/tcp			# appleqtcsrvr
+ appleqtcsrvr	545/udp			# appleqtcsrvr
+ #			   Murali Ranganathan
+@@ -1384,8 +1375,8 @@
+ idfp		549/tcp			# IDFP
+ idfp		549/udp			# IDFP
+ #			   Ramana Kovi <ramana@kovi.com>
+-new-rwho	550/tcp			# new-who
+-new-rwho	550/udp			# new-who
++new-rwho	550/tcp	new-who
++new-rwho	550/udp	new-who
+ cybercash	551/tcp			# cybercash
+ cybercash	551/udp			# cybercash
+ #			   Donald E. Eastlake 3rd <dee@cybercash.com>
+@@ -1410,14 +1401,14 @@
+ teedtap		559/tcp			# TEEDTAP
+ teedtap		559/udp			# TEEDTAP
+ #			   Mort Hoffman <hoffman@mail.ndhm.gtegsc.com>
+-rmonitor	560/tcp			# rmonitord
+-rmonitor	560/udp			# rmonitord
++rmonitor	560/tcp	rmonitord
++rmonitor	560/udp	rmonitord
+ monitor		561/tcp
+ monitor		561/udp
+ chshell		562/tcp			# chcmd
+ chshell		562/udp			# chcmd
+-nntps		563/tcp			# nntp protocol over TLS/SSL (was snntp)
+-nntps		563/udp			# nntp protocol over TLS/SSL (was snntp)
++nntps		563/tcp	snntp		# nntp protocol over TLS/SSL (was snntp)
++nntps		563/udp	snntp		# nntp protocol over TLS/SSL (was snntp)
+ #			   Kipp E.B. Hickman <kipp@netscape.com>
+ 9pfs		564/tcp			# plan 9 file service
+ 9pfs		564/udp			# plan 9 file service
+@@ -1850,7 +1841,7 @@
+ kerberos-adm	749/udp			# kerberos administration
+ rfile		750/tcp
+ loadav		750/udp
+-kerberos-iv	750/udp			# kerberos version iv
++kerberos-iv	750/udp	kerberos4	# kerberos version iv
+ #			   Martin Hamilton <martin@mrrl.lut.as.uk>
+ pump		751/tcp
+ pump		751/udp
+@@ -1953,6 +1944,7 @@
+ omginitialrefs	900/tcp			# OMG Initial Refs
+ omginitialrefs	900/udp			# OMG Initial Refs
+ #			   Christian Callsen <Christian.Callsen@eng.sun.com>
++swat		901/tcp			# (not in IANA!) Samba Web Administration Tool
+ smpnameres	901/tcp			# SMPNAMERES
+ smpnameres	901/udp			# SMPNAMERES
+ #			   Leif Ekblad <leif@rdos.net>
+@@ -1980,8 +1972,8 @@
+ nas		991/udp			# Netnews Administration System
+ #			   Vera Heinau <heinau@fu-berlin.de>
+ #			   Heiko Schlichting <heiko@fu-berlin.de>
+-telnets		992/tcp			# telnet protocol over TLS/SSL
+-telnets		992/udp			# telnet protocol over TLS/SSL
++telnets		992/tcp	stelnet		# telnet protocol over TLS/SSL
++telnets		992/udp	stelnet		# telnet protocol over TLS/SSL
+ imaps		993/tcp			# imap4 protocol over TLS/SSL
+ imaps		993/udp			# imap4 protocol over TLS/SSL
+ ircs		994/tcp			# irc protocol over TLS/SSL
+@@ -1998,19 +1990,19 @@
+ busboy		998/tcp
+ puparp		998/udp
+ garcon		999/tcp
+-applix		999/udp			#     Applix ac
++applix		999/udp			# Applix ac
+ puprouter	999/tcp
+ puprouter	999/udp
+ cadlock2	1000/tcp
+ cadlock2	1000/udp
+ #		1001-1009      Unassigned
+ #		1008/udp		# Possibly used by Sun Solaris????
+-surf		1010/tcp 		#    surf
+-surf		1010/udp 		#    surf
++surf		1010/tcp 		# surf
++surf		1010/udp 		# surf
+ #			       Joseph Geer <jgeer@peapod.com>
+ #		1011-1022      Reserved
+-#		1023/tcp 		#    Reserved
+-#		1023/udp 		#    Reserved
++#		1023/tcp 		# Reserved
++#		1023/udp 		# Reserved
+ #			       IANA <iana@iana.org>
+ 
+ #		1024/tcp		# Reserved
+@@ -4559,12 +4551,13 @@
+ x25-svc-port	1998/udp		# cisco X.25 service (XOT)
+ tcp-id-port	1999/tcp		# cisco identification port
+ tcp-id-port	1999/udp		# cisco identification port
+-callbook	2000/tcp
++callbook	2000/tcp	sieve	# sieve is used by cyrus-imapd timsieved daemon
+ callbook	2000/udp
+ dc		2001/tcp
+ wizard		2001/udp		# curry
+ globe		2002/tcp
+ globe		2002/udp
++cfinger		2003/tcp		# (not in IANA!) GNU Finger
+ mailbox		2004/tcp
+ emce		2004/udp		# CCWS mm conf
+ berknet		2005/tcp
+@@ -4654,10 +4647,10 @@
+ dls-monitor	2048/tcp
+ dls-monitor	2048/udp
+ #			  <== NOTE Conflict on 2049 !
+-shilp		2049/tcp
+-shilp		2049/udp
+ nfs		2049/tcp		# Network File System - Sun Microsystems
+ nfs		2049/udp		# Network File System - Sun Microsystems
++shilp		2049/tcp
++shilp		2049/udp
+ #			   Brent Callaghan <brent@terra.eng.sun.com>
+ av-emb-config	2050/tcp		# Avaya EMB Config Port
+ av-emb-config	2050/udp		# Avaya EMB Config Port
+@@ -8025,7 +8018,7 @@
+ vnsstr		3321/tcp		# VNSSTR
+ vnsstr		3321/udp		# VNSSTR
+ #			   Takeshi Ohmura <ohmura@isl.mei.co.jp>
+-active-net	3322-3325  Active Networks
++#active-net	3322-3325  Active Networks
+ #			   Bob Braden <braden@isi.edu>
+ sftu		3326/tcp		# SFTU
+ sftu		3326/udp		# SFTU
+@@ -8138,7 +8131,7 @@
+ creativepartnr	3366/tcp		# Creative Partner
+ creativepartnr	3366/udp		# Creative Partner
+ #			   Jesus Ortiz <Jesus_A._Ortiz@notes.emotion.com>
+-satvid-datalnk	3367-3371  Satellite Video Data Link
++#satvid-datalnk	3367-3371  Satellite Video Data Link
+ #			   Scott Engel <ScottX_Engel@ccm.jf.intel.com>
+ tip2		3372/tcp		# TIP 2
+ tip2		3372/udp		# TIP 2
+@@ -9139,7 +9132,7 @@
+ eims-admin	4199/tcp		# EIMS ADMIN
+ eims-admin	4199/udp		# EIMS ADMIN
+ #			   Glenn Anderson <glenn@qualcomm.co.nz>
+-vrml-multi-use	4200-4299  VRML Multi User Systems
++#vrml-multi-use	4200-4299  VRML Multi User Systems
+ #			   Mitra <mitra@earth.path.net>
+ corelccam	4300/tcp		# Corel CCam
+ corelccam	4300/udp		# Corel CCam
+@@ -9650,8 +9643,8 @@
+ park-agent	5431/tcp		# PARK AGENT
+ park-agent	5431/udp		# PARK AGENT
+ #			   John Clifford <John.Clifford@veritas.com>
+-postgresql	5432/tcp		# PostgreSQL Database
+-postgresql	5432/udp		# PostgreSQL Database
++postgresql	5432/tcp postgres	# PostgreSQL Database
++postgresql	5432/udp postgres	# PostgreSQL Database
+ #			   Tom Lane <tgl@sss.pgh.pa.us>
+ #		5433-5434  Unassigned
+ dttl		5435/tcp		# Data Tunneling Transceiver Linking (DTTL)
+@@ -9728,7 +9721,7 @@
+ pcanywherestat	5632/udp		# pcANYWHEREstat
+ #			   Jon Rosarky <JRosarky@symantec.com>
+ #		5633-5672  Unassigned
+-jms		5673/tcp		# JACL Message Server
++jms		5673/tcp	irrd	# IRRd routing registry server [jms - JACL Message Server]
+ jms		5673/udp		# JACL Message Server
+ #			   Stuart Allen <stuart@jacl.animats.net> February 2002
+ hyperscsi-port	5674/tcp		# HyperSCSI Port
+@@ -9750,6 +9743,7 @@
+ dccm		5679/udp		# Direct Cable Connect Manager
+ #			   Mark Miller <mmiller@MICROSOFT.com>
+ #		5680-5712  Unassigned
++canna		5680/tcp		# (not in IANA!) cannaserver
+ proshareaudio	5713/tcp		# proshare conf audio
+ proshareaudio	5713/udp		# proshare conf audio
+ prosharevideo	5714/tcp		# proshare conf video
+@@ -9835,8 +9829,8 @@
+ cvsup		5999/tcp		# CVSup
+ cvsup		5999/udp		# CVSup
+ #			   Randall Atkinson <rja@inet.org>
+-x11		6000-6063/tcp	X Window System
+-x11		6000-6063/udp	X Window System
++#x11		6000-6063/tcp	X Window System
++#x11		6000-6063/udp	X Window System
+ #			   Stephen Gildea <gildea@lcs.mit.edu>
+ ndl-ahp-svc	6064/tcp		# NDL-AHP-SVC
+ ndl-ahp-svc	6064/udp		# NDL-AHP-SVC
+@@ -9969,17 +9963,17 @@
+ #			   Dave DesRoches <ddesroches@clariion.com>
+ #		6390-6399  Unassigned
+ # The following blocks are in use by Seagate Software 6400-6410 #
+-info-aps	6400
+-info-was	6401
+-info-eventsvr	6402
+-info-cachesvr	6403
+-info-filesvr	6404
+-info-pagesvr	6405
+-info-processvr	6406
+-reserved1	6407
+-reserved2	6408
+-reserved3	6409
+-reserved4	6410
++#info-aps	6400
++#info-was	6401
++#info-eventsvr	6402
++#info-cachesvr	6403
++#info-filesvr	6404
++#info-pagesvr	6405
++#info-processvr	6406
++#reserved1	6407
++#reserved2	6408
++#reserved3	6409
++#reserved4	6410
+ # The previous ports are in use by Seagate Software 6400-6410 #
+ # Contact for these ports is Wade Richards <Wade.Richards@Seagatesoftware.com>
+ #		6411-6454  Unassigned
+@@ -10032,7 +10026,7 @@
+ xdsxdm		6558/udp
+ #			   Brian Tackett <cym@acrux.net> possible contact
+ #		6559-6565  Unassigned
+-sane-port	6566/tcp		# SANE Control Port
++sane-port	6566/tcp sane		# SANE Control Port
+ sane-port	6566/udp		# SANE Control Port
+ #			   Henning Meier-Geinitz <henning@meier-geinitz.de> October 2002
+ #		6567-6579  Unassigned
+@@ -10047,8 +10041,10 @@
+ #		6588	   Unassigned
+ ####Unofficial use of port 6588 by AnalogX and Microsoft####
+ #		6589-6664  Unassigned
+-ircu		6665-6669/tcp		# IRCU
+-ircu		6665-6669/udp		# IRCU
++#ircu		6665-6669/tcp		# IRCU
++#ircu		6665-6669/udp		# IRCU
++ircd		6667/tcp		# Internet Relay Chat
++ircd		6667/udp		# Internet Relay Chat
+ #			   Brian Tackett <cym@acrux.net>
+ vocaltec-gold	6670/tcp		# Vocaltec Global Online Directory
+ vocaltec-gold	6670/udp		# Vocaltec Global Online Directory
+@@ -10204,7 +10200,7 @@
+ itactionserver2 7281/udp		# ITACTIONSERVER 2
+ #			   Brian Taylor <btaylor@imagetag.com>
+ #		7282-7299  Unassigned
+-swx		7300-7390  The Swiss Exchange
++#swx		7300-7390  The Swiss Exchange
+ #			   Edgar Blum <edgar.blum@swx.ch>
+ mindfilesys	7391/tcp		# mind-file system server
+ mindfilesys	7391/udp		# mind-file system server
+@@ -10494,7 +10490,7 @@
+ cddbp-alt	8880/udp 		# CDDBP
+ #			    Steve Scherf <steve@moonsoft.com>
+ #		8881-8887   Unassigned
+-ddi-tcp-1	8888/tcp 		# NewsEDGE server TCP (TCP 1)
++ddi-tcp-1	8888/tcp	irr_rpsl_submit	# NewsEDGE server TCP (TCP 1)
+ ddi-udp-1	8888/udp 		# NewsEDGE server UDP (UDP 1)
+ ddi-tcp-2	8889/tcp 		# Desktop Data TCP 1
+ ddi-udp-2	8889/udp 		# NewsEDGE server broadcast
+@@ -10782,6 +10778,10 @@
+ amanda		10080/udp		# Amanda
+ #			   John Jackson <jrj@gandalf.cc.purdue.edu>
+ #			   <amanda-core@amanda.org>
++kamanda		10081/tcp		# (not in IANA) amanda backup services (Kerberos)
++kamanda		10081/udp		# (not in IANA) amanda backup services (Kerberos)
++amandaidx	10082/tcp		# (not in IANA) amanda backup services
++amidxtape	10083/tcp		# (not in IANA) amanda backup services
+ #		10081-10100 Unassigned
+ ezmeeting-2	10101/tcp		# eZmeeting
+ ezmeeting-2	10101/udp		# eZmeeting
+@@ -10885,7 +10885,10 @@
+ tsaf		12753/tcp		# tsaf port
+ tsaf		12753/udp		# tsaf port
+ #			   Andreas Fehr <100042.2070@CompuServe.COM>
+-#		12754-13159 Unassigned
++#		12754-12864 Unassigned
++netserver	12865/tcp		# Netperf Server
++netserver	12865/udp		# Netperf Server
++#		12866-13159 Unassigned
+ i-zipqd		13160/tcp		# I-ZIPQD
+ i-zipqd		13160/udp		# I-ZIPQD
+ #			   Chuck Runquist <crunquist@quarterdeck.com>
+@@ -11081,108 +11084,111 @@
+ vofr-gateway	21590/udp		# VoFR Gateway
+ #			   Marty Borden <mborden@tollbridgetech.com>
+ #		21591-21799 Unassigned
+-tvpm		21800/tcp TVNC Pro Multiplexing
+-tvpm		21800/udp TVNC Pro Multiplexing
++tvpm		21800/tcp		# TVNC Pro Multiplexing
++tvpm		21800/udp		# TVNC Pro Multiplexing
+ #			  Brian Blevins <brian.blevins@tridia.com>
+-#		21801-21844 Unassigned
+-webphone	21845/tcp webphone
+-webphone	21845/udp webphone
+-netspeak-is	21846/tcp NetSpeak Corp. Directory Services
+-netspeak-is	21846/udp NetSpeak Corp. Directory Services
+-netspeak-cs	21847/tcp NetSpeak Corp. Connection Services
+-netspeak-cs	21847/udp NetSpeak Corp. Connection Services
+-netspeak-acd	21848/tcp NetSpeak Corp. Automatic Call Distribution
+-netspeak-acd	21848/udp NetSpeak Corp. Automatic Call Distribution
+-netspeak-cps	21849/tcp NetSpeak Corp. Credit Processing System
+-netspeak-cps	21849/udp NetSpeak Corp. Credit Processing System
++#		21801-21844		# Unassigned
++webphone	21845/tcp		# webphone
++webphone	21845/udp		# webphone
++netspeak-is	21846/tcp		# NetSpeak Corp. Directory Services
++netspeak-is	21846/udp		# NetSpeak Corp. Directory Services
++netspeak-cs	21847/tcp		# NetSpeak Corp. Connection Services
++netspeak-cs	21847/udp		# NetSpeak Corp. Connection Services
++netspeak-acd	21848/tcp		# NetSpeak Corp. Automatic Call Distribution
++netspeak-acd	21848/udp		# NetSpeak Corp. Automatic Call Distribution
++netspeak-cps	21849/tcp		# NetSpeak Corp. Credit Processing System
++netspeak-cps	21849/udp		# NetSpeak Corp. Credit Processing System
+ #			  Toby Hosterman <root@netspeak.com>
+-#		21850-21999 Unassigned
+-snapenetio	22000/tcp SNAPenetIO
+-snapenetio	22000/udp SNAPenetIO
+-optocontrol	22001/tcp OptoControl
+-optocontrol	22001/udp OptoControl
++#		21850-21999		# Unassigned
++snapenetio	22000/tcp		# SNAPenetIO
++snapenetio	22000/udp		# SNAPenetIO
++optocontrol	22001/tcp		# OptoControl
++optocontrol	22001/udp		# OptoControl
+ #			  Kevin Kuhns <kkuhns@opto22.com>
+-#		22002-22272 Unassigned
++#		22002-22272		# Unassigned
+ wnn6		22273/tcp wnn6
+ wnn6		22273/udp wnn6
+ #			  Yasunari Gon Yamasita <yamasita@omronsoft.co.jp
++wnn4_Cn		22289/tcp		# (not in IANA!) cWnn (Chinese input system/China)
++wnn4_Kr		22305/tcp		# (not in IANA!) kWnn (Korean input system)
++wnn4_Tw		22321/tcp		# (not in IANA!) tWnn (Chinese input system/Taiwan)
+ #		22274-22554 Unassigned
+-vocaltec-wconf	22555/tcp Vocaltec Web Conference
+-vocaltec-phone	22555/udp Vocaltec Internet Phone
++vocaltec-wconf	22555/tcp		# Vocaltec Web Conference
++vocaltec-phone	22555/udp		# Vocaltec Internet Phone
+ #			  Scott Petrack >Scott_Petrack@vocaltec.com>
+-#		22556-22799 Unassigned
+-aws-brf		22800/tcp Telerate Information Platform LAN
+-aws-brf		22800/udp Telerate Information Platform LAN
++#		22556-22799		# Unassigned
++aws-brf		22800/tcp		# Telerate Information Platform LAN
++aws-brf		22800/udp		# Telerate Information Platform LAN
+ #			  Timo Sivonen <timo.sivonen@ccmail.dowjones.com>
+-#		22801-22950 Unassigned
+-brf-gw		22951/tcp Telerate Information Platform WAN
+-brf-gw		22951/udp Telerate Information Platform WAN
++#		22801-22950		# Unassigned
++brf-gw		22951/tcp		# Telerate Information Platform WAN
++brf-gw		22951/udp		# Telerate Information Platform WAN
+ #			  Timo Sivonen <timo.sivonen@ccmail.dowjones.com>
+-#		22952-23999 Unassigned
+-med-ltp		24000/tcp med-ltp
+-med-ltp		24000/udp med-ltp
+-med-fsp-rx	24001/tcp med-fsp-rx
+-med-fsp-rx	24001/udp med-fsp-rx
+-med-fsp-tx	24002/tcp med-fsp-tx
+-med-fsp-tx	24002/udp med-fsp-tx
+-med-supp	24003/tcp med-supp
+-med-supp	24003/udp med-supp
+-med-ovw		24004/tcp med-ovw
+-med-ovw		24004/udp med-ovw
+-med-ci		24005/tcp med-ci
+-med-ci		24005/udp med-ci
+-med-net-svc	24006/tcp med-net-svc
+-med-net-svc	24006/udp med-net-svc
++#		22952-23999		# Unassigned
++med-ltp		24000/tcp		# med-ltp
++med-ltp		24000/udp		# med-ltp
++med-fsp-rx	24001/tcp		# med-fsp-rx
++med-fsp-rx	24001/udp		# med-fsp-rx
++med-fsp-tx	24002/tcp		# med-fsp-tx
++med-fsp-tx	24002/udp		# med-fsp-tx
++med-supp	24003/tcp		# med-supp
++med-supp	24003/udp		# med-supp
++med-ovw		24004/tcp		# med-ovw
++med-ovw		24004/udp		# med-ovw
++med-ci		24005/tcp		# med-ci
++med-ci		24005/udp		# med-ci
++med-net-svc	24006/tcp		# med-net-svc
++med-net-svc	24006/udp		# med-net-svc
+ #			  Juergen Fischbach <Juergen_Fischbach@agilent.com>
+-#		24007-24241 Unassigned
+-filesphere	24242/tcp fileSphere
+-filesphere	24242/udp fileSphere
++#		24007-24241		# Unassigned
++filesphere	24242/tcp		# fileSphere
++filesphere	24242/udp		# fileSphere
+ #			  Carl Cedergren <asperon@home.se>
+-#		24243-24248 Unassigned
+-vista-4gl	24249/tcp Vista 4GL
+-vista-4gl	24249/udp Vista 4GL
++#		24243-24248		# Unassigned
++vista-4gl	24249/tcp		# Vista 4GL
++vista-4gl	24249/udp		# Vista 4GL
+ #			  Mark Itzcovitz <mji@vistacomp.com>
+-#		24250-24385 Unassigned
+-intel_rci	24386/tcp Intel RCI
+-intel_rci	24386/udp Intel RCI
++#		24250-24385		# Unassigned
++intel_rci	24386/tcp		# Intel RCI
++intel_rci	24386/udp		# Intel RCI
+ #			  Mark Lewis <mark.h.lewis@intel.com>
+ #		24387-24553 Unassigned
+-binkp		24554/tcp BINKP
+-binkp		24554/udp BINKP
++binkp		24554/tcp		# BINKP
++binkp		24554/udp		# BINKP
+ #			  Max Masyutin <max@ritlabs.com>
+ #		24554-34676 Unassigned
+-flashfiler	24677/tcp FlashFiler
+-flashfiler	24677/udp FlashFiler
++flashfiler	24677/tcp		# FlashFiler
++flashfiler	24677/udp		# FlashFiler
+ #			  Ben Oram <beno@turbopower.com>
+-proactivate	24678/tcp Turbopower Proactivate
+-proactivate	24678/udp Turbopower Proactivate
++proactivate	24678/tcp		# Turbopower Proactivate
++proactivate	24678/udp		# Turbopower Proactivate
+ #			  Ben Oram <beno@turbopower.com>
+-#		24679-24921 Unassigned
+-snip		24922/tcp Simple Net Ident Protocol
+-snip		24922/udp Simple Net Ident Protocol
++#		24679-24921		# Unassigned
++snip		24922/tcp		# Simple Net Ident Protocol
++snip		24922/udp		# Simple Net Ident Protocol
+ #			  Jean-Paul Moreaux
+ #			  <jean-paul.moreaux@airbus.dasa.de>
+-#		24923-24999 Unassigned
+-icl-twobase1	25000/tcp icl-twobase1
+-icl-twobase1	25000/udp icl-twobase1
+-icl-twobase2	25001/tcp icl-twobase2
+-icl-twobase2	25001/udp icl-twobase2
+-icl-twobase3	25002/tcp icl-twobase3
+-icl-twobase3	25002/udp icl-twobase3
+-icl-twobase4	25003/tcp icl-twobase4
+-icl-twobase4	25003/udp icl-twobase4
+-icl-twobase5	25004/tcp icl-twobase5
+-icl-twobase5	25004/udp icl-twobase5
+-icl-twobase6	25005/tcp icl-twobase6
+-icl-twobase6	25005/udp icl-twobase6
+-icl-twobase7	25006/tcp icl-twobase7
+-icl-twobase7	25006/udp icl-twobase7
+-icl-twobase8	25007/tcp icl-twobase8
+-icl-twobase8	25007/udp icl-twobase8
+-icl-twobase9	25008/tcp icl-twobase9
+-icl-twobase9	25008/udp icl-twobase9
+-icl-twobase10	25009/tcp icl-twobase10
+-icl-twobase10	25009/udp icl-twobase10
++#		24923-24999		# Unassigned
++icl-twobase1	25000/tcp		# icl-twobase1
++icl-twobase1	25000/udp		# icl-twobase1
++icl-twobase2	25001/tcp		# icl-twobase2
++icl-twobase2	25001/udp		# icl-twobase2
++icl-twobase3	25002/tcp		# icl-twobase3
++icl-twobase3	25002/udp		# icl-twobase3
++icl-twobase4	25003/tcp		# icl-twobase4
++icl-twobase4	25003/udp		# icl-twobase4
++icl-twobase5	25004/tcp		# icl-twobase5
++icl-twobase5	25004/udp		# icl-twobase5
++icl-twobase6	25005/tcp		# icl-twobase6
++icl-twobase6	25005/udp		# icl-twobase6
++icl-twobase7	25006/tcp		# icl-twobase7
++icl-twobase7	25006/udp		# icl-twobase7
++icl-twobase8	25007/tcp		# icl-twobase8
++icl-twobase8	25007/udp		# icl-twobase8
++icl-twobase9	25008/tcp		# icl-twobase9
++icl-twobase9	25008/udp		# icl-twobase9
++icl-twobase10	25009/tcp		# icl-twobase10
++icl-twobase10	25009/udp		# icl-twobase10
+ #		J. A. (Tony) Sever <J.A.Sever@bra0119.wins.icl.co.uk>
+ #		25010-25792 Unassigned
+ vocaltec-hos	25793/tcp		# Vocaltec Address Server
+@@ -11192,7 +11198,7 @@
+ niobserver	25901/tcp		# NIObserver
+ niobserver	25901/udp		# NIObserver
+ #			   Roman Oliynyk <romano@netinst.com>
+-#		25902	   Unassigned
++#		25902			# Unassigned
+ niprobe		25903/tcp		# NIProbe
+ niprobe		25903/udp		# NIProbe
+ #			   Roman Oliynyk <romano@netinst.com>
+@@ -11219,7 +11225,7 @@
+ gserver		26264/udp		# Gserver
+ #			   Szanto Gabor <sgabor90@hotmail.com>
+ #		26265-26999 Unassigned
+-flex-lm		27000-27009 FLEX LM (1-10)
++#flex-lm	27000-27009		# FLEX LM (1-10)
+ #			   Daniel Birns <daniel@globes.com>
+ #		27010-27344 Unassigned
+ imagepump	27345/tcp		# ImagePump
+@@ -11361,3 +11367,15 @@
+ #		48557-49150 Unassigned
+ #		49151	   IANA Reserved
+ 
++tfido		60177/tcp		# (not in IANA) Ifmail
++tfido		60177/udp		# (not in IANA) Ifmail
++fido		60179/tcp		# (not in IANA) Ifmail
++fido		60179/udp		# (not in IANA) Ifmail
++
++#
++# Datagram Delivery Protocol services (not in IANA)
++#
++rtmp		1/ddp				# Routing Table Maintenance Protocol
++nbp		2/ddp				# Name Binding Protocol
++echo		4/ddp				# AppleTalk Echo Protocol
++zip		6/ddp				# Zone Information Protocol
