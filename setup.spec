@@ -5,11 +5,12 @@ Summary(pl):	Podstawowe pliki systemu Linux
 Summary(tr):	Basit kurulum dosyalarý
 Name:		setup
 Version:	1.9.6
-Release:	1
+Release:	2
 Copyright:	public domain
 Group:		Base
 Group(pl):	Podstawowe
 Source:		%{name}-%{version}.tar.bz2
+Patch0:		%{name}.patch
 Buildroot:	/tmp/%{name}-%{version}-root
 Buildarch:	noarch
 
@@ -35,6 +36,7 @@ içerir.
 
 %prep
 %setup -q -n %{name}
+%patch -p1
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -61,6 +63,11 @@ rm -rf $RPM_BUILD_ROOT
 %attr(600,root,root) %config(noreplace) %verify(not md5 size mtime) /etc/secure*
 
 %changelog
+* Fri May 28 1999 Wojtek ¦lusarczyk <wojtek@shadow.eu.org>
+- ttyS0 >> /etc/securetty
+- added group console gid=20 (removed from dev-*)
+- group games changed gid -- now gid=21
+
 * Wed May 19 1999 Wojtek ¦lusarczyk <wojtek@shadow.eu.org>
 - removed qmail, zmailer, goopher & other users from group & /etc/passwd 
 - removed icmp group & gid=80
