@@ -1,5 +1,7 @@
 # TODO:
 # - make some README.PLD with system features description
+%bcond_with	pp	# disable stack protector (vide dietlibc.spec)
+
 Summary:	Simple setup files
 Summary(de):	Einfache Setup-Dateien
 Summary(es):	Varios archivos básicos de configuración
@@ -60,7 +62,7 @@ dosyalarýný içerir.
 
 %build
 %{__make} \
-	OPT_FLAGS="%{rpmcflags}" \
+	OPT_FLAGS="%{rpmcflags} %{?with_pp:-fno-stack-protector}" \
 	CC="diet %{__cc}"
 
 %install
