@@ -5,7 +5,7 @@ Summary(pl):	Podstawowe pliki systemu Linux
 Summary(tr):	Basit kurulum dosyalarý
 Name:		setup
 Version:	2.4.0
-Release:	1
+Release:	2
 License:	public domain
 Group:		Base
 Group(de):	Gründsätzlich
