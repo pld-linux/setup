@@ -12,6 +12,7 @@ Release:	0.1
 License:	Public Domain
 Group:		Base
 Source0:	%{name}-%{version}.tar.bz2
+# Source0-md5: a47f2c6d681b16c7b718d7396e3efbee
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Buildarch:	noarch
 AutoReqProv:	no
