@@ -10,14 +10,14 @@ Summary(pt_BR):	Vários arquivos básicos de configuração
 Summary(tr):	Basit kurulum dosyalarý
 Name:		setup
 Version:	2.4.5
-Release:	1
+Release:	2
 License:	Public Domain, partially BSD-like
 Group:		Base
 Source0:	http://piorun.ds.pg.gda.pl/~blues/SOURCES/%{name}-%{version}.tar.bz2
 # Source0-md5:	620d450c5bbc6097fafd3bbfc798ece7
 BuildRequires:	dietlibc-static
-BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 AutoReqProv:	no
+BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_sbindir	/sbin
 
@@ -71,8 +71,7 @@ rm -rf $RPM_BUILD_ROOT
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%triggerpostun -- %{name} < %{version}-%{release}
-%{_sbindir}/joinpasswd
+%triggerpostun -p %{_sbindir}/joinpasswd -- %{name} < %{version}-%{release}
 
 %files
 %defattr(644,root,root,755)
