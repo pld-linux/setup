@@ -8,7 +8,7 @@ Summary(pt_BR):	Vários arquivos básicos de configuração
 Summary(tr):	Basit kurulum dosyalarý
 Name:		setup
 Version:	2.4.1
-Release:	1
+Release:	2
 License:	public domain
 Group:		Base
 Group(de):	Gründsätzlich
@@ -16,6 +16,7 @@ Group(es):	Base
 Group(pl):	Podstawowe
 Group(pt_BR):	Base
 Source0:	%{name}-%{version}.tar.bz2
+Source1:	group
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Buildarch:	noarch
 AutoReqProv:	no
@@ -59,10 +60,11 @@ dosyalarýný içerir.
 
 %install
 rm -rf $RPM_BUILD_ROOT
-
 install -d $RPM_BUILD_ROOT
 
 cp -fa * $RPM_BUILD_ROOT
+
+install %{SOURCE1} $RPM_BUILD_ROOT%{_sysconfdir}/group
 
 %clean
 rm -rf $RPM_BUILD_ROOT
