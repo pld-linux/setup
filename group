@@ -12,7 +12,7 @@ wheel::10:root
 icmp::11:
 mail::12:mail
 news::13:news
-uucp::14:uucp
+uucp::14:uucp,mail
 man::15:
 ttyS::16:
 proc::17:
