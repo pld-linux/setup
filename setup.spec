@@ -7,14 +7,15 @@ Summary(pt_BR):	Vários arquivos básicos de configuração
 Summary(es):	Varios archivos básicos de configuración
 Summary(ja):	¥µ¥ó¥×¥ë¥»¥Ã¥È¥¢¥Ã¥×¥Õ¥¡¥¤¥ë
 Name:		setup
-Version:	2.4.0
-Release:	2
+Version:	2.4.1
+Release:	1
 License:	public domain
 Group:		Base
 Group(de):	Gründsätzlich
+Group(es):	Base
 Group(pl):	Podstawowe
+Group(pt_BR):	Base
 Source0:	%{name}-%{version}.tar.bz2
-Source1:	services
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Buildarch:	noarch
 AutoReqProv:	no
@@ -40,13 +41,13 @@ Bu paket, passwd, group, profile gibi çok önemli ayar ve kurulum
 dosyalarýný içerir.
 
 %description -l pt_BR
-Este pacote contém uma variedade de arquivos de configuração e
-setup muito importantes, incluindo o passwd, group, arquivos de
-"perfil", etc.
+Este pacote contém uma variedade de arquivos de configuração e setup
+muito importantes, incluindo o passwd, group, arquivos de "perfil",
+etc.
 
 %description -l es
-Este paquete contiene una variedad de archivos de configuración
-y setup muy importantes, incluyendo el passwd, group, archivos de
+Este paquete contiene una variedad de archivos de configuración y
+setup muy importantes, incluyendo el passwd, group, archivos de
 "perfil", etc.
 
 %description -l ja
@@ -62,7 +63,6 @@ rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT
 
 cp -fa * $RPM_BUILD_ROOT
-cp -f %{SOURCE1} $RPM_BUILD_ROOT/etc
 
 %clean
 rm -rf $RPM_BUILD_ROOT
