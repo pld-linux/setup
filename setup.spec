@@ -8,7 +8,7 @@ Version:	1.9.5
 Release:	2
 Copyright:	public domain
 Group:		Base
-Group(pl):	Bazowe
+Group(pl):	Podstawowe
 Source:		%{name}-%{version}.tar.bz2
 Buildroot:	/tmp/%{name}-%{version}-root
 Buildarch:	noarch
