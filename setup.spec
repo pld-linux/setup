@@ -3,7 +3,7 @@
 # - make some README.PLD with system features description
 #
 # Conditional build:
-%bcond_with	ssp	# disable stack-smashing protector (vide dietlibc.spec)
+%bcond_with	ssp	# enable stack-smashing protector (vide dietlibc.spec)
 #
 %define	iana_etc_ver	1.03
 #
@@ -16,16 +16,14 @@ Summary(pl):	Podstawowe pliki systemu Linux
 Summary(pt_BR):	Vários arquivos básicos de configuração
 Summary(tr):	Basit kurulum dosyalarý
 Name:		setup
-Version:	2.4.6
-Release:	8.2
+Version:	2.4.7
+Release:	0.1
 License:	Public Domain, partially BSD-like
 Group:		Base
-Source0:	%{name}-%{version}.tar.bz2
-# Source0-md5:	33afa2766c28f1fb8331bd9209bf6b04
+Source0:	http://piorun.ds.pg.gda.pl/~blues/SOURCES/%{name}-%{version}.tar.bz2
+# Source0-md5:	68f4a07ee8c3cbf410704630b59c795a
 Source1:	http://www.sethwklein.net/projects/iana-etc/downloads/iana-etc-%{iana_etc_ver}.tar.bz2
 # Source1-md5:	670da9e41179d618498f5d614b7f4636
-Patch0:		%{name}-fstab.patch
-Patch1:		%{name}-special_users.patch
 BuildRequires:	dietlibc-static
 BuildRequires:	gawk
 Conflicts:	FHS < 2.3
@@ -74,8 +72,6 @@ dosyalarýný içerir.
 
 %prep
 %setup -q -a1
-%patch0 -p1
-%patch1 -p1
 
 %build
 %{__make} -C iana-etc-%{iana_etc_ver}
@@ -86,11 +82,10 @@ dosyalarýný içerir.
 
 %install
 rm -rf $RPM_BUILD_ROOT
+install -d $RPM_BUILD_ROOT%{_sysconfdir}/shrc.d
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
-
-install -d $RPM_BUILD_ROOT%{_sysconfdir}/shrc.d
 
 install iana-etc-%{iana_etc_ver}/protocols $RPM_BUILD_ROOT/etc/protocols
 install iana-etc-%{iana_etc_ver}/services $RPM_BUILD_ROOT/etc/services
