@@ -11,6 +11,7 @@ Group:		Base
 Group(de):	Gründsätzlich
 Group(pl):	Podstawowe
 Source0:	%{name}-%{version}.tar.bz2
+Source1:	services
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Buildarch:	noarch
 AutoReqProv:	no
@@ -44,6 +45,8 @@ rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT
 
 cp -a * $RPM_BUILD_ROOT
+rm -f $RPM_BUILD_ROOT%{_sysconfdir}/services
+install %{Source1} $RPM_BUILD_ROOT%{_sysconfdir}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
