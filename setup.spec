@@ -17,7 +17,7 @@ Summary(pt_BR):	Vários arquivos básicos de configuração
 Summary(tr):	Basit kurulum dosyalarý
 Name:		setup
 Version:	2.4.9
-Release:	1
+Release:	2
 License:	Public Domain, partially BSD-like
 Group:		Base
 Source0:	http://mieszkancy.ds.pg.gda.pl/~blues/SOURCES/%{name}-%{version}.tar.bz2
@@ -31,10 +31,6 @@ BuildRequires:	gawk
 Conflicts:	FHS < 2.3
 AutoReqProv:	no
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
-
-%ifarch alpha
-Obsoletes:	gfax
-%endif
 
 %define		_sbindir	/sbin
 
