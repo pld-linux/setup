@@ -5,7 +5,7 @@ Summary(pl):	Podstawowe pliki systemu Linux
 Summary(tr):	Basit kurulum dosyalarý
 Name:		setup
 Version:	2.2.6
-Release:	1
+Release:	2
 Copyright:	public domain
 Group:		Base
 Group(pl):	Podstawowe
@@ -57,7 +57,6 @@ rm -rf $RPM_BUILD_ROOT
 %config(noreplace) %verify(not md5 size mtime) %{_sysconfdir}/services
 %config(noreplace) %verify(not md5 size mtime) %{_sysconfdir}/host.conf
 %config(noreplace) %verify(not md5 size mtime) %{_sysconfdir}/motd
-%config(noreplace) %verify(not md5 size mtime) %{_sysconfdir}/printcap
 %config(noreplace) %verify(not md5 size mtime) %{_sysconfdir}/profile
 %config(noreplace) %verify(not md5 size mtime) %{_sysconfdir}/protocols
 %ghost %{_sysconfdir}/shells
