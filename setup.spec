@@ -12,6 +12,7 @@ Release:	5
 License:	Public Domain
 Group:		Base
 Source0:	%{name}-%{version}.tar.bz2
+# Source0-md5:	ef984493d41e6f2af7fced4cf21e2141
 Source1:	group
 Source2:	services
 Requires:	ra2ac
