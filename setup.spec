@@ -11,7 +11,7 @@ Summary(pt_BR):	Vários arquivos básicos de configuração
 Summary(tr):	Basit kurulum dosyalarý
 Name:		setup
 Version:	2.4.4
-Release:	1
+Release:	1.1
 License:	Public Domain, partially BSD-like
 Group:		Base
 Source0:	http://piorun.ds.pg.gda.pl/~blues/SOURCES/%{name}-%{version}.tar.bz2
@@ -80,6 +80,8 @@ rm -rf $RPM_BUILD_ROOT
 #		echo "$GROUPLINE" >> /etc/group
 #	fi
 #done
+
+%post	-p joinpasswd
 
 %files
 %defattr(644,root,root,755)
