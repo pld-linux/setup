@@ -1,6 +1,7 @@
 #
 # TODO:
 # - make some README.PLD with system features description
+# - some services are missing (postfix related?)
 #
 # Conditional build:
 %bcond_with	ssp	# enable stack-smashing protector (vide dietlibc.spec)
@@ -17,7 +18,7 @@ Summary(pt_BR):	Vários arquivos básicos de configuração
 Summary(tr):	Basit kurulum dosyalarý
 Name:		setup
 Version:	2.4.8
-Release:	1
+Release:	1.1
 License:	Public Domain, partially BSD-like
 Group:		Base
 Source0:	http://mieszkancy.ds.pg.gda.pl/~blues/SOURCES/%{name}-%{version}.tar.bz2
