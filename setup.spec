@@ -12,6 +12,7 @@ Group(pl):	Podstawowe
 Source:		%{name}-%{version}.tar.bz2
 Patch0:		%{name}.patch
 Patch1:		%{name}-rootshell.patch
+Patch2:		%{name}-icmp6.patch
 Buildroot:	/tmp/%{name}-%{version}-root
 Buildarch:	noarch
 
@@ -39,6 +40,7 @@ içerir.
 %setup  -q -n %{name}
 %patch0 -p1
 %patch1 -p1
+%patch2 -p1
 
 %install
 rm -rf $RPM_BUILD_ROOT
