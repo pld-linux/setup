@@ -8,7 +8,8 @@ Version:	2.3.1
 Release:	1
 License:	public domain
 Group:		Base
-Group(pl):	Bazowe
+Group(de):	Gründsätzlich
+Group(pl):	Podstawowe
 Source0:	%{name}-%{version}.tar.bz2
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Buildarch:	noarch
