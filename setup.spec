@@ -14,12 +14,13 @@ Summary(pl):	Podstawowe pliki systemu Linux
 Summary(pt_BR):	Vários arquivos básicos de configuração
 Summary(tr):	Basit kurulum dosyalarý
 Name:		setup
-Version:	2.4.6
-Release:	3
+Version:	2.4.7
+Release:	1
 License:	Public Domain, partially BSD-like
 Group:		Base
-Source0:	http://piorun.ds.pg.gda.pl/~blues/SOURCES/%{name}-%{version}.tar.bz2
-# Source0-md5:	33afa2766c28f1fb8331bd9209bf6b04
+#Source0:	http://piorun.ds.pg.gda.pl/~blues/SOURCES/%{name}-%{version}.tar.bz2
+Source0:	%{name}-%{version}.tar.bz2
+# Source0-md5:	ddc58a05835fd7626a261b28da7912d2
 Patch0:		%{name}-fstab.patch
 Patch1:		%{name}-special_users.patch
 BuildRequires:	dietlibc-static
@@ -77,7 +78,7 @@ dosyalarýný içerir.
 rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT/etc/shrc.d
+install -d $RPM_BUILD_ROOT%{_sysconfdir}/shrc.d
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -91,9 +92,9 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) /etc/profile.d/*.sh
 %attr(755,root,root) /etc/profile.d/*.csh
 %dir /etc/profile.d
-%attr(644,root,root) %config(noreplace,missingok) %verify(not md5 size mtime) /etc/env.d/*
-%dir /etc/env.d
-%dir /etc/shrc.d
+%attr(644,root,root) %config(noreplace,missingok) %verify(not md5 size mtime) %{_sysconfdir}/env.d/*
+%dir %{_sysconfdir}/env.d
+%dir %{_sysconfdir}/shrc.d
 %attr(644,root,root) %config(noreplace) %verify(not md5 size mtime) %{_sysconfdir}/fstab
 %attr(644,root,root) %config(noreplace) %verify(not md5 size mtime) %{_sysconfdir}/group
 %attr(644,root,root) %config(noreplace) %verify(not md5 size mtime) %{_sysconfdir}/host.conf
