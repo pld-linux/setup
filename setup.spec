@@ -16,12 +16,12 @@ Summary(pl):	Podstawowe pliki systemu Linux
 Summary(pt_BR):	Vários arquivos básicos de configuração
 Summary(tr):	Basit kurulum dosyalarý
 Name:		setup
-Version:	2.4.7
+Version:	2.4.8
 Release:	0.1
 License:	Public Domain, partially BSD-like
 Group:		Base
-Source0:	http://piorun.ds.pg.gda.pl/~blues/SOURCES/%{name}-%{version}.tar.bz2
-# Source0-md5:	68f4a07ee8c3cbf410704630b59c795a
+Source0:	http://mieszkancy.ds.pg.gda.pl/~blues/SOURCES/%{name}-%{version}.tar.bz2
+# Source0-md5:	97b906b6558920b77947a994c2bf859f
 Source1:	http://www.sethwklein.net/projects/iana-etc/downloads/iana-etc-%{iana_etc_ver}.tar.bz2
 # Source1-md5:	670da9e41179d618498f5d614b7f4636
 BuildRequires:	dietlibc-static
