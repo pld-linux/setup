@@ -19,6 +19,8 @@ Source0:	http://piorun.ds.pg.gda.pl/~blues/SOURCES/%{name}-%{version}.tar.bz2
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 AutoReqProv:	no
 
+%define		_sbindir	/sbin
+
 %description
 This package contains a number of very important configuration and
 setup files, including the passwd, group, profile files, etc.
