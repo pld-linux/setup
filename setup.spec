@@ -47,15 +47,15 @@ cp -a * $RPM_BUILD_ROOT
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%triggerin -- %{name} < %{version}-%{release}
-[ "$1" = "1" ] && exit 0
-[ ! -e /etc/group.rpmnew ] && exit 0
-cat /etc/group.rpmnew | while read GROUPLINE ; do
-	GR="`echo $GROUPLINE | cut -f 1 -d ':'`"
-	if ! grep -q "^$GR" /etc/group ; then
-		echo "$GROUPLINE" >> /etc/group
-	fi
-done
+#%triggerin -- %{name} < %{version}-%{release}
+#[ "$1" = "1" ] && exit 0
+#[ ! -e /etc/group.rpmnew ] && exit 0
+#cat /etc/group.rpmnew | while read GROUPLINE ; do
+#	GR="`echo $GROUPLINE | cut -f 1 -d ':'`"
+#	if ! grep -q "^$GR" /etc/group ; then
+#		echo "$GROUPLINE" >> /etc/group
+#	fi
+#done
 
 %files
 %defattr(644,root,root,755)
