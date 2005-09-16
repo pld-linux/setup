@@ -94,11 +94,13 @@ rm -rf $RPM_BUILD_ROOT
 
 %triggerpostun -p %{_sbindir}/joinpasswd -- %{name} < %{version}-%{release}
 
-%triggerin -- %{name} < 2.4.10-1
+%triggerpostun -- %{name} < 2.4.10-1
+# TODO: description what this trigger supposed to do
 awk '/^none.*usbfs/  { gsub(/.*/, \
 	"none\t\t/proc/bus/usb\t\tusbfs\tdefaults,noauto,devgid=78,devmode=0644\t0 0") \
 	} {print}' /etc/fstab > /etc/fstab.new
-mv /etc/fstab{.new,}
+cat /etc/fstab.new > /etc/fstab
+rm -f /etc/fstab.new
 
 %files
 %defattr(644,root,root,755)
