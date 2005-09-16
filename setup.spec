@@ -16,12 +16,12 @@ Summary(pl):	Podstawowe pliki systemu Linux
 Summary(pt_BR):	Vários arquivos básicos de configuração
 Summary(tr):	Basit kurulum dosyalarý
 Name:		setup
-Version:	2.4.9
-Release:	2
+Version:	2.4.10
+Release:	1
 License:	Public Domain, partially BSD-like
 Group:		Base
-Source0:	http://mieszkancy.ds.pg.gda.pl/~blues/SOURCES/%{name}-%{version}.tar.bz2
-# Source0-md5:	aa99796a603e10343edbf0720edfd6ac
+Source0:	ftp://distfiles.pld-linux.org/src/%{name}-%{version}.tar.bz2
+# Source0-md5:	7f50f1650e961a77b18afa0a4a588fc1
 Source1:	http://www.sethwklein.net/projects/iana-etc/downloads/iana-etc-%{iana_etc_ver}.tar.bz2
 # Source1-md5:	9f769f7b2d0e519cf62dacb2b3b051d4
 # This is source of non-iana changes in services file
@@ -93,6 +93,12 @@ install iana-etc-%{iana_etc_ver}/protocols $RPM_BUILD_ROOT/etc/protocols
 rm -rf $RPM_BUILD_ROOT
 
 %triggerpostun -p %{_sbindir}/joinpasswd -- %{name} < %{version}-%{release}
+
+%triggerin -- %{name} < 2.4.10-1
+awk '/^none.*usbfs/  { gsub(/.*/, \
+	"none\t\t/proc/bus/usb\t\tusbfs\tdefaults,noauto,devgid=78,devmode=0644\t0 0") \
+	} {print}' /etc/fstab > /etc/fstab.new
+mv /etc/fstab{.new,}
 
 %files
 %defattr(644,root,root,755)
