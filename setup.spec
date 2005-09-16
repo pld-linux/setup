@@ -94,13 +94,26 @@ rm -rf $RPM_BUILD_ROOT
 
 %triggerpostun -p %{_sbindir}/joinpasswd -- %{name} < %{version}-%{release}
 
-%triggerpostun -- %{name} < 2.4.10-1
-# TODO: description what this trigger supposed to do
-awk '/^none.*usbfs/  { gsub(/.*/, \
-	"none\t\t/proc/bus/usb\t\tusbfs\tdefaults,noauto,devgid=78,devmode=0664\t0 0") \
-	} {print}' /etc/fstab > /etc/fstab.new
-cat /etc/fstab.new > /etc/fstab
-rm -f /etc/fstab.new
+%triggerin -p <lua> -- %{name} < 2.4.10-1
+
+-- this script adds ",devmode=0664,devgid=78" in usbfs in old fstab
+-- Warning: it''s not checking if it was already updated
+
+print("Warning: updating /etc/fstab")
+
+F = io.input("/etc/fstab")
+txt = io.read("*a")
+io.close(F)
+
+usbfs = string.find(txt, "usbfs")
+default = string.find(txt, "def", usbfs)
+put_in = string.find(txt, "%s", default)
+
+F = io.output("/etc/fstab")
+io.write(string.sub(txt, 0, put_in - 1))
+io.write(",devmode=0664,devgid=78")
+io.write(string.sub(txt, put_in))
+io.close(F)
 
 %files
 %defattr(644,root,root,755)
