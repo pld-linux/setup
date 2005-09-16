@@ -97,7 +97,7 @@ rm -rf $RPM_BUILD_ROOT
 %triggerpostun -- %{name} < 2.4.10-1
 # TODO: description what this trigger supposed to do
 awk '/^none.*usbfs/  { gsub(/.*/, \
-	"none\t\t/proc/bus/usb\t\tusbfs\tdefaults,noauto,devgid=78,devmode=0644\t0 0") \
+	"none\t\t/proc/bus/usb\t\tusbfs\tdefaults,noauto,devgid=78,devmode=0664\t0 0") \
 	} {print}' /etc/fstab > /etc/fstab.new
 cat /etc/fstab.new > /etc/fstab
 rm -f /etc/fstab.new
