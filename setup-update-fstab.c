@@ -36,6 +36,10 @@ int main()
 	}
 	fstat(fd, &st);
 	old = (char *) malloc(st.st_size);
+	if (old == NULL) {
+		eputs("\nError: malloc failure\n");
+		return 1;
+	}
 	read(fd, old, st.st_size);
 	close(fd);
 	old_sz = st.st_size;
