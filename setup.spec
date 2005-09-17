@@ -24,6 +24,7 @@ Source0:	ftp://distfiles.pld-linux.org/src/%{name}-%{version}.tar.bz2
 # Source0-md5:	7f50f1650e961a77b18afa0a4a588fc1
 Source1:	http://www.sethwklein.net/projects/iana-etc/downloads/iana-etc-%{iana_etc_ver}.tar.bz2
 # Source1-md5:	9f769f7b2d0e519cf62dacb2b3b051d4
+Source2:	%{name}-update-fstab.c
 # This is source of non-iana changes in services file
 #Patch0:		%{name}-services.patch
 BuildRequires:	dietlibc-static
@@ -70,12 +71,16 @@ dosyalarýný içerir.
 
 %prep
 %setup -q -a1
+install %{SOURCE2} update-fstab.c
 
 %build
 %{__make} -C iana-etc-%{iana_etc_ver}
 
 %{__make} \
 	OPT_FLAGS="%{rpmcflags} %{?with_ssp:-fno-stack-protector}" \
+	CC="diet %{__cc}"
+%{__make} update-fstab \
+	OPT_FLAGS="%{rpmcflags}" \
 	CC="diet %{__cc}"
 
 %install
@@ -84,6 +89,8 @@ install -d $RPM_BUILD_ROOT%{_sysconfdir}/shrc.d
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
+
+install update-fstab $RPM_BUILD_ROOT%{_sbindir}
 
 install iana-etc-%{iana_etc_ver}/protocols $RPM_BUILD_ROOT/etc/protocols
 # don't overwrite files from setup tar-ball, fix it in original tar!
@@ -94,31 +101,13 @@ rm -rf $RPM_BUILD_ROOT
 
 %triggerpostun -p %{_sbindir}/joinpasswd -- %{name} < %{version}-%{release}
 
-%triggerin -p <lua> -- %{name} < 2.4.10-1
-
--- this script adds ",devmode=0664,devgid=78" in usbfs in old fstab
--- Warning: it''s not checking if it was already updated
-
-print("Warning: updating /etc/fstab")
-
-F = io.input("/etc/fstab")
-txt = io.read("*a")
-io.close(F)
-
-usbfs = string.find(txt, "usbfs")
-default = string.find(txt, "def", usbfs)
-put_in = string.find(txt, "%s", default)
-
-F = io.output("/etc/fstab")
-io.write(string.sub(txt, 0, put_in - 1))
-io.write(",devmode=0664,devgid=78")
-io.write(string.sub(txt, put_in))
-io.close(F)
+%triggerin -p %{_sbindir}/update-fstab -- %{name} < 2.4.10-1
 
 %files
 %defattr(644,root,root,755)
 %doc ChangeLog
 %attr(755,root,root) %{_sbindir}/joinpasswd
+%attr(755,root,root) %{_sbindir}/update-fstab
 %attr(755,root,root) /etc/profile.d/*.sh
 %attr(755,root,root) /etc/profile.d/*.csh
 %dir /etc/profile.d
