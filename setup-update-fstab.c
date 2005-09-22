@@ -70,7 +70,7 @@ int main()
 	}
 	if ( i >= old_sz ) {
 		eputs("\nError: can't find correct usbfs entry\n");
-		return 3;
+		return 0;
 	}
 	
 	fd = open(name, O_WRONLY|O_CREAT|O_TRUNC);
