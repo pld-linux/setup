@@ -21,7 +21,7 @@ int main()
 {
 	char *name = "/etc/fstab";
 	char *backup_name = "/etc/fstab.bak";
-	char *add = ",devmode=0664,devgid=78";
+	char *add = ",devgid=78,devmode=0664";
 	
 	char *old;
 	int i, fd;
