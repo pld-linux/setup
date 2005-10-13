@@ -1,0 +1,8 @@
+- new CVS version (2.4.1):
+  - removed setting MAIL variable from /etc/profile (mkochano)
+  - fixed /etc/services file (qboosh)
+  - groups for grsecurity in /etc/group (baggins)
+  - added /etc/resolv.conf (blues)
+  - fixed PATH setting in /etc/profile (zagrodzki)
+  - new joinpasswd program (malekith)
+- what about joinpasswd?
