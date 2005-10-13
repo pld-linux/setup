@@ -27,6 +27,7 @@ Source1:	http://www.sethwklein.net/projects/iana-etc/downloads/iana-etc-%{iana_e
 Source2:	%{name}-update-fstab.c
 # This is source of non-iana changes in services file
 #Patch0:		%{name}-services.patch
+Patch0:		%{name}-securetty.patch
 BuildRequires:	dietlibc-static
 BuildRequires:	gawk
 Conflicts:	FHS < 2.3
@@ -71,6 +72,7 @@ dosyalarýný içerir.
 
 %prep
 %setup -q -a1
+%patch0 -p1
 install %{SOURCE2} update-fstab.c
 
 %build
