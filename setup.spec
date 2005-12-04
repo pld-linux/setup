@@ -113,19 +113,19 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) /etc/profile.d/*.sh
 %attr(755,root,root) /etc/profile.d/*.csh
 %dir /etc/profile.d
-%attr(644,root,root) %config(noreplace,missingok) %verify(not md5 size mtime) %{_sysconfdir}/env.d/*
+%attr(644,root,root) %config(noreplace,missingok) %verify(not md5 mtime size) %{_sysconfdir}/env.d/*
 %dir %{_sysconfdir}/env.d
 %dir %{_sysconfdir}/shrc.d
-%attr(644,root,root) %config(noreplace) %verify(not md5 size mtime) %{_sysconfdir}/fstab
-%attr(644,root,root) %config(noreplace) %verify(not md5 size mtime) %{_sysconfdir}/group
-%attr(644,root,root) %config(noreplace) %verify(not md5 size mtime) %{_sysconfdir}/host.conf
-%attr(644,root,root) %config(noreplace) %verify(not md5 size mtime) %{_sysconfdir}/hosts
-%attr(644,root,root) %config(noreplace) %verify(not md5 size mtime) %{_sysconfdir}/passwd
-%attr(644,root,root) %config(noreplace) %verify(not md5 size mtime) %{_sysconfdir}/profile
-%attr(644,root,root) %config(noreplace) %verify(not md5 size mtime) %{_sysconfdir}/protocols
-%attr(600,root,root) %config(noreplace) %verify(not md5 size mtime) %{_sysconfdir}/secure*
-%attr(644,root,root) %config(noreplace) %verify(not md5 size mtime) %{_sysconfdir}/services
-%attr(644,root,root) %config(noreplace,missingok) %verify(not md5 size mtime) %{_sysconfdir}/filesystems
-%attr(644,root,root) %config(noreplace,missingok) %verify(not md5 size mtime) %{_sysconfdir}/motd
-%attr(644,root,root) %config(noreplace,missingok) %verify(not md5 size mtime) %{_sysconfdir}/resolv.conf
+%attr(644,root,root) %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/fstab
+%attr(644,root,root) %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/group
+%attr(644,root,root) %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/host.conf
+%attr(644,root,root) %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/hosts
+%attr(644,root,root) %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/passwd
+%attr(644,root,root) %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/profile
+%attr(644,root,root) %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/protocols
+%attr(600,root,root) %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/secure*
+%attr(644,root,root) %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/services
+%attr(644,root,root) %config(noreplace,missingok) %verify(not md5 mtime size) %{_sysconfdir}/filesystems
+%attr(644,root,root) %config(noreplace,missingok) %verify(not md5 mtime size) %{_sysconfdir}/motd
+%attr(644,root,root) %config(noreplace,missingok) %verify(not md5 mtime size) %{_sysconfdir}/resolv.conf
 %ghost %{_sysconfdir}/shells
