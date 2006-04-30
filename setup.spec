@@ -6,6 +6,7 @@
 %bcond_with	ssp	# enable stack-smashing protector (vide dietlibc.spec)
 #
 %define	iana_etc_ver	1.04
+%undefine	with_ccache
 #
 Summary:	Simple setup files
 Summary(de):	Einfache Setup-Dateien
@@ -17,7 +18,7 @@ Summary(pt_BR):	Vários arquivos básicos de configuração
 Summary(tr):	Basit kurulum dosyalarý
 Name:		setup
 Version:	2.4.10
-Release:	2
+Release:	2.1
 License:	Public Domain, partially BSD-like
 Group:		Base
 Source0:	ftp://distfiles.pld-linux.org/src/%{name}-%{version}.tar.bz2
@@ -28,6 +29,7 @@ Source2:	%{name}-update-fstab.c
 # This is source of non-iana changes in services file
 #Patch0:		%{name}-services.patch
 Patch0:		%{name}-securetty.patch
+Patch1:		%{name}-profile.env.patch
 BuildRequires:	dietlibc-static
 BuildRequires:	gawk
 Conflicts:	FHS < 2.3
@@ -73,6 +75,7 @@ dosyalarýný içerir.
 %prep
 %setup -q -a1
 %patch0 -p1
+%patch1 -p1
 install %{SOURCE2} update-fstab.c
 
 %build
