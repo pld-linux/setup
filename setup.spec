@@ -97,9 +97,9 @@ install -d $RPM_BUILD_ROOT%{_sysconfdir}/shrc.d
 
 install update-fstab $RPM_BUILD_ROOT%{_sbindir}
 
-install iana-etc-%{iana_etc_ver}/protocols $RPM_BUILD_ROOT/etc/protocols
+install iana-etc-%{iana_etc_ver}/protocols $RPM_BUILD_ROOT%{_sysconfdir}/protocols
 # don't overwrite files from setup tar-ball, fix it in original tar!
-#install iana-etc-%{iana_etc_ver}/services $RPM_BUILD_ROOT/etc/services
+#install iana-etc-%{iana_etc_ver}/services $RPM_BUILD_ROOT%{_sysconfdir}/services
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -116,19 +116,19 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) /etc/profile.d/*.sh
 %attr(755,root,root) /etc/profile.d/*.csh
 %dir /etc/profile.d
-%attr(644,root,root) %config(noreplace,missingok) %verify(not md5 mtime size) %{_sysconfdir}/env.d/*
+%config(noreplace,missingok) %verify(not md5 mtime size) %{_sysconfdir}/env.d/*
 %dir %{_sysconfdir}/env.d
 %dir %{_sysconfdir}/shrc.d
-%attr(644,root,root) %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/fstab
-%attr(644,root,root) %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/group
-%attr(644,root,root) %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/host.conf
-%attr(644,root,root) %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/hosts
-%attr(644,root,root) %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/passwd
-%attr(644,root,root) %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/profile
-%attr(644,root,root) %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/protocols
+%config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/fstab
+%config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/group
+%config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/host.conf
+%config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/hosts
+%config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/passwd
+%config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/profile
+%config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/protocols
 %attr(600,root,root) %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/secure*
-%attr(644,root,root) %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/services
-%attr(644,root,root) %config(noreplace,missingok) %verify(not md5 mtime size) %{_sysconfdir}/filesystems
-%attr(644,root,root) %config(noreplace,missingok) %verify(not md5 mtime size) %{_sysconfdir}/motd
-%attr(644,root,root) %config(noreplace,missingok) %verify(not md5 mtime size) %{_sysconfdir}/resolv.conf
+%config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/services
+%config(noreplace,missingok) %verify(not md5 mtime size) %{_sysconfdir}/filesystems
+%config(noreplace,missingok) %verify(not md5 mtime size) %{_sysconfdir}/motd
+%config(noreplace,missingok) %verify(not md5 mtime size) %{_sysconfdir}/resolv.conf
 %ghost %{_sysconfdir}/shells
