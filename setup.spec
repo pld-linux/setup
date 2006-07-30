@@ -83,9 +83,11 @@ install %{SOURCE2} update-fstab.c
 
 %{__make} \
 	OPT_FLAGS="%{rpmcflags} %{?with_ssp:-fno-stack-protector}" \
+	LDFLAGS="%{rpmldflags}" \
 	CC="diet %{__cc}"
 %{__make} update-fstab \
 	OPT_FLAGS="%{rpmcflags}" \
+	LDFLAGS="%{rpmldflags}" \
 	CC="diet %{__cc}"
 
 %install
