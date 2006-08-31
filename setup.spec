@@ -18,7 +18,7 @@ Summary(pt_BR):	Vários arquivos básicos de configuração
 Summary(tr):	Basit kurulum dosyalarý
 Name:		setup
 Version:	2.4.10
-Release:	3
+Release:	4
 License:	Public Domain, partially BSD-like
 Group:		Base
 Source0:	ftp://distfiles.pld-linux.org/src/%{name}-%{version}.tar.bz2
@@ -109,6 +109,12 @@ rm -rf $RPM_BUILD_ROOT
 %triggerpostun -p %{_sbindir}/joinpasswd -- %{name} < %{version}-%{release}
 
 %triggerin -p %{_sbindir}/update-fstab -- %{name} < 2.4.10-1
+
+%post -p /sbin/postshell
+-/sbin/env-update -u
+
+%postun -p /sbin/postshell
+-/sbin/env-update -u
 
 %files
 %defattr(644,root,root,755)
