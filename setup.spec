@@ -34,6 +34,7 @@ Patch1:		%{name}-profile.env.patch
 BuildRequires:	dietlibc-static
 BuildRequires:	gawk
 Conflicts:	FHS < 2.3
+Conflicts:	glibc < 6:2.4-4.1
 AutoReqProv:	no
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
