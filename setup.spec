@@ -26,6 +26,7 @@ Source0:	ftp://distfiles.pld-linux.org/src/%{name}-%{version}.tar.bz2
 Source1:	http://www.sethwklein.net/projects/iana-etc/downloads/iana-etc-%{iana_etc_ver}.tar.bz2
 # Source1-md5:	9f769f7b2d0e519cf62dacb2b3b051d4
 Source2:	%{name}-update-fstab.c
+Source3:	postshell.c
 # This is source of non-iana changes in services file
 #Patch0:		%{name}-services.patch
 Patch0:		%{name}-securetty.patch
@@ -77,6 +78,7 @@ dosyalarýný içerir.
 %patch0 -p1
 %patch1 -p1
 install %{SOURCE2} update-fstab.c
+install %{SOURCE3} postshell.c
 
 %build
 %{__make} -C iana-etc-%{iana_etc_ver}
@@ -85,8 +87,8 @@ install %{SOURCE2} update-fstab.c
 	OPT_FLAGS="%{rpmcflags} %{?with_ssp:-fno-stack-protector}" \
 	LDFLAGS="%{rpmldflags}" \
 	CC="diet %{__cc}"
-%{__make} update-fstab \
-	OPT_FLAGS="%{rpmcflags}" \
+%{__make} postshell update-fstab \
+	OPT_FLAGS="%{rpmcflags} -Os" \
 	LDFLAGS="%{rpmldflags}" \
 	CC="diet %{__cc}"
 
@@ -97,6 +99,7 @@ install -d $RPM_BUILD_ROOT%{_sysconfdir}/shrc.d
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
+install postshell $RPM_BUILD_ROOT%{_sbindir}
 install update-fstab $RPM_BUILD_ROOT%{_sbindir}
 
 install iana-etc-%{iana_etc_ver}/protocols $RPM_BUILD_ROOT%{_sysconfdir}/protocols
@@ -120,6 +123,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc ChangeLog
 %attr(755,root,root) %{_sbindir}/joinpasswd
+%attr(755,root,root) %{_sbindir}/postshell
 %attr(755,root,root) %{_sbindir}/update-fstab
 %attr(755,root,root) /etc/profile.d/*.sh
 %attr(755,root,root) /etc/profile.d/*.csh
