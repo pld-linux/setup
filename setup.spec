@@ -18,7 +18,7 @@ Summary(pt_BR):	Vários arquivos básicos de configuração
 Summary(tr):	Basit kurulum dosyalarý
 Name:		setup
 Version:	2.4.10
-Release:	5
+Release:	4
 License:	Public Domain, partially BSD-like
 Group:		Base
 Source0:	ftp://distfiles.pld-linux.org/src/%{name}-%{version}.tar.bz2
@@ -33,7 +33,6 @@ Patch0:		%{name}-securetty.patch
 Patch1:		%{name}-profile.env.patch
 BuildRequires:	dietlibc-static
 BuildRequires:	gawk
-Requires:	env-update
 Conflicts:	FHS < 2.3
 Conflicts:	glibc < 6:2.4-4.1
 AutoReqProv:	no
