@@ -2,9 +2,6 @@
 # TODO:
 # - make some README.PLD with system features description
 #
-# Conditional build:
-%bcond_with	ssp	# enable stack-smashing protector (vide dietlibc.spec)
-#
 %define	iana_etc_ver	1.04
 %undefine	with_ccache
 #
@@ -85,7 +82,7 @@ install %{SOURCE3} postshell.c
 %{__make} -C iana-etc-%{iana_etc_ver}
 
 %{__make} \
-	OPT_FLAGS="%{rpmcflags} %{?with_ssp:-fno-stack-protector}" \
+	OPT_FLAGS="%{rpmcflags}" \
 	LDFLAGS="%{rpmldflags}" \
 	CC="diet %{__cc}"
 %{__make} postshell update-fstab \
