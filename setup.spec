@@ -6,13 +6,13 @@
 %undefine	with_ccache
 #
 Summary:	Simple setup files
-Summary(de.UTF-8):   Einfache Setup-Dateien
-Summary(es.UTF-8):   Varios archivos básicos de configuración
-Summary(fr.UTF-8):   Fichiers de configuration simples
-Summary(ja.UTF-8):   サンプルセットアップファイル
-Summary(pl.UTF-8):   Podstawowe pliki systemu Linux
-Summary(pt_BR.UTF-8):   Vários arquivos básicos de configuração
-Summary(tr.UTF-8):   Basit kurulum dosyaları
+Summary(de.UTF-8):	Einfache Setup-Dateien
+Summary(es.UTF-8):	Varios archivos básicos de configuración
+Summary(fr.UTF-8):	Fichiers de configuration simples
+Summary(ja.UTF-8):	サンプルセットアップファイル
+Summary(pl.UTF-8):	Podstawowe pliki systemu Linux
+Summary(pt_BR.UTF-8):	Vários arquivos básicos de configuração
+Summary(tr.UTF-8):	Basit kurulum dosyaları
 Name:		setup
 Version:	2.4.10
 Release:	4
