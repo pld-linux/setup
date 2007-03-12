@@ -83,11 +83,11 @@ install %{SOURCE3} postshell.c
 
 %{__make} \
 	OPT_FLAGS="%{rpmcflags}" \
-	LDFLAGS="%{rpmldflags}" \
+	LDFLAGS="%{rpmcflags} %{rpmldflags}" \
 	CC="diet %{__cc}"
 %{__make} postshell update-fstab \
 	OPT_FLAGS="%{rpmcflags} -Os" \
-	LDFLAGS="%{rpmldflags}" \
+	LDFLAGS="%{rpmcflags} %{rpmldflags}" \
 	CC="diet %{__cc}"
 
 %install
