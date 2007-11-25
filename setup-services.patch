@@ -1,0 +1,201 @@
+--- setup-2.4.11/iana-etc-2.20/services.generated	2007-11-25 16:10:46.900142000 +0100
++++ setup-2.4.11/iana-etc-2.20/services	2007-11-25 16:59:22.466290662 +0100
+@@ -170,8 +170,6 @@
+ graphics	 41/udp    # Graphics
+ name		 42/tcp nameserver    # Host Name Server
+ name		 42/udp nameserver    # Host Name Server
+-nameserver	 42/tcp    # Host Name Server
+-nameserver	 42/udp    # Host Name Server
+ nicname		 43/tcp whois	 # Who Is
+ nicname		 43/udp whois	 # Who Is
+ mpm-flags	 44/tcp    # MPM FLAGS Protocol
+@@ -276,10 +274,6 @@
+ #			   David Zimmerman <dpz@RUTGERS.EDU>
+ http		 80/tcp www www-http	# World Wide Web HTTP
+ http		 80/udp www www-http	# World Wide Web HTTP
+-www		 80/tcp    # World Wide Web HTTP
+-www		 80/udp    # World Wide Web HTTP
+-www-http	 80/tcp    # World Wide Web HTTP
+-www-http	 80/udp    # World Wide Web HTTP
+ #			   Tim Berners-Lee <timbl@W3.org>
+ hosts2-ns	 81/tcp    # HOSTS2 Name Server
+ hosts2-ns	 81/udp    # HOSTS2 Name Server
+@@ -299,8 +293,8 @@
+ mfcobol		 86/tcp    # Micro Focus Cobol
+ mfcobol		 86/udp    # Micro Focus Cobol
+ #			   Simon Edwards <--none--->
+-#		 87/tcp    any private terminal link
+-#		 87/udp    any private terminal link
++ttylink		87/tcp		# any private terminal link
++ttylink		87/udp		# any private terminal link
+ #			   Jon Postel <postel@isi.edu>
+ kerberos	 88/tcp krb5 kerberos5	  # Kerberos
+ kerberos	 88/udp krb5 kerberos5	  # Kerberos
+@@ -354,10 +348,7 @@
+ #			   Patrick McNamee <--none--->
+ cso		105/tcp csnet-ns cso-ns    # CCSO name server protocol
+ cso		105/udp csnet-ns cso-ns    # CCSO name server protocol
+-#			   Martin Hamilton <martin@mrrl.lut.as.uk>	     
+-csnet-ns	105/tcp    # Mailbox Name Nameserver
+-csnet-ns	105/udp    # Mailbox Name Nameserver
+-#			   Marvin Solomon <solomon@CS.WISC.EDU>
++#			   Martin Hamilton <martin@mrrl.lut.as.uk>, Marvin Solomon <solomon@CS.WISC.EDU>
+ 3com-tsmux	106/tcp    # 3COM-TSMUX
+ 3com-tsmux	106/udp    # 3COM-TSMUX
+ #			   Jeremy Siegel <jzs@NSD.3Com.COM>
+@@ -380,8 +371,7 @@
+ mcidas		112/tcp    # McIDAS Data Transmission Protocol
+ mcidas		112/udp    # McIDAS Data Transmission Protocol
+ #			   Glenn Davis <support@unidata.ucar.edu>
+-ident		113/tcp    # 
+-auth		113/tcp tap    # Authentication Service
++auth		113/tcp tap ident    # Authentication Service
+ auth		113/udp tap    # Authentication Service
+ #			   Mike St. Johns <stjohns@arpa.mil>
+ #		114	   Deprecated June 2004
+@@ -1177,6 +1167,7 @@
+ kpasswd		464/tcp    # kpasswd
+ kpasswd		464/udp    # kpasswd
+ #			   Theodore Ts'o <tytso@MIT.EDU>
++smtps		465/tcp ssmtp	# (not in IANA!)
+ urd		465/tcp    # URL Rendesvous Directory for SSM
+ igmpv3lite	465/udp    # IGMP over UDP for SSM 
+ #			   Toerless Eckert <eckert@cisco.com>
+@@ -1322,7 +1313,6 @@
+ exec		512/tcp    # remote process execution;
+ #			   authentication performed using
+ #			   passwords and UNIX login names
+-comsat		512/udp
+ biff		512/udp comsat	  # used by mail system to notify users
+ #			   of new mail received; currently
+ #			   receives messages only from 
+@@ -2050,6 +2040,7 @@
+ omginitialrefs	900/tcp    # OMG Initial Refs
+ omginitialrefs	900/udp    # OMG Initial Refs
+ #			   Christian Callsen <Christian.Callsen@eng.sun.com>
++swat		901/tcp		# (not in IANA!) Samba Web Administration Tool
+ smpnameres	901/tcp    # SMPNAMERES
+ smpnameres	901/udp    # SMPNAMERES
+ #			   Leif Ekblad <leif@rdos.net>
+@@ -4918,13 +4909,15 @@
+ tcp-id-port	1999/tcp   # cisco identification port
+ tcp-id-port	1999/udp   # cisco identification port
+ #
+-cisco-sccp	2000/tcp   # Cisco SCCP
++cisco-sccp	2000/tcp sieve   # Cisco SCCP
++                                 # sieve used by cyrus-imapd timsieved daemon
+ cisco-sccp	2000/udp   # Cisco SCCp
+ #			   Dan Wing <dwing@cisco.com> November 2003
+ dc		2001/tcp
+ wizard		2001/udp   # curry
+ globe		2002/tcp
+ globe		2002/udp
++cfinger		2003/tcp	# (not in IANA!) GNU Finger
+ mailbox		2004/tcp
+ emce		2004/udp   # CCWS mm conf
+ berknet		2005/tcp
+@@ -5024,10 +5017,10 @@
+ dls-monitor	2048/tcp
+ dls-monitor	2048/udp
+ #			  <== NOTE Conflict on 2049 !
+-shilp		2049/tcp
+-shilp		2049/udp
+ nfs		2049/tcp   # Network File System - Sun Microsystems
+ nfs		2049/udp   # Network File System - Sun Microsystems
++shilp		2049/tcp
++shilp		2049/udp
+ #			   Brent Callaghan <brent@terra.eng.sun.com>
+ av-emb-config	2050/tcp   # Avaya EMB Config Port
+ av-emb-config	2050/udp   # Avaya EMB Config Port
+@@ -12085,6 +12078,7 @@
+ #			   Mark Miller <mmiller@MICROSOFT.com>
+ auriga-router	5680/tcp   # Auriga Router Service
+ auriga-router	5680/udp   # Auriga Router Service
++canna		5680/tcp	# (not in IANA!) cannaserver
+ #			   Vincent Gaudeul <technique@auriga.fr> February 2006
+ ncxcp		5681/tcp   # Net-coneX Control Protocol
+ ncxcp		5681/udp   # Net-coneX Control Protocol
+@@ -12715,11 +12709,13 @@
+ #		6632-6664  Unassigned
+ ircu		6665/tcp  # IRCU
+ ircu		6666/tcp  # IRCU
++ircu		6665/udp  # IRCU
++ircu		6666/udp  # IRCU
++ircd		6667/tcp	# Internet Relay Chat
++ircd		6667/udp	# Internet Relay Chat
+ ircu		6667/tcp  # IRCU
+ ircu		6668/tcp  # IRCU
+ ircu		6669/tcp  # IRCU
+-ircu		6665/udp  # IRCU
+-ircu		6666/udp  # IRCU
+ ircu		6667/udp  # IRCU
+ ircu		6668/udp  # IRCU
+ ircu		6669/udp  # IRCU
+@@ -13660,7 +13656,7 @@
+ cddbp-alt	8880/udp    # CDDBP
+ #			    Steve Scherf <steve@moonsoft.com>
+ #		8881-8887   Unassigned
+-ddi-tcp-1	8888/tcp    # NewsEDGE server TCP (TCP 1)
++ddi-tcp-1	8888/tcp irr_rpsl_submit   # NewsEDGE server TCP (TCP 1)
+ ddi-udp-1	8888/udp    # NewsEDGE server UDP (UDP 1)
+ ddi-tcp-2	8889/tcp    # Desktop Data TCP 1
+ ddi-udp-2	8889/udp    # NewsEDGE server broadcast
+@@ -14105,6 +14101,10 @@
+ famdc		10081/tcp  # FAM Archive Server
+ famdc		10081/udp  # FAM Archive Server
+ #			   Frode Randers <Frode.Randers@tietoenator.com> January 2006
++kamanda		10081/tcp	# (not in IANA) amanda backup services (Kerberos)
++kamanda		10081/udp	# (not in IANA) amanda backup services (Kerberos)
++amandaidx	10082/tcp	# (not in IANA) amanda backup services
++amidxtape	10083/tcp	# (not in IANA) amanda backup services
+ #		10082-10099 Unassigned
+ itap-ddtp	10100/tcp  # VERITAS ITAP DDTP
+ itap-ddtp	10100/udp  # VERITAS ITAP DDTP
+@@ -14305,6 +14305,8 @@
+ tsaf		12753/udp  # tsaf port	 
+ #			   Andreas Fehr <andreas@mrs.ch>
+ #		12754-13159 Unassigned
++netserver	12865/tcp	# Netperf Server
++netserver	12865/udp	# Netperf Server
+ i-zipqd		13160/tcp  # I-ZIPQD
+ i-zipqd		13160/udp  # I-ZIPQD
+ #			   Chuck Runquist <crunquist@quarterdeck.com>
+@@ -14655,6 +14657,9 @@
+ wnn6		22273/tcp  # wnn6
+ wnn6		22273/udp  # wnn6
+ #			   Yasunari Gon Yamasita <yamasita@omronsoft.co.jp>
++wnn4_Cn		22289/tcp	# (not in IANA!) cWnn (Chinese input system/China)
++wnn4_Kr		22305/tcp	# (not in IANA!) kWnn (Korean input system)
++wnn4_Tw		22321/tcp	# (not in IANA!) tWnn (Chinese input system/Taiwan)
+ #		22274-22554 Unassigned
+ vocaltec-wconf	22555/tcp  # Vocaltec Web Conference
+ vocaltec-phone	22555/udp  # Vocaltec Internet Phone
+@@ -14870,6 +14875,7 @@
+ #			    Balduin Mueller-Platz 
+ #			    <balduin.mueller-platz@pago.de> March 2002
+ #		30003-30998 Unassigned
++csync2		30865/tcp   # Cluster sync (not in IANA)
+ ovobs		30999/tcp   # OpenView Object Server
+ ovobs		30999/udp   # OpenView Object Server
+ #			    Bob Wernsman <bob.wernsman@hp.com> May 2006
+@@ -15121,6 +15127,20 @@
+ #			    Bjorn de Bonnenfant <bdeb@iqobject.com> November 2003
+ #		48620-49150 Unassigned
+ #		49151	    IANA Reserved
++
++tfido		60177/tcp	# (not in IANA) Ifmail
++tfido		60177/udp	# (not in IANA) Ifmail
++fido		60179/tcp	# (not in IANA) Ifmail
++fido		60179/udp	# (not in IANA) Ifmail
++
++#
++# Datagram Delivery Protocol services (not in IANA)
++#
++rtmp		1/ddp		# Routing Table Maintenance Protocol
++nbp		2/ddp		# Name Binding Protocol
++echo		4/ddp		# AppleTalk Echo Protocol
++zip		6/ddp		# Zone Information Protocol
++
+ # 
+ # DYNAMIC AND/OR PRIVATE PORTS
+ # 
