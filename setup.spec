@@ -2,7 +2,7 @@
 # TODO:
 # - make some README.PLD with system features description
 #
-%define	iana_etc_ver	1.04
+%define	iana_etc_ver	2.20
 %undefine	with_ccache
 #
 Summary:	Simple setup files
@@ -15,20 +15,20 @@ Summary(pt_BR.UTF-8):	Vários arquivos básicos de configuração
 Summary(tr.UTF-8):	Basit kurulum dosyaları
 Name:		setup
 Version:	2.4.11
-Release:	1
+Release:	2
 License:	Public Domain, partially BSD-like
 Group:		Base
 Source0:	ftp://distfiles.pld-linux.org/src/%{name}-%{version}.tar.bz2
 # Source0-md5:	16589949b4c1b2ca3222a29e04f86f00
-Source1:	http://www.sethwklein.net/projects/iana-etc/downloads/iana-etc-%{iana_etc_ver}.tar.bz2
-# Source1-md5:	9f769f7b2d0e519cf62dacb2b3b051d4
+Source1:	http://sethwklein.net/projects/iana-etc/downloads/iana-etc-%{iana_etc_ver}.tar.bz2
+# Source1-md5:	51d584b7b6115528c21e8ea32250f2b1
 Source2:	%{name}-update-fstab.c
 Source3:	postshell.c
-# This is source of non-iana changes in services file
-#Patch0:		%{name}-services.patch
 Patch0:		%{name}-securetty.patch
 Patch1:		%{name}-profile.env.patch
-Patch2:		%{name}-csync.patch
+Patch2:		%{name}-iana-etc.patch
+# This is source of non-iana changes in services file
+Patch3:		%{name}-services.patch
 BuildRequires:	dietlibc-static
 BuildRequires:	gawk
 Conflicts:	FHS < 2.3
@@ -82,6 +82,7 @@ install %{SOURCE3} postshell.c
 
 %build
 %{__make} -C iana-etc-%{iana_etc_ver}
+%{__patch} iana-etc-%{iana_etc_ver}/services %{PATCH3}
 
 %{__make} \
 	OPT_FLAGS="%{rpmcflags}" \
@@ -103,8 +104,11 @@ install postshell $RPM_BUILD_ROOT%{_sbindir}
 install update-fstab $RPM_BUILD_ROOT%{_sbindir}
 
 install iana-etc-%{iana_etc_ver}/protocols $RPM_BUILD_ROOT%{_sysconfdir}/protocols
-# don't overwrite files from setup tar-ball, fix it in original tar!
-#install iana-etc-%{iana_etc_ver}/services $RPM_BUILD_ROOT%{_sysconfdir}/services
+# don't overwrite files from setup tarball, apply changes to setup module instead
+%if "%{version}" == "2.4.11"
+# 2.4.12 will contain iana-etc update
+install iana-etc-%{iana_etc_ver}/services $RPM_BUILD_ROOT%{_sysconfdir}/services
+%endif
 
 %clean
 rm -rf $RPM_BUILD_ROOT
