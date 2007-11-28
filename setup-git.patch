@@ -1,0 +1,13 @@
+--- setup-2.4.10/etc/services~	2005-05-26 18:27:14.000000000 +0000
++++ setup-2.4.10/etc/services	2007-11-28 17:31:56.257846635 +0000
+@@ -12066,7 +12066,9 @@
+ mpidcagt	9397/tcp    # MpIdcAgt
+ mpidcagt	9397/udp    # MpIdcAgt
+ #		            Yutaka Ono <ono@saint.nm.fujitsu.co.jp>
+-#               9398-9499   Unassigned
++#		9398-9417   # Unassigned
++git             9418/tcp    # Git Version Control System		            
++#               9419-9499   Unassigned
+ ismserver	9500/tcp    # ismserver
+ ismserver   	9500/udp    # ismserver
+ #		            Ian Gordon <iang@micromuse.co.uk>
