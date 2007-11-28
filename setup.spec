@@ -18,7 +18,7 @@ Summary(pt_BR):	Vários arquivos básicos de configuração
 Summary(tr):	Basit kurulum dosyalarý
 Name:		setup
 Version:	2.4.10
-Release:	5
+Release:	6
 License:	Public Domain, partially BSD-like
 Group:		Base
 Source0:	ftp://distfiles.pld-linux.org/src/%{name}-%{version}.tar.bz2
@@ -31,6 +31,7 @@ Source3:	postshell.c
 #Patch0:		%{name}-services.patch
 Patch0:		%{name}-securetty.patch
 Patch1:		%{name}-profile.env.patch
+Patch2:		%{name}-git.patch
 BuildRequires:	dietlibc-static
 BuildRequires:	gawk
 Conflicts:	FHS < 2.3
@@ -77,6 +78,8 @@ dosyalarýný içerir.
 %setup -q -a1
 %patch0 -p1
 %patch1 -p1
+%patch2 -p1
+
 install %{SOURCE2} update-fstab.c
 install %{SOURCE3} postshell.c
 
