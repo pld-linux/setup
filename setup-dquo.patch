@@ -1,0 +1,12 @@
+diff -Nur setup-2.4.11.orig/etc/profile setup-2.4.11.chng/etc/profile
+--- setup-2.4.11.orig/etc/profile	2007-11-30 09:25:34.000000000 +0100
++++ setup-2.4.11.chng/etc/profile	2007-11-30 09:26:06.000000000 +0100
+@@ -20,7 +20,7 @@
+ HISTFILE="$HOME/.history"
+ HISTSIZE=1000
+ 
+-if [ `id -gn` = $USER -a `id -u` -gt 14 ]; then
++if [ "`id -gn`" = $USER -a `id -u` -gt 14 ]; then
+ 	umask 002
+ else
+ 	umask 022
