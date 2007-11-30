@@ -29,6 +29,7 @@ Patch1:		%{name}-profile.env.patch
 Patch2:		%{name}-iana-etc.patch
 # This is source of non-iana changes in services file
 Patch3:		%{name}-services.patch
+Patch4:		%{name}-dquo.patch
 BuildRequires:	dietlibc-static
 BuildRequires:	gawk
 Conflicts:	FHS < 2.3
@@ -79,6 +80,7 @@ dosyalarını içerir.
 %patch2 -p1
 install %{SOURCE2} update-fstab.c
 install %{SOURCE3} postshell.c
+%patch4 -p1
 
 %build
 %{__make} -C iana-etc-%{iana_etc_ver}
