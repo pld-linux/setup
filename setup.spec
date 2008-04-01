@@ -14,12 +14,12 @@ Summary(pl.UTF-8):	Podstawowe pliki systemu Linux
 Summary(pt_BR.UTF-8):	Vários arquivos básicos de configuração
 Summary(tr.UTF-8):	Basit kurulum dosyaları
 Name:		setup
-Version:	2.4.11
-Release:	2
+Version:	2.4.12
+Release:	1
 License:	Public Domain, partially BSD-like
 Group:		Base
 Source0:	ftp://distfiles.pld-linux.org/src/%{name}-%{version}.tar.bz2
-# Source0-md5:	16589949b4c1b2ca3222a29e04f86f00
+# Source0-md5:	b082df276e6ed931e8f31c3e265713c2
 Source1:	http://sethwklein.net/projects/iana-etc/downloads/iana-etc-%{iana_etc_ver}.tar.bz2
 # Source1-md5:	51d584b7b6115528c21e8ea32250f2b1
 Source2:	%{name}-update-fstab.c
