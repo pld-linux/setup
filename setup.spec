@@ -15,7 +15,7 @@ Summary(pt_BR.UTF-8):	Vários arquivos básicos de configuração
 Summary(tr.UTF-8):	Basit kurulum dosyaları
 Name:		setup
 Version:	2.4.12
-Release:	1
+Release:	2
 License:	Public Domain, partially BSD-like
 Group:		Base
 Source0:	ftp://distfiles.pld-linux.org/src/%{name}-%{version}.tar.bz2
@@ -30,6 +30,7 @@ Patch2:		%{name}-iana-etc.patch
 # This is source of non-iana changes in services file
 Patch3:		%{name}-services.patch
 Patch4:		%{name}-dquo.patch
+Patch5:		%{name}-fuse.patch
 BuildRequires:	dietlibc-static
 BuildRequires:	gawk
 Conflicts:	FHS < 2.3
@@ -81,6 +82,7 @@ dosyalarını içerir.
 install %{SOURCE2} update-fstab.c
 install %{SOURCE3} postshell.c
 %patch4 -p1
+%patch5 -p1
 
 %build
 %{__make} -C iana-etc-%{iana_etc_ver}
