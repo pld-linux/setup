@@ -1,0 +1,7 @@
+- new version 2.3.0:
+- /etc/services: - added 464/udp for kpasswdd (waszi),
+- /etc/services: - added 224/{tcp,udp} for masqdialer (zagrodzki),
+- /etc/hosts: - added 127.0.0.1 (baggins),
+- /etc/profile: - removed ash (baggins),
+- /etc/profile: - fix setting up sane defaults for rootshell/bash/ksh
+  (baggins).
