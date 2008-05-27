@@ -15,7 +15,7 @@ Summary(pt_BR.UTF-8):	Vários arquivos básicos de configuração
 Summary(tr.UTF-8):	Basit kurulum dosyaları
 Name:		setup
 Version:	2.5.7
-Release:	0.1
+Release:	1
 License:	Public Domain, partially BSD-like
 Group:		Base
 Source0:	ftp://distfiles.pld-linux.org/src/%{name}-%{version}.tar.bz2
@@ -72,10 +72,14 @@ dosyalarını içerir.
 %prep
 %setup -q -a1
 %patch0 -p1
+mv iana-etc{-%{iana_etc_ver},}
 
 %build
-%{__make} -C iana-etc-%{iana_etc_ver}
-%{__patch} iana-etc-%{iana_etc_ver}/services %{PATCH1}
+%{__make} -C iana-etc
+%{__patch} iana-etc/services %{PATCH1}
+
+# kill trailing spaces/tabs
+%{__sed} -i -e 's,[ \t]\+$,,' iana-etc/services
 
 %{__make} \
 	OPT_FLAGS="%{rpmcflags}" \
@@ -89,7 +93,7 @@ install -d $RPM_BUILD_ROOT%{_sysconfdir}/shrc.d
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
-install iana-etc-%{iana_etc_ver}/protocols $RPM_BUILD_ROOT%{_sysconfdir}/protocols
+cp -a iana-etc/protocols $RPM_BUILD_ROOT%{_sysconfdir}/protocols
 
 %clean
 rm -rf $RPM_BUILD_ROOT
