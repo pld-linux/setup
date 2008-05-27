@@ -9,13 +9,13 @@
 %undefine	with_ccache
 #
 Summary:	Simple setup files
-Summary(de):	Einfache Setup-Dateien
-Summary(es):	Varios archivos básicos de configuración
-Summary(fr):	Fichiers de configuration simples
-Summary(ja):	¥µ¥ó¥×¥ë¥»¥Ã¥È¥¢¥Ã¥×¥Õ¥¡¥¤¥ë
-Summary(pl):	Podstawowe pliki systemu Linux
-Summary(pt_BR):	Vários arquivos básicos de configuração
-Summary(tr):	Basit kurulum dosyaları
+Summary(de.UTF-8):	Einfache Setup-Dateien
+Summary(es.UTF-8):	Varios archivos bÃ¡sicos de configuraciÃ³n
+Summary(fr.UTF-8):	Fichiers de configuration simples
+Summary(ja.UTF-8):	ã‚µãƒ³ãƒ—ãƒ«ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ãƒ•ã‚¡ã‚¤ãƒ«
+Summary(pl.UTF-8):	Podstawowe pliki systemu Linux
+Summary(pt_BR.UTF-8):	VÃ¡rios arquivos bÃ¡sicos de configuraÃ§Ã£o
+Summary(tr.UTF-8):	Basit kurulum dosyalarÄ±
 Name:		setup
 Version:	2.4.10
 Release:	6
@@ -44,35 +44,35 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 This package contains a number of very important configuration and
 setup files, including the passwd, group, profile files, etc.
 
-%description -l de
-Dieses Paket enthält wichtige Konfigurations- und Setup-Dateien, u.a.
+%description -l de.UTF-8
+Dieses Paket enthÃ¤lt wichtige Konfigurations- und Setup-Dateien, u.a.
 passwd-, group-, profile-Dateien usw.
 
-%description -l es
-Este paquete contiene una variedad de archivos de configuración y
+%description -l es.UTF-8
+Este paquete contiene una variedad de archivos de configuraciÃ³n y
 setup muy importantes, incluyendo el passwd, group, archivos de
 "perfil", etc.
 
-%description -l fr
-Ce paquetage contient un nombre de fichiers de configuration très
+%description -l fr.UTF-8
+Ce paquetage contient un nombre de fichiers de configuration trÃ¨s
 importants, comme passwd, group, les fichiers profile, etc.
 
-%description -l ja
-¤³¤Îsetup¥Ñ¥Ã¥±¡¼¥¸¤Ë¤Ï¡¢passwd, group, profile ¤Ê¤É¤Î¡¢
-½ÅÍ×¤Ê¥·¥¹¥Æ¥àÀßÄê¥Õ¥¡¥¤¥ë¤¬´Ş¤Ş¤ì¤Æ¤Ş¤¹¡£
+%description -l ja.UTF-8
+ã“ã®setupãƒ‘ãƒƒã‚±ãƒ¼ã‚¸ã«ã¯ã€passwd, group, profile ãªã©ã®ã€
+é‡è¦ãªã‚·ã‚¹ãƒ†ãƒ è¨­å®šãƒ•ã‚¡ã‚¤ãƒ«ãŒå«ã¾ã‚Œã¦ã¾ã™ã€‚
 
-%description -l pl
-Pakiet ten zawiera wiele bardzo wa¿nych plików konfiguracyjnych dla
+%description -l pl.UTF-8
+Pakiet ten zawiera wiele bardzo waÅ¼nych plikÃ³w konfiguracyjnych dla
 Twojego systemu.
 
-%description -l pt_BR
-Este pacote contém uma variedade de arquivos de configuração e setup
+%description -l pt_BR.UTF-8
+Este pacote contÃ©m uma variedade de arquivos de configuraÃ§Ã£o e setup
 muito importantes, incluindo o passwd, group, arquivos de "perfil",
 etc.
 
-%description -l tr
-Bu paket, passwd, group, profile gibi çok önemli ayar ve kurulum
-dosyalarını içerir.
+%description -l tr.UTF-8
+Bu paket, passwd, group, profile gibi Ã§ok Ã¶nemli ayar ve kurulum
+dosyalarÄ±nÄ± iÃ§erir.
 
 %prep
 %setup -q -a1
