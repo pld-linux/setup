@@ -14,29 +14,23 @@ Summary(pl.UTF-8):	Podstawowe pliki systemu Linux
 Summary(pt_BR.UTF-8):	Vários arquivos básicos de configuração
 Summary(tr.UTF-8):	Basit kurulum dosyaları
 Name:		setup
-Version:	2.4.12
-Release:	2
+Version:	2.5.7
+Release:	0.1
 License:	Public Domain, partially BSD-like
 Group:		Base
 Source0:	ftp://distfiles.pld-linux.org/src/%{name}-%{version}.tar.bz2
-# Source0-md5:	b082df276e6ed931e8f31c3e265713c2
+# Source0-md5:	b7c60de0bd7cf4df6c491758a6c00219
 Source1:	http://sethwklein.net/projects/iana-etc/downloads/iana-etc-%{iana_etc_ver}.tar.bz2
 # Source1-md5:	51d584b7b6115528c21e8ea32250f2b1
-Source2:	%{name}-update-fstab.c
-Source3:	postshell.c
-Patch0:		%{name}-securetty.patch
-Patch1:		%{name}-profile.env.patch
-Patch2:		%{name}-iana-etc.patch
+Patch0:		%{name}-iana-etc.patch
 # This is source of non-iana changes in services file
-Patch3:		%{name}-services.patch
-Patch4:		%{name}-dquo.patch
-Patch5:		%{name}-fuse.patch
+Patch1:		%{name}-services.patch
+AutoReqProv:	no
 BuildRequires:	dietlibc-static
 BuildRequires:	gawk
+Provides:	group(fuse)
 Conflicts:	FHS < 2.3
 Conflicts:	glibc < 6:2.4-4.1
-Provides:	group(fuse)
-AutoReqProv:	no
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_sbindir	/sbin
@@ -78,23 +72,13 @@ dosyalarını içerir.
 %prep
 %setup -q -a1
 %patch0 -p1
-%patch1 -p1
-%patch2 -p1
-install %{SOURCE2} update-fstab.c
-install %{SOURCE3} postshell.c
-%patch4 -p1
-%patch5 -p1
 
 %build
 %{__make} -C iana-etc-%{iana_etc_ver}
-%{__patch} iana-etc-%{iana_etc_ver}/services %{PATCH3}
+%{__patch} iana-etc-%{iana_etc_ver}/services %{PATCH1}
 
 %{__make} \
 	OPT_FLAGS="%{rpmcflags}" \
-	LDFLAGS="%{rpmcflags} %{rpmldflags}" \
-	CC="diet %{__cc}"
-%{__make} postshell update-fstab \
-	OPT_FLAGS="%{rpmcflags} -Os" \
 	LDFLAGS="%{rpmcflags} %{rpmldflags}" \
 	CC="diet %{__cc}"
 
@@ -105,15 +89,7 @@ install -d $RPM_BUILD_ROOT%{_sysconfdir}/shrc.d
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
-install postshell $RPM_BUILD_ROOT%{_sbindir}
-install update-fstab $RPM_BUILD_ROOT%{_sbindir}
-
 install iana-etc-%{iana_etc_ver}/protocols $RPM_BUILD_ROOT%{_sysconfdir}/protocols
-# don't overwrite files from setup tarball, apply changes to setup module instead
-%if "%{version}" == "2.4.11"
-# 2.4.12 will contain iana-etc update
-install iana-etc-%{iana_etc_ver}/services $RPM_BUILD_ROOT%{_sysconfdir}/services
-%endif
 
 %clean
 rm -rf $RPM_BUILD_ROOT
