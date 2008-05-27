@@ -2,35 +2,40 @@
 # TODO:
 # - make some README.PLD with system features description
 #
-%define	iana_etc_ver	2.20
+# Conditional build:
+%bcond_with	ssp	# enable stack-smashing protector (vide dietlibc.spec)
+#
+%define	iana_etc_ver	1.04
 %undefine	with_ccache
 #
 Summary:	Simple setup files
-Summary(de.UTF-8):	Einfache Setup-Dateien
-Summary(es.UTF-8):	Varios archivos bÃ¡sicos de configuraciÃ³n
-Summary(fr.UTF-8):	Fichiers de configuration simples
-Summary(ja.UTF-8):	ã‚µãƒ³ãƒ—ãƒ«ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ãƒ•ã‚¡ã‚¤ãƒ«
-Summary(pl.UTF-8):	Podstawowe pliki systemu Linux
-Summary(pt_BR.UTF-8):	VÃ¡rios arquivos bÃ¡sicos de configuraÃ§Ã£o
-Summary(tr.UTF-8):	Basit kurulum dosyalarÄ±
+Summary(de):	Einfache Setup-Dateien
+Summary(es):	Varios archivos básicos de configuración
+Summary(fr):	Fichiers de configuration simples
+Summary(ja):	¥µ¥ó¥×¥ë¥»¥Ã¥È¥¢¥Ã¥×¥Õ¥¡¥¤¥ë
+Summary(pl):	Podstawowe pliki systemu Linux
+Summary(pt_BR):	Vários arquivos básicos de configuração
+Summary(tr):	Basit kurulum dosyalarý
 Name:		setup
-Version:	2.5.7
-Release:	1
+Version:	2.4.10
+Release:	6
 License:	Public Domain, partially BSD-like
 Group:		Base
 Source0:	ftp://distfiles.pld-linux.org/src/%{name}-%{version}.tar.bz2
-# Source0-md5:	b7c60de0bd7cf4df6c491758a6c00219
-Source1:	http://sethwklein.net/projects/iana-etc/downloads/iana-etc-%{iana_etc_ver}.tar.bz2
-# Source1-md5:	51d584b7b6115528c21e8ea32250f2b1
-Patch0:		%{name}-iana-etc.patch
+# Source0-md5:	7f50f1650e961a77b18afa0a4a588fc1
+Source1:	http://www.sethwklein.net/projects/iana-etc/downloads/iana-etc-%{iana_etc_ver}.tar.bz2
+# Source1-md5:	9f769f7b2d0e519cf62dacb2b3b051d4
+Source2:	%{name}-update-fstab.c
+Source3:	postshell.c
 # This is source of non-iana changes in services file
-Patch1:		%{name}-services.patch
-AutoReqProv:	no
+#Patch0:		%{name}-services.patch
+Patch0:		%{name}-securetty.patch
+Patch1:		%{name}-profile.env.patch
+Patch2:		%{name}-git.patch
 BuildRequires:	dietlibc-static
 BuildRequires:	gawk
-Provides:	group(fuse)
 Conflicts:	FHS < 2.3
-Conflicts:	glibc < 6:2.4-4.1
+AutoReqProv:	no
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_sbindir	/sbin
@@ -39,51 +44,55 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 This package contains a number of very important configuration and
 setup files, including the passwd, group, profile files, etc.
 
-%description -l de.UTF-8
-Dieses Paket enthÃ¤lt wichtige Konfigurations- und Setup-Dateien, u.a.
+%description -l de
+Dieses Paket enthält wichtige Konfigurations- und Setup-Dateien, u.a.
 passwd-, group-, profile-Dateien usw.
 
-%description -l es.UTF-8
-Este paquete contiene una variedad de archivos de configuraciÃ³n y
+%description -l es
+Este paquete contiene una variedad de archivos de configuración y
 setup muy importantes, incluyendo el passwd, group, archivos de
 "perfil", etc.
 
-%description -l fr.UTF-8
-Ce paquetage contient un nombre de fichiers de configuration trÃ¨s
+%description -l fr
+Ce paquetage contient un nombre de fichiers de configuration très
 importants, comme passwd, group, les fichiers profile, etc.
 
-%description -l ja.UTF-8
-ã“ã®setupãƒ‘ãƒƒã‚±ãƒ¼ã‚¸ã«ã¯ã€passwd, group, profile ãªã©ã®ã€
-é‡è¦ãªã‚·ã‚¹ãƒ†ãƒ è¨­å®šãƒ•ã‚¡ã‚¤ãƒ«ãŒå«ã¾ã‚Œã¦ã¾ã™ã€‚
+%description -l ja
+¤³¤Îsetup¥Ñ¥Ã¥±¡¼¥¸¤Ë¤Ï¡¢passwd, group, profile ¤Ê¤É¤Î¡¢
+½ÅÍ×¤Ê¥·¥¹¥Æ¥àÀßÄê¥Õ¥¡¥¤¥ë¤¬´Þ¤Þ¤ì¤Æ¤Þ¤¹¡£
 
-%description -l pl.UTF-8
-Pakiet ten zawiera wiele bardzo waÅ¼nych plikÃ³w konfiguracyjnych dla
+%description -l pl
+Pakiet ten zawiera wiele bardzo wa¿nych plików konfiguracyjnych dla
 Twojego systemu.
 
-%description -l pt_BR.UTF-8
-Este pacote contÃ©m uma variedade de arquivos de configuraÃ§Ã£o e setup
+%description -l pt_BR
+Este pacote contém uma variedade de arquivos de configuração e setup
 muito importantes, incluindo o passwd, group, arquivos de "perfil",
 etc.
 
-%description -l tr.UTF-8
-Bu paket, passwd, group, profile gibi Ã§ok Ã¶nemli ayar ve kurulum
-dosyalarÄ±nÄ± iÃ§erir.
+%description -l tr
+Bu paket, passwd, group, profile gibi çok önemli ayar ve kurulum
+dosyalarýný içerir.
 
 %prep
 %setup -q -a1
 %patch0 -p1
-mv iana-etc{-%{iana_etc_ver},}
+%patch1 -p1
+%patch2 -p1
+
+install %{SOURCE2} update-fstab.c
+install %{SOURCE3} postshell.c
 
 %build
-%{__make} -C iana-etc
-%{__patch} iana-etc/services %{PATCH1}
-
-# kill trailing spaces/tabs
-%{__sed} -i -e 's,[ \t]\+$,,' iana-etc/services
+%{__make} -C iana-etc-%{iana_etc_ver}
 
 %{__make} \
-	OPT_FLAGS="%{rpmcflags}" \
-	LDFLAGS="%{rpmcflags} %{rpmldflags}" \
+	OPT_FLAGS="%{rpmcflags} %{?with_ssp:-fno-stack-protector}" \
+	LDFLAGS="%{rpmldflags}" \
+	CC="diet %{__cc}"
+%{__make} postshell update-fstab \
+	OPT_FLAGS="%{rpmcflags} -Os" \
+	LDFLAGS="%{rpmldflags}" \
 	CC="diet %{__cc}"
 
 %install
@@ -93,7 +102,12 @@ install -d $RPM_BUILD_ROOT%{_sysconfdir}/shrc.d
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
-cp -a iana-etc/protocols $RPM_BUILD_ROOT%{_sysconfdir}/protocols
+install postshell $RPM_BUILD_ROOT%{_sbindir}
+install update-fstab $RPM_BUILD_ROOT%{_sbindir}
+
+install iana-etc-%{iana_etc_ver}/protocols $RPM_BUILD_ROOT%{_sysconfdir}/protocols
+# don't overwrite files from setup tar-ball, fix it in original tar!
+#install iana-etc-%{iana_etc_ver}/services $RPM_BUILD_ROOT%{_sysconfdir}/services
 
 %clean
 rm -rf $RPM_BUILD_ROOT
