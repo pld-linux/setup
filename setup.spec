@@ -114,8 +114,8 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_sbindir}/joinpasswd
 %attr(755,root,root) %{_sbindir}/postshell
 %attr(755,root,root) %{_sbindir}/update-fstab
-%attr(755,root,root) /etc/profile.d/*.sh
-%attr(755,root,root) /etc/profile.d/*.csh
+%config(noreplace,missingok) %verify(not md5 mtime size) %attr(755,root,root) /etc/profile.d/*.sh
+%config(noreplace,missingok) %verify(not md5 mtime size) %attr(755,root,root) /etc/profile.d/*.csh
 %dir /etc/profile.d
 %config(noreplace,missingok) %verify(not md5 mtime size) %{_sysconfdir}/env.d/*
 %dir %{_sysconfdir}/env.d
