@@ -30,6 +30,7 @@ BuildRequires:	dietlibc-static
 BuildRequires:	gawk
 Provides:	group(fuse)
 Conflicts:	FHS < 2.3
+Conflicts:	PowerChutePlus < 4.5.3-2
 Conflicts:	glibc < 6:2.4-4.1
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
