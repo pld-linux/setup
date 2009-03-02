@@ -32,8 +32,8 @@ Provides:	group(fuse)
 Conflicts:	FHS < 2.3
 Conflicts:	PowerChutePlus < 4.5.3-2
 Conflicts:	glibc < 6:2.4-4.1
-#Conflicts:	dev < 3.4-4		# tape,dialout and cdrom groups support
-#Conflicts:	udev < 1:138-5		# tape,dialout and cdrom groups support
+Conflicts:	dev < 3.4-4		# tape,dialout and cdrom groups support
+Conflicts:	udev < 1:138-5		# tape,dialout and cdrom groups support
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_sbindir	/sbin
