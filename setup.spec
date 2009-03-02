@@ -14,12 +14,12 @@ Summary(pl.UTF-8):	Podstawowe pliki systemu Linux
 Summary(pt_BR.UTF-8):	Vários arquivos básicos de configuração
 Summary(tr.UTF-8):	Basit kurulum dosyaları
 Name:		setup
-Version:	2.6.1
+Version:	2.6.2
 Release:	1
 License:	Public Domain, partially BSD-like
 Group:		Base
 Source0:	ftp://distfiles.pld-linux.org/src/%{name}-%{version}.tar.bz2
-# Source0-md5:	e27e6816138dd3bf0c882e85b9fc92ed
+# Source0-md5:	ebd20f3ea4d766cfe16d2abf253224ac
 Source1:	http://sethwklein.net/projects/iana-etc/downloads/iana-etc-%{iana_etc_ver}.tar.bz2
 # Source1-md5:	51d584b7b6115528c21e8ea32250f2b1
 Patch0:		%{name}-iana-etc.patch
@@ -101,7 +101,9 @@ cp -a iana-etc/protocols $RPM_BUILD_ROOT%{_sysconfdir}/protocols
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%triggerpostun -p %{_sbindir}/joinpasswd -- %{name} < %{version}-%{release}
+%triggerpostun -p /sbin/postshell -- %{name} < %{version}-%{release}
+%{_sbindir}/joinpasswd
+%{_sbindir}/delpasswd -g ttyS cdwrite
 
 %triggerin -p %{_sbindir}/update-fstab -- %{name} < 2.4.10-1
 
@@ -114,6 +116,7 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc ChangeLog
+%attr(755,root,root) %{_sbindir}/delpasswd
 %attr(755,root,root) %{_sbindir}/joinpasswd
 %attr(755,root,root) %{_sbindir}/postshell
 %attr(755,root,root) %{_sbindir}/update-fstab
