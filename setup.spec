@@ -86,9 +86,9 @@ mv iana-etc{-%{iana_etc_ver},}
 %{__sed} -i -e 's,[ \t]\+$,,' iana-etc/services
 
 %{__make} \
-	OPT_FLAGS="%{rpmcflags}" \
-	LDFLAGS="%{rpmcflags} %{rpmldflags}" \
-	CC="diet %{__cc}"
+	CC="diet %{__cc}" \
+	OPT_FLAGS="%{rpmcflags} -Os" \
+	LDFLAGS="%{rpmcflags} %{rpmldflags}"
 
 %install
 rm -rf $RPM_BUILD_ROOT
