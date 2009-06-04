@@ -14,8 +14,8 @@ Summary(pl.UTF-8):	Podstawowe pliki systemu Linux
 Summary(pt_BR.UTF-8):	Vários arquivos básicos de configuração
 Summary(tr.UTF-8):	Basit kurulum dosyaları
 Name:		setup
-Version:	2.6.2
-Release:	2
+Version:	2.7
+Release:	1
 License:	Public Domain, partially BSD-like
 Group:		Base
 Source0:	ftp://distfiles.pld-linux.org/src/%{name}-%{version}.tar.bz2
@@ -25,11 +25,10 @@ Source1:	http://sethwklein.net/projects/iana-etc/downloads/iana-etc-%{iana_etc_v
 Patch0:		%{name}-iana-etc.patch
 # This is source of non-iana changes in services file
 Patch1:		%{name}-services.patch
-AutoReqProv:	no
 BuildRequires:	dietlibc-static
 BuildRequires:	gawk
+Requires:	FHS >= 2.3-24.1
 Provides:	group(fuse)
-Conflicts:	FHS < 2.3
 Conflicts:	PowerChutePlus < 4.5.3-2
 Conflicts:	glibc < 6:2.4-4.1
 # tape,dialout and cdrom groups support
@@ -98,6 +97,9 @@ install -d $RPM_BUILD_ROOT%{_sysconfdir}/shrc.d
 	DESTDIR=$RPM_BUILD_ROOT
 
 cp -a iana-etc/protocols $RPM_BUILD_ROOT%{_sysconfdir}/protocols
+
+# not packaged
+rm $RPM_BUILD_ROOT%{_sysconfdir}/{mtab,netgroup,suid_profile}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
