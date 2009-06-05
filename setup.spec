@@ -18,7 +18,7 @@ Version:	2.7
 Release:	1
 License:	Public Domain, partially BSD-like
 Group:		Base
-Source0:	ftp://distfiles.pld-linux.org/src/%{name}-%{version}.tar.bz2
+Source0:	ftp://distfiles.pld-linux.org/src/%{name}-2.6.2.tar.bz2
 # Source0-md5:	ebd20f3ea4d766cfe16d2abf253224ac
 Source1:	http://sethwklein.net/projects/iana-etc/downloads/iana-etc-%{iana_etc_ver}.tar.bz2
 # Source1-md5:	51d584b7b6115528c21e8ea32250f2b1
@@ -73,7 +73,7 @@ Bu paket, passwd, group, profile gibi çok önemli ayar ve kurulum
 dosyalarını içerir.
 
 %prep
-%setup -q -a1
+%setup -q -n %{name}-2.6.2 -a1
 %patch0 -p1
 mv iana-etc{-%{iana_etc_ver},}
 
