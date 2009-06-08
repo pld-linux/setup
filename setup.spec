@@ -2,7 +2,7 @@
 # TODO:
 # - make some README.PLD with system features description
 #
-%define	iana_etc_ver	2.20
+%define	iana_etc_ver	2.30
 %undefine	with_ccache
 #
 Summary:	Simple setup files
@@ -15,13 +15,13 @@ Summary(pt_BR.UTF-8):	Vários arquivos básicos de configuração
 Summary(tr.UTF-8):	Basit kurulum dosyaları
 Name:		setup
 Version:	2.7
-Release:	1
+Release:	2
 License:	Public Domain, partially BSD-like
 Group:		Base
-Source0:	ftp://distfiles.pld-linux.org/src/%{name}-2.6.2.tar.bz2
+Source0:	%{name}-2.6.2.tar.bz2
 # Source0-md5:	ebd20f3ea4d766cfe16d2abf253224ac
 Source1:	http://sethwklein.net/projects/iana-etc/downloads/iana-etc-%{iana_etc_ver}.tar.bz2
-# Source1-md5:	51d584b7b6115528c21e8ea32250f2b1
+# Source1-md5:	3ba3afb1d1b261383d247f46cb135ee8
 Patch0:		%{name}-iana-etc.patch
 # This is source of non-iana changes in services file
 Patch1:		%{name}-services.patch
