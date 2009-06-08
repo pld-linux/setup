@@ -1,25 +1,5 @@
---- setup-2.4.11/iana-etc-2.20/services.gawk.orig	2006-11-14 21:26:22.000000000 +0100
-+++ setup-2.4.11/iana-etc-2.20/services.gawk	2007-11-25 17:06:06.113293195 +0100
-@@ -16,7 +16,7 @@
-     while (getline <"port-aliases") {
- 	sub(/#.*/, "")
- 	if (/^[ \t]*$/) { continue }
--	alias_list[$1] = substr($0, index($0, $2))
-+	alias_list[$1] = substr($0, index(substr($0, length($1)), $2)+length($1)-1)
-     }
- }
- function aliases(n) {
-@@ -43,6 +43,8 @@
-     if (length(protocols[0]) == 0) {
- 	protocols[0] = "/tcp"
- 	protocols[1] = "/udp"
-+    } else if (1 in protocols) {
-+	delete protocols[1]
-     }
-     for (i = start; i <= end; i++) {
- 	for (p in protocols) {
---- setup-2.4.11/iana-etc-2.20/Makefile.orig	2006-11-14 18:53:41.000000000 +0100
-+++ setup-2.4.11/iana-etc-2.20/Makefile	2007-11-25 15:16:05.825164209 +0100
+--- setup-2.4.11/iana-etc-2.30/Makefile.orig	2006-11-14 18:53:41.000000000 +0100
++++ setup-2.4.11/iana-etc-2.30/Makefile	2007-11-25 15:16:05.825164209 +0100
 @@ -65,10 +65,10 @@
  
  protocols: protocol-numbers protocols.gawk
@@ -33,8 +13,8 @@
  
  dist: clean
  	rm -vrf ../iana-etc-`cat VERSION`
---- setup-2.4.11/iana-etc-2.20/port-aliases.orig	2006-11-14 17:01:10.000000000 +0100
-+++ setup-2.4.11/iana-etc-2.20/port-aliases	2007-11-25 15:59:09.044373483 +0100
+--- setup-2.4.11/iana-etc-2.30/port-aliases.orig	2006-11-14 17:01:10.000000000 +0100
++++ setup-2.4.11/iana-etc-2.30/port-aliases	2007-11-25 15:59:09.044373483 +0100
 @@ -12,3 +12,44 @@
  
  nicname whois
