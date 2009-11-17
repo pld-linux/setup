@@ -14,17 +14,23 @@ Summary(pl.UTF-8):	Podstawowe pliki systemu Linux
 Summary(pt_BR.UTF-8):	Vários arquivos básicos de configuração
 Summary(tr.UTF-8):	Basit kurulum dosyaları
 Name:		setup
-Version:	2.7
-Release:	2
+Version:	2.7.1
+Release:	1
 License:	Public Domain, partially BSD-like
 Group:		Base
 Source0:	%{name}-2.6.2.tar.bz2
 # Source0-md5:	ebd20f3ea4d766cfe16d2abf253224ac
+# http://sethwklein.net/iana-etc
 Source1:	http://sethwklein.net/projects/iana-etc/downloads/iana-etc-%{iana_etc_ver}.tar.bz2
 # Source1-md5:	3ba3afb1d1b261383d247f46cb135ee8
+Source2:	http://www.iana.org/assignments/protocol-numbers/index.txt
+# Source2-md5:	33440b7d913303a6051ae64290f0ab21
+Source3:	http://www.iana.org/assignments/port-numbers
+# Source3-md5:	8e19a2c7cf60baabf919de1cc89a1cbb
 Patch0:		%{name}-iana-etc.patch
 # This is source of non-iana changes in services file
 Patch1:		%{name}-services.patch
+Patch2:		protocols-fmt.patch
 BuildRequires:	dietlibc-static
 BuildRequires:	gawk
 Requires:	FHS >= 2.3-24.1
@@ -76,13 +82,17 @@ dosyalarını içerir.
 %setup -q -n %{name}-2.6.2 -a1
 %patch0 -p1
 mv iana-etc{-%{iana_etc_ver},}
+%patch2 -p1
+
+cp -a %{SOURCE2} iana-etc/protocol-numbers.iana
+cp -a %{SOURCE3} iana-etc/port-numbers.iana
 
 %build
 %{__make} -C iana-etc
 %{__patch} iana-etc/services %{PATCH1}
 
 # kill trailing spaces/tabs
-%{__sed} -i -e 's,[ \t]\+$,,' iana-etc/services
+%{__sed} -i -e 's,[ \t]\+$,,' iana-etc/{services,protocols}
 
 %{__make} \
 	CC="diet %{__cc}" \
@@ -96,7 +106,7 @@ install -d $RPM_BUILD_ROOT%{_sysconfdir}/shrc.d
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
-cp -a iana-etc/protocols $RPM_BUILD_ROOT%{_sysconfdir}/protocols
+cp -a iana-etc/{services,protocols} $RPM_BUILD_ROOT%{_sysconfdir}
 
 # not packaged
 rm $RPM_BUILD_ROOT%{_sysconfdir}/{mtab,netgroup,suid_profile}

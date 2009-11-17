@@ -1,5 +1,5 @@
---- setup-2.6.2/iana-etc-2.30/services.orig	2009-06-05 16:50:34.899063942 +0200
-+++ setup-2.6.2/iana-etc-2.30/services	2009-06-05 17:41:34.072264525 +0200
+--- setup-2.6.2/iana-etc/services~	2009-11-17 09:24:45.201520053 +0200
++++ setup-2.6.2/iana-etc/services	2009-11-17 09:25:17.102361782 +0200
 @@ -196,8 +196,6 @@
  graphics	 41/udp    # Graphics
  name		 42/tcp    # Host Name Server
@@ -171,10 +171,10 @@
  #		22274-22304 Unassigned
  cis		22305/tcp  # CompactIS Tunnel
  cis		22305/udp  # CompactIS Tunnel
-@@ -15127,6 +15139,7 @@
- #			    Balduin Mueller-Platz 
- #			    <balduin.mueller-platz&pago.de> March 2002
- #		30003-30998 Unassigned
+@@ -16011,6 +16011,7 @@
+ kingdomsonline	30260/udp   # Kingdoms Online (CraigAvenue)
+ #			    Drake Bankston <IANA.KingdomsOnline&gmail.com> 18 August 2009
+ #		30261-30998 Unassigned
 +csync2		30865/tcp   # Cluster sync (not in IANA)
  ovobs		30999/tcp   # OpenView Service Desk Client
  ovobs		30999/udp   # OpenView Service Desk Client

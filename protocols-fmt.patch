@@ -1,0 +1,11 @@
+--- setup-2.7/iana-etc/protocols.gawk~	2009-11-17 10:07:35.388548841 +0200
++++ setup-2.7/iana-etc/protocols.gawk	2009-11-17 10:07:37.361241248 +0200
+@@ -20,7 +20,7 @@
+     }
+ }
+ { sub(/\r/, "") }
+-match($0, /^[ \t]+([0-9]+)[ \t]{1,5}([^ \t]+)(.*)/, f) {
++match($0, /^[ \t]*([0-9]+)[ \t]{6,8}([^ \t]+)(.*)/, f) && !/Reserved/ {
+     if ( ! header_printed) {
+ 	printf format, "# protocol", "num", "aliases", "comments"
+ 	header_printed = 1;
