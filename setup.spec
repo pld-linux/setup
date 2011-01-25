@@ -3,8 +3,7 @@
 # - make some README.PLD with system features description
 #
 %define	iana_etc_ver	2.30
-%undefine	with_ccache
-#
+
 Summary:	Simple setup files
 Summary(de.UTF-8):	Einfache Setup-Dateien
 Summary(es.UTF-8):	Varios archivos básicos de configuración
@@ -14,12 +13,12 @@ Summary(pl.UTF-8):	Podstawowe pliki systemu Linux
 Summary(pt_BR.UTF-8):	Vários arquivos básicos de configuração
 Summary(tr.UTF-8):	Basit kurulum dosyaları
 Name:		setup
-Version:	2.7.2
+Version:	2.7.3
 Release:	1
 License:	Public Domain, partially BSD-like
 Group:		Base
 Source0:	%{name}-%{version}.tar.bz2
-# Source0-md5:	e82bfb86a430f2f08ecc48971f60dcc5
+# Source0-md5:	44f8637f91d3ed5c23f6195061e68e69
 # http://sethwklein.net/iana-etc
 Source1:	http://sethwklein.net/projects/iana-etc/downloads/iana-etc-%{iana_etc_ver}.tar.bz2
 # Source1-md5:	3ba3afb1d1b261383d247f46cb135ee8
@@ -43,6 +42,7 @@ Conflicts:	udev < 1:138-5
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_sbindir	/sbin
+%undefine	with_ccache
 
 %description
 This package contains a number of very important configuration and
