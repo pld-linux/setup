@@ -1,0 +1,28 @@
+Index: profile
+===================================================================
+RCS file: /cvsroot/setup/etc/profile,v
+retrieving revision 1.55
+retrieving revision 1.56
+diff -u -u -r1.55 -r1.56
+--- setup/etc/profile	22 Jan 2011 20:08:54 -0000	1.55
++++ setup/etc/profile	24 Feb 2011 19:17:44 -0000	1.56
+@@ -128,7 +128,18 @@
+ 				;;
+ 			* )
+ 				if [ -r "$i" ]; then
+-					. "$i"; export "$NAME"
++					. "$i"
++					# export VAR will set and export VAR
++					# if it didn't exist before. Other shells
++					# (ksh, bash) behave differently.
++					if [ -n "$ZSH_VERSION" ]; then
++						# zsh specific
++						if [ "${(P)+NAME}" = "1" ]; then
++							export "$NAME"
++						fi
++					else
++						export "$NAME"
++					fi
+ 				fi
+ 				;;
+ 		esac
