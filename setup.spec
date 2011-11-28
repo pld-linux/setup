@@ -14,7 +14,7 @@ Summary(pt_BR.UTF-8):	Vários arquivos básicos de configuração
 Summary(tr.UTF-8):	Basit kurulum dosyaları
 Name:		setup
 Version:	2.8.0
-Release:	1
+Release:	2
 License:	Public Domain, partially BSD-like
 Group:		Base
 Source0:	%{name}-%{version}.tar.bz2
@@ -111,7 +111,7 @@ install -d $RPM_BUILD_ROOT%{_sysconfdir}/shrc.d
 cp -a iana-etc/{services,protocols} $RPM_BUILD_ROOT%{_sysconfdir}
 
 # not packaged
-rm $RPM_BUILD_ROOT%{_sysconfdir}/{mtab,netgroup,suid_profile}
+rm $RPM_BUILD_ROOT%{_sysconfdir}/{netgroup,suid_profile}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -154,3 +154,5 @@ rm -rf $RPM_BUILD_ROOT
 %config(noreplace,missingok) %verify(not md5 mtime size) %{_sysconfdir}/motd
 %config(noreplace,missingok) %verify(not md5 mtime size) %{_sysconfdir}/resolv.conf
 %ghost %{_sysconfdir}/shells
+# symlink to /proc/self/mounts
+%{_sysconfdir}/mtab
