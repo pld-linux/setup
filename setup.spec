@@ -13,12 +13,12 @@ Summary(pl.UTF-8):	Podstawowe pliki systemu Linux
 Summary(pt_BR.UTF-8):	Vários arquivos básicos de configuração
 Summary(tr.UTF-8):	Basit kurulum dosyaları
 Name:		setup
-Version:	2.7.3
-Release:	3
+Version:	2.8.0
+Release:	1
 License:	Public Domain, partially BSD-like
 Group:		Base
 Source0:	%{name}-%{version}.tar.bz2
-# Source0-md5:	44f8637f91d3ed5c23f6195061e68e69
+# Source0-md5:	99eb9773800ff08fc475f73fe6e61c78
 # http://sethwklein.net/iana-etc
 Source1:	http://sethwklein.net/projects/iana-etc/downloads/iana-etc-%{iana_etc_ver}.tar.bz2
 # Source1-md5:	3ba3afb1d1b261383d247f46cb135ee8
@@ -30,7 +30,6 @@ Patch0:		%{name}-iana-etc.patch
 # This is source of non-iana changes in services file
 Patch1:		%{name}-services.patch
 Patch2:		protocols-fmt.patch
-Patch3:		%{name}-zsh.patch
 BuildRequires:	dietlibc-static
 BuildRequires:	gawk
 Requires:	FHS >= 2.3-24.1
@@ -40,6 +39,8 @@ Conflicts:	glibc < 6:2.4-4.1
 # tape,dialout and cdrom groups support
 Conflicts:	dev < 3.4-4
 Conflicts:	udev < 1:138-5
+# /etc/mtab being symlink to /proc/self/mounts
+Conflicts:	rc-scripts < 0.4.5.1-3
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_sbindir	/sbin
@@ -84,7 +85,6 @@ dosyalarını içerir.
 %patch0 -p1
 mv iana-etc{-%{iana_etc_ver},}
 %patch2 -p1
-%patch3 -p1
 
 cp -a %{SOURCE2} iana-etc/protocol-numbers.iana
 cp -a %{SOURCE3} iana-etc/port-numbers.iana

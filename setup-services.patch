@@ -1,82 +1,82 @@
 --- setup-2.6.2/iana-etc/services~	2009-11-17 09:24:45.201520053 +0200
 +++ setup-2.6.2/iana-etc/services	2009-11-17 09:25:17.102361782 +0200
-@@ -196,8 +196,6 @@
- graphics	 41/udp    # Graphics
- name		 42/tcp    # Host Name Server
- name		 42/udp    # Host Name Server
--nameserver	 42/tcp    # Host Name Server
--nameserver	 42/udp    # Host Name Server
+@@ -198,8 +198,6 @@
+ graphics	 41/udp	   # Graphics
+ name		 42/tcp	   # Host Name Server
+ name		 42/udp	   # Host Name Server
+-nameserver	 42/tcp	   # Host Name Server
+-nameserver	 42/udp	   # Host Name Server
  nicname		 43/tcp whois	 # Who Is
  nicname		 43/udp whois	 # Who Is
- mpm-flags	 44/tcp    # MPM FLAGS Protocol
-@@ -302,10 +300,6 @@
- #			   David Zimmerman <dpz&RUTGERS.EDU>
- http		 80/tcp    # World Wide Web HTTP
- http		 80/udp    # World Wide Web HTTP
--www		 80/tcp    # World Wide Web HTTP
--www		 80/udp    # World Wide Web HTTP
--www-http	 80/tcp    # World Wide Web HTTP
--www-http	 80/udp    # World Wide Web HTTP
+ mpm-flags	 44/tcp	   # MPM FLAGS Protocol
+@@ -303,10 +303,6 @@
+ #			   Unauthorized use by some mail users (see [RFC4146] for details)
+ http		 80/tcp	   # World Wide Web HTTP
+ http		 80/udp	   # World Wide Web HTTP
+-www		 80/tcp	   # World Wide Web HTTP
+-www		 80/udp	   # World Wide Web HTTP
+-www-http	 80/tcp	   # World Wide Web HTTP
+-www-http	 80/udp	   # World Wide Web HTTP
  #			   Tim Berners-Lee <timbl&W3.org>
  http		 80/sctp   # HTTP
  #			   IETF TSVWG
-@@ -327,8 +321,8 @@
- mfcobol		 86/tcp    # Micro Focus Cobol
- mfcobol		 86/udp    # Micro Focus Cobol
+@@ -324,8 +324,8 @@
+ mfcobol		 86/tcp	   # Micro Focus Cobol
+ mfcobol		 86/udp	   # Micro Focus Cobol
  #			   Simon Edwards <--none--->
--#		 87/tcp    any private terminal link
--#		 87/udp    any private terminal link
-+ttylink		 87/tcp    any private terminal link
-+ttylink		 87/udp    any private terminal link
+-#		 87/tcp	   any private terminal link
+-#		 87/udp	   any private terminal link
++ttylink		 87/tcp	   # any private terminal link
++ttylink		 87/udp	   # any private terminal link
  #			   Jon Postel <postel&isi.edu>
- kerberos	 88/tcp    # Kerberos
- kerberos	 88/udp    # Kerberos
-@@ -382,10 +376,7 @@
+ kerberos	 88/tcp	   # Kerberos
+ kerberos	 88/udp	   # Kerberos
+@@ -379,10 +379,7 @@
  #			   Patrick McNamee <--none--->
- cso		105/tcp    # CCSO name server protocol
- cso		105/udp    # CCSO name server protocol
+ cso		105/tcp	   # CCSO name server protocol
+ cso		105/udp	   # CCSO name server protocol
 -#			   Martin Hamilton <martin&mrrl.lut.as.uk>	     
--csnet-ns	105/tcp    # Mailbox Name Nameserver
--csnet-ns	105/udp    # Mailbox Name Nameserver
+-csnet-ns	105/tcp	   # Mailbox Name Nameserver
+-csnet-ns	105/udp	   # Mailbox Name Nameserver
 -#			   Marvin Solomon <solomon&CS.WISC.EDU>
 +#			   Martin Hamilton <martin&mrrl.lut.as.uk>, Marvin Solomon <solomon@CS.WISC.EDU>
- 3com-tsmux	106/tcp    # 3COM-TSMUX
- 3com-tsmux	106/udp    # 3COM-TSMUX
+ 3com-tsmux	106/tcp	   # 3COM-TSMUX
+ 3com-tsmux	106/udp	   # 3COM-TSMUX
  #			   Jeremy Siegel <jzs&NSD.3Com.COM>
-@@ -408,9 +399,9 @@
- mcidas		112/tcp    # McIDAS Data Transmission Protocol
- mcidas		112/udp    # McIDAS Data Transmission Protocol
+@@ -402,9 +402,9 @@
+ mcidas		112/tcp	   # McIDAS Data Transmission Protocol
+ mcidas		112/udp	   # McIDAS Data Transmission Protocol
  #			   Glenn Davis <support&unidata.ucar.edu>
--ident		113/tcp    # 
- auth		113/tcp    # Authentication Service
- auth		113/udp    # Authentication Service
-+auth		113/tcp tap ident    # Authentication Service
+-ident		113/tcp	   # 
+ auth		113/tcp	   # Authentication Service
+ auth		113/udp	   # Authentication Service
++auth		113/tcp tap ident	# Authentication Service
  #			   Mike St. Johns <stjohns&arpa.mil>
  #		114	   Deprecated June 2004
- sftp		115/tcp    # Simple File Transfer Protocol
-@@ -1215,6 +1206,7 @@
- kpasswd		464/tcp    # kpasswd
- kpasswd		464/udp    # kpasswd
+ sftp		115/tcp	   # Simple File Transfer Protocol
+@@ -1221,6 +1221,7 @@
+ kpasswd		464/udp	   # kpasswd
  #			   Theodore Ts'o <tytso&MIT.EDU>
-+smtps		465/tcp ssmtp   # (not in IANA!)
- urd		465/tcp    # URL Rendesvous Directory for SSM
- igmpv3lite	465/udp    # IGMP over UDP for SSM 
+ urd		465/tcp	   # URL Rendesvous Directory for SSM
++smtps		465/tcp ssmtp	 # (not in IANA!)
+ igmpv3lite	465/udp	   # IGMP over UDP for SSM 
  #			   Toerless Eckert <eckert&cisco.com>
-@@ -1360,7 +1352,6 @@
- exec		512/tcp    # remote process execution;
+ digital-vrc	466/tcp	   # digital-vrc
+@@ -1366,7 +1366,6 @@
+ exec		512/tcp	   # remote process execution;
  #			   authentication performed using
  #			   passwords and UNIX login names
 -comsat		512/udp
- biff		512/udp    # used by mail system to notify users
+ biff		512/udp	   # used by mail system to notify users
  #			   of new mail received; currently
  #			   receives messages only from 
-@@ -2100,6 +2091,7 @@
- omginitialrefs	900/tcp    # OMG Initial Refs
- omginitialrefs	900/udp    # OMG Initial Refs
+@@ -2109,6 +2109,7 @@
+ omginitialrefs	900/tcp	   # OMG Initial Refs
+ omginitialrefs	900/udp	   # OMG Initial Refs
  #			   Christian Callsen <Christian.Callsen&eng.sun.com>
-+swat		901/tcp    # (not in IANA!) Samba Web Administration Tool
- smpnameres	901/tcp    # SMPNAMERES
- smpnameres	901/udp    # SMPNAMERES
++swat		901/tcp	   # (not in IANA!) Samba Web Administration Tool
+ smpnameres	901/tcp	   # SMPNAMERES
+ smpnameres	901/udp	   # SMPNAMERES
  #			   Leif Ekblad <leif&rdos.net>
 @@ -4972,7 +4964,8 @@
  tcp-id-port	1999/tcp   # cisco identification port
