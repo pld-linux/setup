@@ -13,12 +13,12 @@ Summary(pl.UTF-8):	Podstawowe pliki systemu Linux
 Summary(pt_BR.UTF-8):	Vários arquivos básicos de configuração
 Summary(tr.UTF-8):	Basit kurulum dosyaları
 Name:		setup
-Version:	2.8.0
-Release:	2
+Version:	2.8.1
+Release:	1
 License:	Public Domain, partially BSD-like
 Group:		Base
 Source0:	%{name}-%{version}.tar.bz2
-# Source0-md5:	99eb9773800ff08fc475f73fe6e61c78
+# Source0-md5:	cb16d373656c9deff37d32b09fbe2420
 # http://sethwklein.net/iana-etc
 Source1:	http://sethwklein.net/projects/iana-etc/downloads/iana-etc-%{iana_etc_ver}.tar.bz2
 # Source1-md5:	3ba3afb1d1b261383d247f46cb135ee8
