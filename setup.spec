@@ -13,7 +13,7 @@ Summary(pl.UTF-8):	Podstawowe pliki systemu Linux
 Summary(pt_BR.UTF-8):	Vários arquivos básicos de configuração
 Summary(tr.UTF-8):	Basit kurulum dosyaları
 Name:		setup
-Version:	2.8.2
+Version:	2.8.3
 Release:	1
 License:	Public Domain, partially BSD-like
 Group:		Base
