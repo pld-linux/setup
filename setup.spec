@@ -18,7 +18,7 @@ Release:	1
 License:	Public Domain, partially BSD-like
 Group:		Base
 Source0:	%{name}-%{version}.tar.bz2
-# Source0-md5:	19d019b5b183bcf2494b5c038fc99f1c
+# Source0-md5:	426b8822408c91929e4e1474e8eff9dd
 # http://sethwklein.net/iana-etc
 Source1:	http://sethwklein.net/projects/iana-etc/downloads/iana-etc-%{iana_etc_ver}.tar.bz2
 # Source1-md5:	3ba3afb1d1b261383d247f46cb135ee8
