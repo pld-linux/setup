@@ -111,7 +111,7 @@ install -d $RPM_BUILD_ROOT%{_sysconfdir}/shrc.d
 cp -a iana-etc/{services,protocols} $RPM_BUILD_ROOT%{_sysconfdir}
 
 # not packaged
-rm $RPM_BUILD_ROOT%{_sysconfdir}/{netgroup,suid_profile}
+%{__rm} $RPM_BUILD_ROOT%{_sysconfdir}/{netgroup,suid_profile}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -135,11 +135,19 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_sbindir}/joinpasswd
 %attr(755,root,root) %{_sbindir}/postshell
 %attr(755,root,root) %{_sbindir}/update-fstab
-%config(noreplace,missingok) %verify(not md5 mtime size) %attr(755,root,root) /etc/profile.d/*.sh
-%config(noreplace,missingok) %verify(not md5 mtime size) %attr(755,root,root) /etc/profile.d/*.csh
 %dir /etc/profile.d
-%config(noreplace,missingok) %verify(not md5 mtime size) %{_sysconfdir}/env.d/*
+%config(noreplace,missingok) %verify(not md5 mtime size) %attr(755,root,root) /etc/profile.d/tmp-dir.sh
+%config(noreplace,missingok) %verify(not md5 mtime size) %attr(755,root,root) /etc/profile.d/tmp-dir.csh
 %dir %{_sysconfdir}/env.d
+%config(noreplace,missingok) %verify(not md5 mtime size) %{_sysconfdir}/env.d/EDITOR
+%config(noreplace,missingok) %verify(not md5 mtime size) %{_sysconfdir}/env.d/HISTFILESIZE
+%config(noreplace,missingok) %verify(not md5 mtime size) %{_sysconfdir}/env.d/HOME_ETC
+%config(noreplace,missingok) %verify(not md5 mtime size) %{_sysconfdir}/env.d/MAILCHECK
+%config(noreplace,missingok) %verify(not md5 mtime size) %{_sysconfdir}/env.d/MAILPATH
+%config(noreplace,missingok) %verify(not md5 mtime size) %{_sysconfdir}/env.d/NNTPSERVER
+%config(noreplace,missingok) %verify(not md5 mtime size) %{_sysconfdir}/env.d/ORGANIZATION
+%config(noreplace,missingok) %verify(not md5 mtime size) %{_sysconfdir}/env.d/TMOUT
+%config(noreplace,missingok) %verify(not md5 mtime size) %{_sysconfdir}/env.d/VISUAL
 %dir %{_sysconfdir}/shrc.d
 %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/fstab
 %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/group
@@ -148,7 +156,7 @@ rm -rf $RPM_BUILD_ROOT
 %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/passwd
 %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/profile
 %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/protocols
-%attr(600,root,root) %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/secure*
+%attr(600,root,root) %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/securetty
 %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/services
 %config(noreplace,missingok) %verify(not md5 mtime size) %{_sysconfdir}/filesystems
 %config(noreplace,missingok) %verify(not md5 mtime size) %{_sysconfdir}/motd
