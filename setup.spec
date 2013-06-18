@@ -34,6 +34,7 @@ Patch2:		protocols-fmt.patch
 %if %{with diet}
 BuildRequires:	dietlibc-static
 %else
+BuildRequires:	glibc-misc
 BuildRequires:	glibc-static
 %endif
 BuildRequires:	gawk
