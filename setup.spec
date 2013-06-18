@@ -3,9 +3,8 @@
 # - make some README.PLD with system features description
 #
 %bcond_with	diet
-#
-%define	iana_etc_ver	2.30
 
+%define	iana_etc_ver	2.30
 Summary:	Simple setup files
 Summary(de.UTF-8):	Einfache Setup-Dateien
 Summary(es.UTF-8):	Varios archivos básicos de configuración
@@ -16,7 +15,7 @@ Summary(pt_BR.UTF-8):	Vários arquivos básicos de configuração
 Summary(tr.UTF-8):	Basit kurulum dosyaları
 Name:		setup
 Version:	2.8.5
-Release:	1
+Release:	2
 License:	Public Domain, partially BSD-like
 Group:		Base
 Source0:	%{name}-%{version}.tar.bz2
@@ -110,7 +109,6 @@ cp -a %{SOURCE3} iana-etc/port-numbers.iana
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT%{_sysconfdir}/shrc.d
-
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
@@ -121,6 +119,9 @@ cp -a iana-etc/{services,protocols} $RPM_BUILD_ROOT%{_sysconfdir}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
+
+%triggerprein -p /sbin/postshell -- %{name} < %{version}-%{release}
+-/bin/sh -c '/usr/bin/test -L /etc/mtab || /bin/mv -v /etc/mtab /etc/mtab.rpmsave'
 
 %triggerpostun -p /sbin/postshell -- %{name} < %{version}-%{release}
 %{_sbindir}/joinpasswd
