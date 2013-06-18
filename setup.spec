@@ -34,10 +34,10 @@ Patch2:		protocols-fmt.patch
 %if %{with diet}
 BuildRequires:	dietlibc-static
 %else
-BuildRequires:	glibc-misc
 BuildRequires:	glibc-static
 %endif
 BuildRequires:	gawk
+BuildRequires:	glibc-misc
 Requires:	FHS >= 2.3-24.1
 Provides:	group(fuse)
 Conflicts:	PowerChutePlus < 4.5.3-2
