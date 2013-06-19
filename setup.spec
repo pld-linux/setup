@@ -2,7 +2,7 @@
 # TODO:
 # - make some README.PLD with system features description
 #
-%bcond_with	diet
+%bcond_without	diet
 
 %define	iana_etc_ver	2.30
 Summary:	Simple setup files
@@ -15,7 +15,7 @@ Summary(pt_BR.UTF-8):	Vários arquivos básicos de configuração
 Summary(tr.UTF-8):	Basit kurulum dosyaları
 Name:		setup
 Version:	2.8.5
-Release:	3
+Release:	4
 License:	Public Domain, partially BSD-like
 Group:		Base
 Source0:	%{name}-%{version}.tar.bz2
