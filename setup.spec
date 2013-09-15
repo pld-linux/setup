@@ -15,7 +15,7 @@ Summary(pt_BR.UTF-8):	Vários arquivos básicos de configuração
 Summary(tr.UTF-8):	Basit kurulum dosyaları
 Name:		setup
 Version:	2.8.5
-Release:	4
+Release:	5
 License:	Public Domain, partially BSD-like
 Group:		Base
 Source0:	%{name}-%{version}.tar.bz2
@@ -104,7 +104,7 @@ cp -a %{SOURCE3} iana-etc/port-numbers.iana
 
 %{__make} \
 	CC="%{?with_diet:diet }%{__cc}" \
-	OPT_FLAGS="%{rpmcflags} -Os" \
+	OPT_FLAGS="%{rpmcflags} -Os -D_LARGEFILE_SOURCE=1 -D_FILE_OFFSET_BITS=64" \
 	LDFLAGS="%{rpmcflags} %{rpmldflags} -static"
 
 ldd postshell | grep "not a dynamic executable" || exit 1
