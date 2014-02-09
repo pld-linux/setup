@@ -14,12 +14,12 @@ Summary(pl.UTF-8):	Podstawowe pliki systemu Linux
 Summary(pt_BR.UTF-8):	Vários arquivos básicos de configuração
 Summary(tr.UTF-8):	Basit kurulum dosyaları
 Name:		setup
-Version:	2.8.5
-Release:	5
+Version:	2.9.0
+Release:	1
 License:	Public Domain, partially BSD-like
 Group:		Base
 Source0:	%{name}-%{version}.tar.bz2
-# Source0-md5:	4f995facd983c8e887ff3b8c68a73b19
+# Source0-md5:	2b5c3c03a77f8963ee1c4c269f0edfed
 # http://sethwklein.net/iana-etc
 Source1:	http://sethwklein.net/projects/iana-etc/downloads/iana-etc-%{iana_etc_ver}.tar.bz2
 # Source1-md5:	3ba3afb1d1b261383d247f46cb135ee8
@@ -159,6 +159,8 @@ rm -rf $RPM_BUILD_ROOT
 %config(noreplace,missingok) %verify(not md5 mtime size) %{_sysconfdir}/env.d/TMOUT
 %config(noreplace,missingok) %verify(not md5 mtime size) %{_sysconfdir}/env.d/VISUAL
 %dir %{_sysconfdir}/shrc.d
+%config(noreplace) %verify(not md5 mtime size) /etc/shrc.d/256term.sh
+%config(noreplace) %verify(not md5 mtime size) /etc/shrc.d/256term.csh
 %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/fstab
 %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/group
 %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/host.conf
