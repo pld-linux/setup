@@ -15,7 +15,7 @@ Summary(pt_BR.UTF-8):	Vários arquivos básicos de configuração
 Summary(tr.UTF-8):	Basit kurulum dosyaları
 Name:		setup
 Version:	2.9.0
-Release:	2
+Release:	3
 License:	Public Domain, partially BSD-like
 Group:		Base
 Source0:	%{name}-%{version}.tar.bz2
@@ -31,6 +31,7 @@ Patch0:		%{name}-iana-etc.patch
 # This is source of non-iana changes in services file
 Patch1:		%{name}-services.patch
 Patch2:		protocols-fmt.patch
+Patch3:		%{name}-input_group.patch
 %if %{with diet}
 BuildRequires:	dietlibc-static
 %else
@@ -91,6 +92,7 @@ dosyalarını içerir.
 %patch0 -p1
 mv iana-etc{-%{iana_etc_ver},}
 %patch2 -p1
+%patch3 -p1
 
 cp -a %{SOURCE2} iana-etc/protocol-numbers.iana
 cp -a %{SOURCE3} iana-etc/port-numbers.iana
