@@ -1,8 +1,7 @@
-#
 # TODO:
 # - make some README.PLD with system features description
 #
-%bcond_without	diet
+%bcond_without	diet		# compile binaries with diet cc
 
 %define	iana_etc_ver	2.30
 Summary:	Simple setup files
@@ -52,6 +51,11 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_sbindir	/sbin
 %undefine	with_ccache
+
+%ifnarch x32
+# not on x32, see 02e9d04
+%define		specflags -Os
+%endif
 
 %description
 This package contains a number of very important configuration and
@@ -117,7 +121,7 @@ install -d $RPM_BUILD_ROOT%{_sysconfdir}/shrc.d
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
-cp -a iana-etc/{services,protocols} $RPM_BUILD_ROOT%{_sysconfdir}
+cp -p iana-etc/{services,protocols} $RPM_BUILD_ROOT%{_sysconfdir}
 
 # not packaged
 %{__rm} $RPM_BUILD_ROOT%{_sysconfdir}/{netgroup,suid_profile}
@@ -125,6 +129,7 @@ cp -a iana-etc/{services,protocols} $RPM_BUILD_ROOT%{_sysconfdir}
 %clean
 rm -rf $RPM_BUILD_ROOT
 
+# trigger to ensure /etc/mtab is symlink
 %triggerprein -p /sbin/postshell -- %{name} < %{version}-%{release}
 -/bin/sh -c '/usr/bin/test -L /etc/mtab || /bin/mv -v /etc/mtab /etc/mtab.rpmsave'
 
