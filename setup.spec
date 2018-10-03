@@ -14,7 +14,7 @@ Summary(pt_BR.UTF-8):	Vários arquivos básicos de configuração
 Summary(tr.UTF-8):	Basit kurulum dosyaları
 Name:		setup
 Version:	2.9.0
-Release:	4
+Release:	5
 License:	Public Domain, partially BSD-like
 Group:		Base
 Source0:	%{name}-%{version}.tar.bz2
@@ -126,6 +126,9 @@ cp -p iana-etc/{services,protocols} $RPM_BUILD_ROOT%{_sysconfdir}
 # not packaged
 %{__rm} $RPM_BUILD_ROOT%{_sysconfdir}/{netgroup,suid_profile}
 
+mv $RPM_BUILD_ROOT/etc/profile.d/{,00-}tmp-dir.sh
+mv $RPM_BUILD_ROOT/etc/profile.d/{,00-}tmp-dir.csh
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
@@ -153,8 +156,8 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_sbindir}/postshell
 %attr(755,root,root) %{_sbindir}/update-fstab
 %dir /etc/profile.d
-%config(noreplace,missingok) %verify(not md5 mtime size) %attr(755,root,root) /etc/profile.d/tmp-dir.sh
-%config(noreplace,missingok) %verify(not md5 mtime size) %attr(755,root,root) /etc/profile.d/tmp-dir.csh
+%config(noreplace,missingok) %verify(not md5 mtime size) %attr(755,root,root) /etc/profile.d/00-tmp-dir.sh
+%config(noreplace,missingok) %verify(not md5 mtime size) %attr(755,root,root) /etc/profile.d/00-tmp-dir.csh
 %dir %{_sysconfdir}/env.d
 %config(noreplace,missingok) %verify(not md5 mtime size) %{_sysconfdir}/env.d/EDITOR
 %config(noreplace,missingok) %verify(not md5 mtime size) %{_sysconfdir}/env.d/HISTFILESIZE
