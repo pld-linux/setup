@@ -13,12 +13,12 @@ Summary(pl.UTF-8):	Podstawowe pliki systemu Linux
 Summary(pt_BR.UTF-8):	Vários arquivos básicos de configuração
 Summary(tr.UTF-8):	Basit kurulum dosyaları
 Name:		setup
-Version:	2.9.0
-Release:	5
+Version:	2.10.0
+Release:	1
 License:	Public Domain, partially BSD-like
 Group:		Base
 Source0:	%{name}-%{version}.tar.bz2
-# Source0-md5:	2b5c3c03a77f8963ee1c4c269f0edfed
+# Source0-md5:	1ecb6d9865ce3300881fa466d0c97583
 # http://sethwklein.net/iana-etc
 Source1:	http://sethwklein.net/projects/iana-etc/downloads/iana-etc-%{iana_etc_ver}.tar.bz2
 # Source1-md5:	3ba3afb1d1b261383d247f46cb135ee8
@@ -30,7 +30,6 @@ Patch0:		%{name}-iana-etc.patch
 # This is source of non-iana changes in services file
 Patch1:		%{name}-services.patch
 Patch2:		protocols-fmt.patch
-Patch3:		%{name}-input_group.patch
 %if %{with diet}
 BuildRequires:	dietlibc-static
 %else
@@ -93,13 +92,12 @@ dosyalarını içerir.
 
 %prep
 %setup -q -a1
-%patch0 -p1
 mv iana-etc{-%{iana_etc_ver},}
+%patch0 -p1
 %patch2 -p1
-%patch3 -p1
 
-cp -a %{SOURCE2} iana-etc/protocol-numbers.iana
-cp -a %{SOURCE3} iana-etc/port-numbers.iana
+cp -p %{SOURCE2} iana-etc/protocol-numbers.iana
+cp -p %{SOURCE3} iana-etc/port-numbers.iana
 
 %build
 %{__make} -C iana-etc
@@ -125,9 +123,6 @@ cp -p iana-etc/{services,protocols} $RPM_BUILD_ROOT%{_sysconfdir}
 
 # not packaged
 %{__rm} $RPM_BUILD_ROOT%{_sysconfdir}/{netgroup,suid_profile}
-
-mv $RPM_BUILD_ROOT/etc/profile.d/{,00-}tmp-dir.sh
-mv $RPM_BUILD_ROOT/etc/profile.d/{,00-}tmp-dir.csh
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -178,6 +173,8 @@ rm -rf $RPM_BUILD_ROOT
 %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/passwd
 %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/profile
 %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/protocols
+%config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/subgid
+%config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/subuid
 %attr(600,root,root) %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/securetty
 %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/services
 %config(noreplace,missingok) %verify(not md5 mtime size) %{_sysconfdir}/filesystems
@@ -186,3 +183,5 @@ rm -rf $RPM_BUILD_ROOT
 %ghost %{_sysconfdir}/shells
 # symlink to /proc/self/mounts
 %{_sysconfdir}/mtab
+
+

@@ -1,5 +1,5 @@
---- setup-2.4.11/iana-etc-2.30/Makefile.orig	2006-11-14 18:53:41.000000000 +0100
-+++ setup-2.4.11/iana-etc-2.30/Makefile	2007-11-25 15:16:05.825164209 +0100
+--- setup-2.4.11/iana-etc/Makefile.orig	2006-11-14 18:53:41.000000000 +0100
++++ setup-2.4.11/iana-etc/Makefile	2007-11-25 15:16:05.825164209 +0100
 @@ -65,10 +65,10 @@
  
  protocols: protocol-numbers protocols.gawk
@@ -13,8 +13,8 @@
  
  dist: clean
  	rm -vrf ../iana-etc-`cat VERSION`
---- setup-2.4.11/iana-etc-2.30/port-aliases.orig	2006-11-14 17:01:10.000000000 +0100
-+++ setup-2.4.11/iana-etc-2.30/port-aliases	2007-11-25 15:59:09.044373483 +0100
+--- setup-2.4.11/iana-etc/port-aliases.orig	2006-11-14 17:01:10.000000000 +0100
++++ setup-2.4.11/iana-etc/port-aliases	2007-11-25 15:59:09.044373483 +0100
 @@ -12,3 +12,44 @@
  
  nicname whois
