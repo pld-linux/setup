@@ -111,7 +111,7 @@ cp -p %{SOURCE3} iana-etc/port-numbers.iana
 	OPT_FLAGS="%{rpmcflags} -D_LARGEFILE_SOURCE=1 -D_FILE_OFFSET_BITS=64" \
 	LDFLAGS="%{rpmcflags} %{rpmldflags} -static"
 
-ldd postshell | grep "not a dynamic executable" || exit 1
+ldd postshell 2>&1 | grep "not a dynamic executable" || exit 1
 
 %install
 rm -rf $RPM_BUILD_ROOT
