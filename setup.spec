@@ -3,7 +3,6 @@
 #
 %bcond_without	diet		# compile binaries with diet cc
 
-%define	iana_etc_ver	2.30
 Summary:	Simple setup files
 Summary(de.UTF-8):	Einfache Setup-Dateien
 Summary(es.UTF-8):	Varios archivos básicos de configuración
@@ -14,22 +13,18 @@ Summary(pt_BR.UTF-8):	Vários arquivos básicos de configuração
 Summary(tr.UTF-8):	Basit kurulum dosyaları
 Name:		setup
 Version:	2.10.0
-Release:	1
+Release:	2
 License:	Public Domain, partially BSD-like
 Group:		Base
 Source0:	%{name}-%{version}.tar.bz2
 # Source0-md5:	1ecb6d9865ce3300881fa466d0c97583
-# http://sethwklein.net/iana-etc
-Source1:	http://sethwklein.net/projects/iana-etc/downloads/iana-etc-%{iana_etc_ver}.tar.bz2
-# Source1-md5:	3ba3afb1d1b261383d247f46cb135ee8
-Source2:	http://www.iana.org/assignments/protocol-numbers/index.txt
-# Source2-md5:	33440b7d913303a6051ae64290f0ab21
-Source3:	http://www.iana.org/assignments/port-numbers
-# Source3-md5:	8e19a2c7cf60baabf919de1cc89a1cbb
-Patch0:		%{name}-iana-etc.patch
-# This is source of non-iana changes in services file
-Patch1:		%{name}-services.patch
-Patch2:		protocols-fmt.patch
+Source1:	protocols.gawk
+Source2:	services.gawk
+Source3:	https://www.iana.org/assignments/protocol-numbers/protocol-numbers.xml
+# Source3-md5:	ea5803d992cc16ca8b5e355ca5ef5bc4
+Source4:	https://www.iana.org/assignments/service-names-port-numbers/service-names-port-numbers.xml
+# Source4-md5:	91a82a6e1d15b205514e264ea5accc45
+Patch0:		%{name}-services.patch
 %if %{with diet}
 BuildRequires:	dietlibc-static
 %else
@@ -91,20 +86,14 @@ Bu paket, passwd, group, profile gibi çok önemli ayar ve kurulum
 dosyalarını içerir.
 
 %prep
-%setup -q -a1
-mv iana-etc{-%{iana_etc_ver},}
+%setup -q
+%{SOURCE1} %{SOURCE3} > etc/protocols
+%{SOURCE2} %{SOURCE4} > etc/services
 %patch0 -p1
-%patch2 -p1
-
-cp -p %{SOURCE2} iana-etc/protocol-numbers.iana
-cp -p %{SOURCE3} iana-etc/port-numbers.iana
 
 %build
-%{__make} -C iana-etc
-%{__patch} iana-etc/services %{PATCH1}
-
 # kill trailing spaces/tabs
-%{__sed} -i -e 's,[ \t]\+$,,' iana-etc/{services,protocols}
+%{__sed} -i -e 's,[ \t]\+$,,' etc/{services,protocols}
 
 %{__make} \
 	CC="%{?with_diet:diet }%{__cc}" \
@@ -118,8 +107,6 @@ rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT%{_sysconfdir}/shrc.d
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
-
-cp -p iana-etc/{services,protocols} $RPM_BUILD_ROOT%{_sysconfdir}
 
 # not packaged
 %{__rm} $RPM_BUILD_ROOT%{_sysconfdir}/{netgroup,suid_profile}

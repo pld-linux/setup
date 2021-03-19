@@ -1,199 +1,508 @@
---- setup-2.6.2/iana-etc/services~	2009-11-17 09:24:45.201520053 +0200
-+++ setup-2.6.2/iana-etc/services	2009-11-17 09:25:17.102361782 +0200
-@@ -198,8 +198,6 @@
- graphics	 41/udp	   # Graphics
- name		 42/tcp	   # Host Name Server
- name		 42/udp	   # Host Name Server
--nameserver	 42/tcp	   # Host Name Server
--nameserver	 42/udp	   # Host Name Server
- nicname		 43/tcp whois	 # Who Is
- nicname		 43/udp whois	 # Who Is
- mpm-flags	 44/tcp	   # MPM FLAGS Protocol
-@@ -303,10 +303,6 @@
- #			   Unauthorized use by some mail users (see [RFC4146] for details)
- http		 80/tcp	   # World Wide Web HTTP
- http		 80/udp	   # World Wide Web HTTP
--www		 80/tcp	   # World Wide Web HTTP
--www		 80/udp	   # World Wide Web HTTP
--www-http	 80/tcp	   # World Wide Web HTTP
--www-http	 80/udp	   # World Wide Web HTTP
- #			   Tim Berners-Lee <timbl&W3.org>
- http		 80/sctp   # HTTP
- #			   IETF TSVWG
-@@ -324,8 +324,8 @@
- mfcobol		 86/tcp	   # Micro Focus Cobol
- mfcobol		 86/udp	   # Micro Focus Cobol
- #			   Simon Edwards <--none--->
--#		 87/tcp	   any private terminal link
--#		 87/udp	   any private terminal link
-+ttylink		 87/tcp	   # any private terminal link
-+ttylink		 87/udp	   # any private terminal link
- #			   Jon Postel <postel&isi.edu>
- kerberos	 88/tcp	   # Kerberos
- kerberos	 88/udp	   # Kerberos
-@@ -379,10 +379,7 @@
- #			   Patrick McNamee <--none--->
- cso		105/tcp	   # CCSO name server protocol
- cso		105/udp	   # CCSO name server protocol
--#			   Martin Hamilton <martin&mrrl.lut.as.uk>	     
--csnet-ns	105/tcp	   # Mailbox Name Nameserver
--csnet-ns	105/udp	   # Mailbox Name Nameserver
--#			   Marvin Solomon <solomon&CS.WISC.EDU>
-+#			   Martin Hamilton <martin&mrrl.lut.as.uk>, Marvin Solomon <solomon@CS.WISC.EDU>
- 3com-tsmux	106/tcp	   # 3COM-TSMUX
- 3com-tsmux	106/udp	   # 3COM-TSMUX
- #			   Jeremy Siegel <jzs&NSD.3Com.COM>
-@@ -402,9 +402,9 @@
- mcidas		112/tcp	   # McIDAS Data Transmission Protocol
- mcidas		112/udp	   # McIDAS Data Transmission Protocol
- #			   Glenn Davis <support&unidata.ucar.edu>
--ident		113/tcp	   # 
- auth		113/tcp	   # Authentication Service
- auth		113/udp	   # Authentication Service
-+auth		113/tcp tap ident	# Authentication Service
- #			   Mike St. Johns <stjohns&arpa.mil>
- #		114	   Deprecated June 2004
- sftp		115/tcp	   # Simple File Transfer Protocol
-@@ -1221,6 +1221,7 @@
- kpasswd		464/udp	   # kpasswd
- #			   Theodore Ts'o <tytso&MIT.EDU>
- urd		465/tcp	   # URL Rendesvous Directory for SSM
-+smtps		465/tcp ssmtp	 # (not in IANA!)
- igmpv3lite	465/udp	   # IGMP over UDP for SSM 
- #			   Toerless Eckert <eckert&cisco.com>
- digital-vrc	466/tcp	   # digital-vrc
-@@ -1366,7 +1366,6 @@
- exec		512/tcp	   # remote process execution;
- #			   authentication performed using
- #			   passwords and UNIX login names
--comsat		512/udp
- biff		512/udp	   # used by mail system to notify users
- #			   of new mail received; currently
- #			   receives messages only from 
-@@ -2109,6 +2109,7 @@
- omginitialrefs	900/tcp	   # OMG Initial Refs
- omginitialrefs	900/udp	   # OMG Initial Refs
- #			   Christian Callsen <Christian.Callsen&eng.sun.com>
-+swat		901/tcp	   # (not in IANA!) Samba Web Administration Tool
- smpnameres	901/tcp	   # SMPNAMERES
- smpnameres	901/udp	   # SMPNAMERES
- #			   Leif Ekblad <leif&rdos.net>
-@@ -4972,7 +4964,8 @@
- tcp-id-port	1999/tcp   # cisco identification port
- tcp-id-port	1999/udp   # cisco identification port
- #
--cisco-sccp	2000/tcp   # Cisco SCCP
-+cisco-sccp	2000/tcp sieve   # Cisco SCCP
-+			   # sieve used by cyrus-imapd timsieved daemon
- cisco-sccp	2000/udp   # Cisco SCCp
- #			   Dan Wing <dwing&cisco.com> November 2003
- dc		2001/tcp
-@@ -4980,6 +4973,7 @@
- globe		2002/tcp
- globe		2002/udp
- #
-+cfinger		2003/tcp   # (not in IANA!) GNU Finger
- brutus		2003/tcp   # Brutus Server
- brutus		2003/udp   # Brutus Server
- #			   Johannes Skov Frandsen <joe&42tools.com> 28 February 2008
-@@ -5082,10 +5076,10 @@
- dls-monitor	2048/tcp
- dls-monitor	2048/udp
- #			  <== NOTE Conflict on 2049 !
--shilp		2049/tcp
--shilp		2049/udp
- nfs		2049/tcp   # Network File System - Sun Microsystems
- nfs		2049/udp   # Network File System - Sun Microsystems
-+shilp		2049/tcp
-+shilp		2049/udp
- #			   Brent Callaghan <brent&terra.eng.sun.com>
- av-emb-config	2050/tcp   # Avaya EMB Config Port
- av-emb-config	2050/udp   # Avaya EMB Config Port
-@@ -12356,6 +12350,7 @@
- #			   Mark Miller <mmiller&MICROSOFT.com>
- auriga-router	5680/tcp   # Auriga Router Service
- auriga-router	5680/udp   # Auriga Router Service
-+canna		5680/tcp   # (not in IANA!) cannaserver
- #			   Vincent Gaudeul <technique&auriga.fr> February 2006
- ncxcp		5681/tcp   # Net-coneX Control Protocol
- ncxcp		5681/udp   # Net-coneX Control Protocol
-@@ -12900,6 +12895,14 @@
- #		6632-6664  Unassigned
- ircu		6665/tcp  # IRCU
- ircu		6665/udp  # IRCU
-+ircu		6666/tcp  # IRCU
-+ircu		6666/udp  # IRCU
-+ircu		6667/tcp  # IRCU
-+ircu		6667/udp  # IRCU
-+ircu		6668/tcp  # IRCU
-+ircu		6668/udp  # IRCU
-+ircu		6669/tcp  # IRCU
-+ircu		6669/udp  # IRCU
- #				       Brian Tackett <cym&acrux.net>
- vocaltec-gold	6670/tcp   # Vocaltec Global Online Directory
- vocaltec-gold	6670/udp   # Vocaltec Global Online Directory
-@@ -13826,7 +13829,7 @@
- secure-mqtt	8883/udp    # Secure MQTT
- #			    Arthur Barr <arthur.barr&uk.ibm.com> 27 February 2008
- #		8884-8887   Unassigned
--ddi-tcp-1	8888/tcp    # NewsEDGE server TCP (TCP 1)
-+ddi-tcp-1	8888/tcp irr_rpsl_submit    # NewsEDGE server TCP (TCP 1)
- ddi-udp-1	8888/udp    # NewsEDGE server UDP (UDP 1)
- ddi-tcp-2	8889/tcp    # Desktop Data TCP 1
- ddi-udp-2	8889/udp    # NewsEDGE server broadcast
-@@ -14318,6 +14321,10 @@
- #			   <amanda-core&amanda.org>
- famdc		10081/tcp  # FAM Archive Server
- famdc		10081/udp  # FAM Archive Server
-+kamanda		10081/tcp  # (not in IANA) amanda backup services (Kerberos)
-+kamanda		10081/udp  # (not in IANA) amanda backup services (Kerberos)
-+amandaidx	10082/tcp  # (not in IANA) amanda backup services
-+amidxtape	10083/tcp  # (not in IANA) amanda backup services
- #			   Frode Randers <Frode.Randers&tietoenator.com> January 2006
- #		10082-10099 Unassigned
- itap-ddtp	10100/tcp  # VERITAS ITAP DDTP
-@@ -14534,6 +14541,8 @@
- tsaf		12753/udp  # tsaf port	 
- #			   Andreas Fehr <andreas&mrs.ch>
- #		12754-13159 Unassigned
-+netserver	12865/tcp  # Netperf Server
-+netserver	12865/udp  # Netperf Server
- i-zipqd		13160/tcp  # I-ZIPQD
- i-zipqd		13160/udp  # I-ZIPQD
- #			   Chuck Runquist <crunquist&quarterdeck.com>
-@@ -14901,6 +14910,9 @@
- wnn6		22273/tcp  # wnn6
- wnn6		22273/udp  # wnn6
- #			   Yasunari Gon Yamasita <yamasita&omronsoft.co.jp>
-+wnn4_Cn		22289/tcp  # (not in IANA!) cWnn (Chinese input system/China)
-+wnn4_Kr		22305/tcp  # (not in IANA!) kWnn (Korean input system)
-+wnn4_Tw		22321/tcp  # (not in IANA!) tWnn (Chinese input system/Taiwan)
- #		22274-22304 Unassigned
- cis		22305/tcp  # CompactIS Tunnel
- cis		22305/udp  # CompactIS Tunnel
-@@ -16011,6 +16011,7 @@
- kingdomsonline	30260/udp   # Kingdoms Online (CraigAvenue)
- #			    Drake Bankston <IANA.KingdomsOnline&gmail.com> 18 August 2009
- #		30261-30998 Unassigned
-+csync2		30865/tcp   # Cluster sync (not in IANA)
- ovobs		30999/tcp   # OpenView Service Desk Client
- ovobs		30999/udp   # OpenView Service Desk Client
- #			    Service Desk Product Manager <info&hp.com> May 2006
-@@ -15403,6 +15416,17 @@
- #			    Bjorn de Bonnenfant <bdeb&iqobject.com> November 2003
- #		48620-49150 Unassigned
- #		49151	    IANA Reserved
-+tfido		60177/tcp  # (not in IANA) Ifmail
-+tfido		60177/udp  # (not in IANA) Ifmail
-+fido		60179/tcp  # (not in IANA) Ifmail
-+fido		60179/udp  # (not in IANA) Ifmail
-+#
-+# Datagram Delivery Protocol services (not in IANA)
-+#
-+rtmp		1/ddp      # Routing Table Maintenance Protocol
-+nbp		2/ddp      # Name Binding Protocol
-+echo		4/ddp      # AppleTalk Echo Protocol
-+zip		6/ddp      # Zone Information Protocol
- # 
- # DYNAMIC AND/OR PRIVATE PORTS
- # 
+--- setup-2.10.0.orig/etc/services	2021-03-19 20:16:47.179995385 +0100
++++ setup-2.10.0.orig/etc/services	2021-03-19 20:17:57.230995385 +0100
+@@ -15,14 +15,14 @@
+ echo                 7/udp    # Echo
+ #                    8/tcp    Unassigned
+ #                    8/udp    Unassigned
+-discard              9/tcp    # Discard
+-discard              9/udp    # Discard
+-discard              9/sctp   # Discard
+-discard              9/dccp   # Discard
++discard              9/tcp    sink null  # Discard
++discard              9/udp    sink null  # Discard
++discard              9/sctp   sink null  # Discard
++discard              9/dccp   sink null  # Discard
+ #                   10/tcp    Unassigned
+ #                   10/udp    Unassigned
+-systat              11/tcp    # Active Users
+-systat              11/udp    # Active Users
++systat              11/tcp    users  # Active Users
++systat              11/udp    users  # Active Users
+ #                   12/tcp    Unassigned
+ #                   12/udp    Unassigned
+ daytime             13/tcp    # Daytime
+@@ -33,10 +33,10 @@
+ #                   15/udp    Unassigned
+ #                   16/tcp    Unassigned
+ #                   16/udp    Unassigned
+-qotd                17/tcp    # Quote of the Day
+-qotd                17/udp    # Quote of the Day
+-chargen             19/tcp    # Character Generator
+-chargen             19/udp    # Character Generator
++qotd                17/tcp    quote  # Quote of the Day
++qotd                17/udp    quote  # Quote of the Day
++chargen             19/tcp    ttytst source  # Character Generator
++chargen             19/udp    ttytst source  # Character Generator
+ ftp-data            20/tcp    # File Transfer [Default Data]
+ ftp-data            20/udp    # File Transfer [Default Data]
+ ftp-data            20/sctp   # FTP
+@@ -50,8 +50,8 @@
+ telnet              23/udp    # Telnet
+ #                   24/tcp    any private mail system
+ #                   24/udp    any private mail system
+-smtp                25/tcp    # Simple Mail Transfer
+-smtp                25/udp    # Simple Mail Transfer
++smtp                25/tcp    mail  # Simple Mail Transfer
++smtp                25/udp    mail  # Simple Mail Transfer
+ #                   26/tcp    Unassigned
+ #                   26/udp    Unassigned
+ nsw-fe              27/tcp    # NSW User System FE
+@@ -74,20 +74,18 @@
+ #                   35/udp    any private printer server
+ #                   36/tcp    Unassigned
+ #                   36/udp    Unassigned
+-time                37/tcp    # Time
+-time                37/udp    # Time
++time                37/tcp    timeserver  # Time
++time                37/udp    timeserver  # Time
+ rap                 38/tcp    # Route Access Protocol
+ rap                 38/udp    # Route Access Protocol
+-rlp                 39/tcp    # Resource Location Protocol
+-rlp                 39/udp    # Resource Location Protocol
++rlp                 39/tcp    resource  # Resource Location Protocol
++rlp                 39/udp    resource  # Resource Location Protocol
+ #                   40/tcp    Unassigned
+ #                   40/udp    Unassigned
+ graphics            41/tcp    # Graphics
+ graphics            41/udp    # Graphics
+-name                42/tcp    # Host Name Server
+-name                42/udp    # Host Name Server
+-nameserver          42/tcp    # Host Name Server
+-nameserver          42/udp    # Host Name Server
++name                42/tcp    nameserver  # Host Name Server
++name                42/udp    nameserver  # Host Name Server
+ nicname             43/tcp    # Who Is
+ nicname             43/udp    # Who Is
+ mpm-flags           44/tcp    # MPM FLAGS Protocol
+@@ -160,12 +158,8 @@
+ vettcp              78/udp    # vettcp
+ finger              79/tcp    # Finger
+ finger              79/udp    # Finger
+-http                80/tcp    # World Wide Web HTTP
+-http                80/udp    # World Wide Web HTTP
+-www                 80/tcp    # World Wide Web HTTP
+-www                 80/udp    # World Wide Web HTTP
+-www-http            80/tcp    # World Wide Web HTTP
+-www-http            80/udp    # World Wide Web HTTP
++http                80/tcp    www www-http  # World Wide Web HTTP
++http                80/udp    www www-http  # World Wide Web HTTP
+ http                80/sctp   # HTTP
+ xfer                82/tcp    # XFER Utility
+ xfer                82/udp    # XFER Utility
+@@ -177,10 +171,10 @@
+ mit-ml-dev          85/udp    # MIT ML Device
+ mfcobol             86/tcp    # Micro Focus Cobol
+ mfcobol             86/udp    # Micro Focus Cobol
+-#                   87/tcp    any private terminal link
+-#                   87/udp    any private terminal link
+-kerberos            88/tcp    # Kerberos
+-kerberos            88/udp    # Kerberos
++ttylink             87/tcp    # any private terminal link
++ttylink             87/udp    # any private terminal link
++kerberos            88/tcp    krb5 kerberos5  # Kerberos
++kerberos            88/udp    krb5 kerberos5  # Kerberos
+ su-mit-tg           89/tcp    # SU/MIT Telnet Gateway
+ su-mit-tg           89/udp    # SU/MIT Telnet Gateway
+ dnsix               90/tcp    # DNSIX Securit Attribute Token Map
+@@ -203,35 +197,32 @@
+ tacnews             98/udp    # TAC News
+ metagram            99/tcp    # Metagram Relay
+ metagram            99/udp    # Metagram Relay
+-hostname           101/tcp    # NIC Host Name Server
+-hostname           101/udp    # NIC Host Name Server
+-iso-tsap           102/tcp    # ISO-TSAP Class 0
+-iso-tsap           102/udp    # ISO-TSAP Class 0
++hostname           101/tcp    hostnames  # NIC Host Name Server
++hostname           101/udp    hostnames  # NIC Host Name Server
++iso-tsap           102/tcp    tsap  # ISO-TSAP Class 0
++iso-tsap           102/udp    tsap  # ISO-TSAP Class 0
+ gppitnp            103/tcp    # Genesis Point-to-Point Trans Net
+ gppitnp            103/udp    # Genesis Point-to-Point Trans Net
+ acr-nema           104/tcp    # ACR-NEMA Digital Imag. &amp; Comm. 300
+ acr-nema           104/udp    # ACR-NEMA Digital Imag. &amp; Comm. 300
+-cso                105/tcp    # CCSO name server protocol
+-cso                105/udp    # CCSO name server protocol
+-csnet-ns           105/tcp    # Mailbox Name Nameserver
+-csnet-ns           105/udp    # Mailbox Name Nameserver
++cso                105/tcp    csnet-ns cso-ns  # CCSO name server protocol
++cso                105/udp    csnet-ns cso-ns  # CCSO name server protocol
+ 3com-tsmux         106/tcp    # 3COM-TSMUX
+ 3com-tsmux         106/udp    # 3COM-TSMUX
+ rtelnet            107/tcp    # Remote Telnet Service
+ rtelnet            107/udp    # Remote Telnet Service
+ snagas             108/tcp    # SNA Gateway Access Server
+ snagas             108/udp    # SNA Gateway Access Server
+-pop2               109/tcp    # Post Office Protocol - Version 2
+-pop2               109/udp    # Post Office Protocol - Version 2
+-pop3               110/tcp    # Post Office Protocol - Version 3
+-pop3               110/udp    # Post Office Protocol - Version 3
+-sunrpc             111/tcp    # SUN Remote Procedure Call
+-sunrpc             111/udp    # SUN Remote Procedure Call
++pop2               109/tcp    postoffice pop pop-2  # Post Office Protocol - Version 2
++pop2               109/udp    postoffice pop pop-2  # Post Office Protocol - Version 2
++pop3               110/tcp    pop-3  # Post Office Protocol - Version 3
++pop3               110/udp    pop-3  # Post Office Protocol - Version 3
++sunrpc             111/tcp    portmapper  # SUN Remote Procedure Call
++sunrpc             111/udp    portmapper  # SUN Remote Procedure Call
+ mcidas             112/tcp    # McIDAS Data Transmission Protocol
+ mcidas             112/udp    # McIDAS Data Transmission Protocol
+-ident              113/tcp    # 
+-auth               113/tcp    # Authentication Service
+-auth               113/udp    # Authentication Service
++auth               113/tcp    tap ident  # Authentication Service
++auth               113/udp    tap ident  # Authentication Service
+ sftp               115/tcp    # Simple File Transfer Protocol
+ sftp               115/udp    # Simple File Transfer Protocol
+ ansanotify         116/tcp    # ANSA REX Notify
+@@ -240,8 +231,8 @@
+ uucp-path          117/udp    # UUCP Path Service
+ sqlserv            118/tcp    # SQL Services
+ sqlserv            118/udp    # SQL Services
+-nntp               119/tcp    # Network News Transfer Protocol
+-nntp               119/udp    # Network News Transfer Protocol
++nntp               119/tcp    untp  # Network News Transfer Protocol
++nntp               119/udp    untp  # Network News Transfer Protocol
+ cfdptkt            120/tcp    # CFDPTKT
+ cfdptkt            120/udp    # CFDPTKT
+ erpc               121/tcp    # Encore Expedited Remote Pro.Call
+@@ -288,7 +279,7 @@
+ emfis-cntl         141/udp    # EMFIS Control Service
+ bl-idm             142/tcp    # Britton-Lee IDM
+ bl-idm             142/udp    # Britton-Lee IDM
+-imap               143/tcp    # Internet Message Access Protocol
++imap               143/tcp    imap2  # Internet Message Access Protocol
+ #                  143/udp    Reserved
+ uma                144/tcp    # Universal Management Architecture
+ uma                144/udp    # Universal Management Architecture
+@@ -324,8 +315,8 @@
+ nss-routing        159/udp    # NSS-Routing
+ sgmp-traps         160/tcp    # SGMP-TRAPS
+ sgmp-traps         160/udp    # SGMP-TRAPS
+-snmp               161/tcp    # SNMP
+-snmp               161/udp    # SNMP
++snmp               161/tcp    snmp-trap  # SNMP
++snmp               161/udp    snmp-trap  # SNMP
+ snmptrap           162/tcp    # SNMPTRAP
+ snmptrap           162/udp    # SNMPTRAP
+ cmip-man           163/tcp    # CMIP/TCP Manager
+@@ -794,8 +785,7 @@
+ alpes              463/udp    # alpes
+ kpasswd            464/tcp    # kpasswd
+ kpasswd            464/udp    # kpasswd
+-urd                465/tcp    # URL Rendezvous Directory for SSM
+-submissions        465/tcp    # Message Submission over TLS protocol
++smtps              465/tcp    urd  # Simple Mail Transfer over SSL / URL Rendezvous Directory for SSM
+ igmpv3lite         465/udp    # IGMP over UDP for SSM
+ digital-vrc        466/tcp    # digital-vrc
+ digital-vrc        466/udp    # digital-vrc
+@@ -890,24 +880,23 @@
+ passgo             511/tcp    # PassGo
+ passgo             511/udp    # PassGo
+ exec               512/tcp    # remote process execution; authentication performed using passwords and UNIX login names
+-comsat             512/udp    # 
+-biff               512/udp    # used by mail system to notify users of new mail received; currently receives messages only from processes on the same machine
++biff               512/udp    comsat  # used by mail system to notify users of new mail received; currently receives messages only from processes on the same machine
+ login              513/tcp    # remote login a la telnet; automatic authentication performed based on priviledged port numbers and distributed data bases which identify "authentication domains"
+-who                513/udp    # maintains data bases showing who's logged in to machines on a local net and the load average of the machine
+-shell              514/tcp    # cmd like exec, but automatic authentication is performed as for login server
++who                513/udp    whod # maintains data bases showing who's logged in to machines on a local net and the load average of the machine
++shell              514/tcp    cmd  # cmd like exec, but automatic authentication is performed as for login server
+ syslog             514/udp    # 
+-printer            515/tcp    # spooler
+-printer            515/udp    # spooler
++printer            515/tcp    spooler  # spooler
++printer            515/udp    spooler  # spooler
+ videotex           516/tcp    # videotex
+ videotex           516/udp    # videotex
+ talk               517/tcp    # like tenex link, but across machine - unfortunately, doesn't use link protocol (this is actually just a rendezvous port from which a tcp connection is established)
+ talk               517/udp    # like tenex link, but across machine - unfortunately, doesn't use link protocol (this is actually just a rendezvous port from which a tcp connection is established)
+ ntalk              518/tcp    # 
+ ntalk              518/udp    # 
+-utime              519/tcp    # unixtime
+-utime              519/udp    # unixtime
++utime              519/tcp    unixtime  # unixtime
++utime              519/udp    unixtime  # unixtime
+ efs                520/tcp    # extended file name server
+-router             520/udp    # local routing process (on site); uses variant of Xerox NS routing information protocol - RIP
++router             520/udp    route routed  # local routing process (on site); uses variant of Xerox NS routing information protocol - RIP
+ ripng              521/tcp    # ripng
+ ripng              521/udp    # ripng
+ ulp                522/tcp    # ULP
+@@ -926,12 +915,12 @@
+ custix             528/udp    # Customer IXChange
+ irc-serv           529/tcp    # IRC-SERV
+ irc-serv           529/udp    # IRC-SERV
+-courier            530/tcp    # rpc
+-courier            530/udp    # rpc
+-conference         531/tcp    # chat
+-conference         531/udp    # chat
+-netnews            532/tcp    # readnews
+-netnews            532/udp    # readnews
++courier            530/tcp    rpc  # rpc
++courier            530/udp    rpc  # rpc
++conference         531/tcp    chat  # chat
++conference         531/udp    chat  # chat
++netnews            532/tcp    readnews  # readnews
++netnews            532/udp    readnews  # readnews
+ netwall            533/tcp    # for emergency broadcasts
+ netwall            533/udp    # for emergency broadcasts
+ windream           534/tcp    # windream Admin
+@@ -946,16 +935,16 @@
+ gdomap             538/udp    # gdomap
+ apertus-ldp        539/tcp    # Apertus Technologies Load Determination
+ apertus-ldp        539/udp    # Apertus Technologies Load Determination
+-uucp               540/tcp    # uucpd
+-uucp               540/udp    # uucpd
++uucp               540/tcp    uucpd  # uucpd
++uucp               540/udp    uucpd  # uucpd
+ uucp-rlogin        541/tcp    # uucp-rlogin
+ uucp-rlogin        541/udp    # uucp-rlogin
+ commerce           542/tcp    # commerce
+ commerce           542/udp    # commerce
+ klogin             543/tcp    # 
+ klogin             543/udp    # 
+-kshell             544/tcp    # krcmd
+-kshell             544/udp    # krcmd
++kshell             544/tcp    krcmd  # krcmd
++kshell             544/udp    krcmd  # krcmd
+ appleqtcsrvr       545/tcp    # appleqtcsrvr
+ appleqtcsrvr       545/udp    # appleqtcsrvr
+ dhcpv6-client      546/tcp    # DHCPv6 Client
+@@ -966,8 +955,8 @@
+ afpovertcp         548/udp    # AFP over TCP
+ idfp               549/tcp    # IDFP
+ idfp               549/udp    # IDFP
+-new-rwho           550/tcp    # new-who
+-new-rwho           550/udp    # new-who
++new-rwho           550/tcp    new-who  # new-who
++new-rwho           550/udp    new-who  # new-who
+ cybercash          551/tcp    # cybercash
+ cybercash          551/udp    # cybercash
+ devshr-nts         552/tcp    # DeviceShare
+@@ -986,14 +975,14 @@
+ sdnskmp            558/udp    # SDNSKMP
+ teedtap            559/tcp    # TEEDTAP
+ teedtap            559/udp    # TEEDTAP
+-rmonitor           560/tcp    # rmonitord
+-rmonitor           560/udp    # rmonitord
++rmonitor           560/tcp    rmonitord  # rmonitord
++rmonitor           560/udp    rmonitord  # rmonitord
+ monitor            561/tcp    # 
+ monitor            561/udp    # 
+ chshell            562/tcp    # chcmd
+ chshell            562/udp    # chcmd
+-nntps              563/tcp    # nntp protocol over TLS/SSL (was snntp)
+-nntps              563/udp    # nntp protocol over TLS/SSL (was snntp)
++nntps              563/tcp    snntp  # nntp protocol over TLS/SSL (was snntp)
++nntps              563/udp    snntp  # nntp protocol over TLS/SSL (was snntp)
+ 9pfs               564/tcp    # plan 9 file service
+ 9pfs               564/udp    # plan 9 file service
+ whoami             565/tcp    # whoami
+@@ -1038,8 +1027,8 @@
+ keyserver          584/udp    # Key Server
+ password-chg       586/tcp    # Password Change
+ password-chg       586/udp    # Password Change
+-submission         587/tcp    # Message Submission
+-submission         587/udp    # Message Submission
++submission         587/tcp    msa  # Message Submission
++submission         587/udp    msa  # Message Submission
+ cal                588/tcp    # CAL
+ cal                588/udp    # CAL
+ eyelink            589/tcp    # EyeLink
+@@ -1314,7 +1303,7 @@
+ kerberos-adm       749/udp    # kerberos administration
+ rfile              750/tcp    # 
+ loadav             750/udp    # 
+-kerberos-iv        750/udp    # kerberos version iv
++kerberos-iv        750/udp    kerberos4  # kerberos version iv
+ pump               751/tcp    # 
+ pump               751/udp    # 
+ qrh                752/tcp    # 
+@@ -1406,7 +1395,7 @@
+ cddbp              888/tcp    # CD Database Protocol
+ omginitialrefs     900/tcp    # OMG Initial Refs
+ omginitialrefs     900/udp    # OMG Initial Refs
+-smpnameres         901/tcp    # SMPNAMERES
++smpnameres         901/tcp    swat  # SMPNAMERES / Samba Web Administration Tool
+ smpnameres         901/udp    # SMPNAMERES
+ ideafarm-door      902/tcp    # self documenting Telnet Door
+ ideafarm-door      902/udp    # self documenting Door: send 0x00 for info
+@@ -1428,8 +1417,8 @@
+ ftps               990/udp    # ftp protocol, control, over TLS/SSL
+ nas                991/tcp    # Netnews Administration System
+ nas                991/udp    # Netnews Administration System
+-telnets            992/tcp    # telnet protocol over TLS/SSL
+-telnets            992/udp    # telnet protocol over TLS/SSL
++telnets            992/tcp    stelnet  # telnet protocol over TLS/SSL
++telnets            992/udp    stelnet  # telnet protocol over TLS/SSL
+ imaps              993/tcp    # IMAP over TLS protocol
+ #                  993/udp    Reserved
+ #                  994/tcp    Reserved
+@@ -2455,10 +2444,8 @@
+ cichild-lm        1523/udp    # cichild
+ ingreslock        1524/tcp    # ingres
+ ingreslock        1524/udp    # ingres
+-orasrv            1525/tcp    # oracle
+-orasrv            1525/udp    # oracle
+-prospero-np       1525/tcp    # Prospero Directory Service non-priv
+-prospero-np       1525/udp    # Prospero Directory Service non-priv
++prospero-np       1525/tcp    orasrv  # Prospero Directory Service non-priv / oracle
++prospero-np       1525/udp    orasrv  # Prospero Directory Service non-priv / oracle
+ pdap-np           1526/tcp    # Prospero Data Access Prot non-priv
+ pdap-np           1526/udp    # Prospero Data Access Prot non-priv
+ tlisrv            1527/tcp    # oracle
+@@ -2809,10 +2796,8 @@
+ rsvp-encap-2      1699/udp    # RSVP-ENCAPSULATION-2
+ mps-raft          1700/tcp    # mps-raft
+ mps-raft          1700/udp    # mps-raft
+-l2f               1701/tcp    # l2f
+-l2f               1701/udp    # l2f
+-l2tp              1701/tcp    # l2tp
+-l2tp              1701/udp    # l2tp
++l2f               1701/tcp    l2tp  # l2f / l2tp
++l2f               1701/udp    l2tp  # l2f
+ deskshare         1702/tcp    # deskshare
+ deskshare         1702/udp    # deskshare
+ hb-engine         1703/tcp    # hb-engine
+@@ -3386,18 +3371,14 @@
+ tr-rsrb-p1        1987/udp    # cisco RSRB Priority 1 port
+ tr-rsrb-p2        1988/tcp    # cisco RSRB Priority 2 port
+ tr-rsrb-p2        1988/udp    # cisco RSRB Priority 2 port
+-tr-rsrb-p3        1989/tcp    # cisco RSRB Priority 3 port
+-tr-rsrb-p3        1989/udp    # cisco RSRB Priority 3 port
+-mshnet            1989/tcp    # MHSnet system
+-mshnet            1989/udp    # MHSnet system
++tr-rsrb-p3        1989/tcp    mshnet  # cisco RSRB Priority 3 port / MHSnet system
++tr-rsrb-p3        1989/udp    mshnet  # cisco RSRB Priority 3 port / MHSnet system
+ stun-p1           1990/tcp    # cisco STUN Priority 1 port
+ stun-p1           1990/udp    # cisco STUN Priority 1 port
+ stun-p2           1991/tcp    # cisco STUN Priority 2 port
+ stun-p2           1991/udp    # cisco STUN Priority 2 port
+-stun-p3           1992/tcp    # cisco STUN Priority 3 port
+-stun-p3           1992/udp    # cisco STUN Priority 3 port
+-ipsendmsg         1992/tcp    # IPsendmsg
+-ipsendmsg         1992/udp    # IPsendmsg
++stun-p3           1992/tcp    ipsendmsg  # cisco STUN Priority 3 port / IPsendmsg
++stun-p3           1992/udp    ipsendmsg  # cisco STUN Priority 3 port / IPsendmsg
+ snmp-tcp-port     1993/tcp    # cisco SNMP TCP port
+ snmp-tcp-port     1993/udp    # cisco SNMP TCP port
+ stun-port         1994/tcp    # cisco serial tunnel port
+@@ -3418,7 +3399,7 @@
+ wizard            2001/udp    # curry
+ globe             2002/tcp    # 
+ globe             2002/udp    # 
+-brutus            2003/tcp    # Brutus Server
++brutus            2003/tcp    cfinger  # Brutus Server / GNU Finger
+ brutus            2003/udp    # Brutus Server
+ mailbox           2004/tcp    # 
+ emce              2004/udp    # CCWS mm conf
+@@ -3510,10 +3491,8 @@
+ dls               2047/udp    # 
+ dls-monitor       2048/tcp    # 
+ dls-monitor       2048/udp    # 
+-shilp             2049/tcp    # 
+-shilp             2049/udp    # 
+-nfs               2049/tcp    # Network File System - Sun Microsystems
+-nfs               2049/udp    # Network File System - Sun Microsystems
++nfs               2049/tcp    shilp  # Network File System - Sun Microsystems
++nfs               2049/udp    shilp  # Network File System - Sun Microsystems
+ nfs               2049/sctp   # Network File System
+ av-emb-config     2050/tcp    # Avaya EMB Config Port
+ av-emb-config     2050/udp    # Avaya EMB Config Port
+@@ -8932,8 +8911,8 @@
+ radec-corp        5430/udp    # RADEC CORP
+ park-agent        5431/tcp    # PARK AGENT
+ park-agent        5431/udp    # PARK AGENT
+-postgresql        5432/tcp    # PostgreSQL Database
+-postgresql        5432/udp    # PostgreSQL Database
++postgresql        5432/tcp    postgres  # PostgreSQL Database
++postgresql        5432/udp    postgres  # PostgreSQL Database
+ pyrrho            5433/tcp    # Pyrrho DBMS
+ pyrrho            5433/udp    # Pyrrho DBMS
+ sgi-arrayd        5434/tcp    # SGI Array Services Daemon
+@@ -9098,8 +9077,8 @@
+ amqp              5672/tcp    # AMQP
+ amqp              5672/udp    # AMQP
+ amqp              5672/sctp   # AMQP
+-jms               5673/tcp    # JACL Message Server
+-jms               5673/udp    # JACL Message Server
++jms               5673/tcp    irrd  # JACL Message Server
++jms               5673/udp    irrd  # JACL Message Server
+ hyperscsi-port    5674/tcp    # HyperSCSI Port
+ hyperscsi-port    5674/udp    # HyperSCSI Port
+ v5ua              5675/tcp    # V5UA application port
+@@ -9592,8 +9571,8 @@
+ #                 6556/udp    Reserved
+ xdsxdm            6558/tcp    # 
+ xdsxdm            6558/udp    # 
+-sane-port         6566/tcp    # SANE Control Port
+-sane-port         6566/udp    # SANE Control Port
++sane-port         6566/tcp    sane  # SANE Control Port
++sane-port         6566/udp    sane  # SANE Control Port
+ canit-store       6568/tcp    # CanIt Storage Manager
+ rp-reputation     6568/udp    # Roaring Penguin IP Address Reputation Collection
+ affiliate         6579/tcp    # Affiliate
+@@ -9656,6 +9635,14 @@
+ palcom-disc       6657/udp    # PalCom Discovery
+ ircu              6665/tcp    # IRCU
+ #                 6665/udp    Reserved
++ircu              6666/tcp    # IRCU
++ircu              6666/udp    # IRCU
++ircu              6667/tcp    # IRCU
++ircu              6667/udp    # IRCU
++ircu              6668/tcp    # IRCU
++ircu              6668/udp    # IRCU
++ircu              6669/tcp    # IRCU
++ircu              6669/udp    # IRCU
+ vocaltec-gold     6670/tcp    # Vocaltec Global Online Directory
+ vocaltec-gold     6670/udp    # Vocaltec Global Online Directory
+ p4p-portal        6671/tcp    # P4P Portal Service
+@@ -10612,7 +10599,7 @@
+ #                 8881/udp    Reserved
+ secure-mqtt       8883/tcp    # Secure MQTT
+ secure-mqtt       8883/udp    # Secure MQTT
+-ddi-tcp-1         8888/tcp    # NewsEDGE server TCP (TCP 1)
++ddi-tcp-1         8888/tcp    irr_rpsl_submit  # NewsEDGE server TCP (TCP 1)
+ ddi-udp-1         8888/udp    # NewsEDGE server UDP (UDP 1)
+ ddi-tcp-2         8889/tcp    # Desktop Data TCP 1
+ ddi-udp-2         8889/udp    # NewsEDGE server broadcast
+@@ -11081,8 +11068,12 @@
+ #                10055/udp    Reserved
+ amanda           10080/tcp    # Amanda
+ amanda           10080/udp    # Amanda
+-famdc            10081/tcp    # FAM Archive Server
+-famdc            10081/udp    # FAM Archive Server
++famdc            10081/tcp    kamanda  # FAM Archive Server / amanda backup services (Kerberos)
++famdc            10081/udp    kamanda  # FAM Archive Server / amanda backup services (Kerberos)
++amandaidx        10082/tcp    # amanda backup services
++amandaidx        10082/udp    # amanda backup services
++amidxtape        10083/tcp    # amanda backup services
++amidxtape        10083/udp    # amanda backup services
+ itap-ddtp        10100/tcp    # VERITAS ITAP DDTP
+ itap-ddtp        10100/udp    # VERITAS ITAP DDTP
+ ezmeeting-2      10101/tcp    # eZmeeting
+@@ -11311,7 +11302,7 @@
+ italk            12345/udp    # Italk Chat System
+ tsaf             12753/tcp    # tsaf port
+ tsaf             12753/udp    # tsaf port
+-netperf          12865/tcp    # control port for the netperf benchmark
++netperf          12865/tcp    netserver  # control port for the netperf benchmark
+ #                12865/udp    Reserved
+ i-zipqd          13160/tcp    # I-ZIPQD
+ i-zipqd          13160/udp    # I-ZIPQD
+@@ -11906,6 +11897,7 @@
+ #                30400/udp    Reserved
+ samsung-disc     30832/udp    # Samsung Convergence Discovery Protocol
+ #                30832/tcp    Reserved
++csync2           30865/tcp    # Cluster sync
+ ovobs            30999/tcp    # OpenView Service Desk Client
+ ovobs            30999/udp    # OpenView Service Desk Client
+ ka-sddp          31016/tcp    # Kollective Agent Secure Distributed Delivery Protocol
+@@ -12248,3 +12240,7 @@
+ nusdp-disc       49001/udp    # Nuance Unity Service Discovery Protocol
+ inspider         49150/tcp    # InSpider System
+ #                49150/udp    Reserved
++tfido            60177/tcp    # Ifmail
++tfido            60177/udp    # Ifmail
++fido             60179/tcp    # Ifmail
++fido             60179/udp    # Ifmail
