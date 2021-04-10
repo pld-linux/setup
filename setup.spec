@@ -12,12 +12,12 @@ Summary(pl.UTF-8):	Podstawowe pliki systemu Linux
 Summary(pt_BR.UTF-8):	Vários arquivos básicos de configuração
 Summary(tr.UTF-8):	Basit kurulum dosyaları
 Name:		setup
-Version:	2.10.0
-Release:	2
+Version:	2.10.1
+Release:	1
 License:	Public Domain, partially BSD-like
 Group:		Base
 Source0:	%{name}-%{version}.tar.bz2
-# Source0-md5:	1ecb6d9865ce3300881fa466d0c97583
+# Source0-md5:	07c8fb80245562f99bba0b5ff1e2a5f4
 Source1:	protocols.gawk
 Source2:	services.gawk
 Source3:	https://www.iana.org/assignments/protocol-numbers/protocol-numbers.xml
