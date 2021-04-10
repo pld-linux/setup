@@ -119,13 +119,13 @@ rm -rf $RPM_BUILD_ROOT
 -/bin/sh -c '/usr/bin/test -L /etc/mtab || /bin/mv -v /etc/mtab /etc/mtab.rpmsave'
 
 %triggerpostun -p /sbin/postshell -- %{name} < %{version}-%{release}
-%{_sbindir}/joinpasswd
 %{_sbindir}/delpasswd -g ttyS cdwrite
 
 %triggerin -p %{_sbindir}/update-fstab -- %{name} < 2.4.10-1
 
 %post -p /sbin/postshell
 -/sbin/env-update -u
+%{_sbindir}/joinpasswd
 
 %postun -p /sbin/postshell
 -/sbin/env-update -u
