@@ -12,18 +12,18 @@ Summary(pl.UTF-8):	Podstawowe pliki systemu Linux
 Summary(pt_BR.UTF-8):	Vários arquivos básicos de configuração
 Summary(tr.UTF-8):	Basit kurulum dosyaları
 Name:		setup
-Version:	2.10.1
+Version:	2.10.2
 Release:	1
 License:	Public Domain, partially BSD-like
 Group:		Base
 Source0:	%{name}-%{version}.tar.bz2
-# Source0-md5:	07c8fb80245562f99bba0b5ff1e2a5f4
+# Source0-md5:	81fc61ad47ce7de1db3f170260e282cd
 Source1:	protocols.gawk
 Source2:	services.gawk
 Source3:	https://www.iana.org/assignments/protocol-numbers/protocol-numbers.xml
-# Source3-md5:	ea5803d992cc16ca8b5e355ca5ef5bc4
+# Source3-md5:	3d3cbb61e8740139a8dc544c8f1173f0
 Source4:	https://www.iana.org/assignments/service-names-port-numbers/service-names-port-numbers.xml
-# Source4-md5:	91a82a6e1d15b205514e264ea5accc45
+# Source4-md5:	60e71c8c6187fe639312be02e26443af
 Patch0:		%{name}-services.patch
 %if %{with diet}
 BuildRequires:	dietlibc-static

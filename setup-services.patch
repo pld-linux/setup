@@ -482,7 +482,7 @@
  itap-ddtp        10100/udp    # VERITAS ITAP DDTP
  ezmeeting-2      10101/tcp    # eZmeeting
 @@ -11311,7 +11302,7 @@
- italk            12345/udp    # Italk Chat System
+ #                12546/udp    Reserved
  tsaf             12753/tcp    # tsaf port
  tsaf             12753/udp    # tsaf port
 -netperf          12865/tcp    # control port for the netperf benchmark
