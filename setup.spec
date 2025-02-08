@@ -13,7 +13,7 @@ Summary(pt_BR.UTF-8):	Vários arquivos básicos de configuração
 Summary(tr.UTF-8):	Basit kurulum dosyaları
 Name:		setup
 Version:	2.10.2
-Release:	1
+Release:	2
 License:	Public Domain, partially BSD-like
 Group:		Base
 Source0:	%{name}-%{version}.tar.bz2
@@ -34,6 +34,7 @@ BuildRequires:	gawk
 BuildRequires:	glibc-misc
 Requires:	FHS >= 2.3-24.1
 Provides:	group(fuse)
+Provides:	group(logs)
 Conflicts:	PowerChutePlus < 4.5.3-2
 Conflicts:	glibc < 6:2.4-4.1
 # tape,dialout and cdrom groups support
