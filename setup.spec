@@ -89,7 +89,7 @@ dosyalarını içerir.
 %setup -q
 %{SOURCE1} %{SOURCE3} > etc/protocols
 %{SOURCE2} %{SOURCE4} > etc/services
-%patch0 -p1
+%patch -P0 -p1
 
 %build
 # kill trailing spaces/tabs
