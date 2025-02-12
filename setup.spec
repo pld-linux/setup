@@ -13,7 +13,7 @@ Summary(pt_BR.UTF-8):	Vários arquivos básicos de configuração
 Summary(tr.UTF-8):	Basit kurulum dosyaları
 Name:		setup
 Version:	2.10.2
-Release:	2
+Release:	3
 License:	Public Domain, partially BSD-like
 Group:		Base
 Source0:	%{name}-%{version}.tar.bz2
@@ -33,8 +33,53 @@ BuildRequires:	glibc-static
 BuildRequires:	gawk
 BuildRequires:	glibc-misc
 Requires:	FHS >= 2.3-24.1
+Provides:	group(adm)
+Provides:	group(audio)
+Provides:	group(backup)
+Provides:	group(bin)
+Provides:	group(cdrom)
+Provides:	group(console)
+Provides:	group(daemon)
+Provides:	group(dialout)
+Provides:	group(dip)
+Provides:	group(disk)
+Provides:	group(fileshare)
+Provides:	group(floppy)
+Provides:	group(fsctrl)
+Provides:	group(ftp)
 Provides:	group(fuse)
+Provides:	group(games)
+Provides:	group(http)
+Provides:	group(i2c)
+Provides:	group(icmp)
+Provides:	group(input)
+Provides:	group(kmem)
 Provides:	group(logs)
+Provides:	group(lp)
+Provides:	group(mail)
+Provides:	group(man)
+Provides:	group(mem)
+Provides:	group(news)
+Provides:	group(nobody)
+Provides:	group(nocsock)
+Provides:	group(nofork)
+Provides:	group(nogroup)
+Provides:	group(nosock)
+Provides:	group(nossock)
+Provides:	group(proc)
+Provides:	group(sgx)
+Provides:	group(slocate)
+Provides:	group(stats)
+Provides:	group(sys)
+Provides:	group(tape)
+Provides:	group(tpexec)
+Provides:	group(tty)
+Provides:	group(usb)
+Provides:	group(users)
+Provides:	group(utmp)
+Provides:	group(uucp)
+Provides:	group(video)
+Provides:	group(wheel)
 Conflicts:	PowerChutePlus < 4.5.3-2
 Conflicts:	glibc < 6:2.4-4.1
 # tape,dialout and cdrom groups support
